@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lato, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+    color: inherit;
+    transition: .4s;
+}
+
+a:hover {
+    opacity: .5;
+}
+
+:root {
+    --BLUE-BG: RGB(98, 149, 213);
+    --BLUE-TEXT: RGB(79, 113, 156);
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background-color: var(--BLUE-BG);
+}
+
+main {
+    background-color: white;
+    color: var(--BLUE-TEXT);
+    margin: 5% 25%;
+    border-radius: 4px;
+    padding: 0;
+}
+
+main img {
+    display: block;
+    margin: auto;
+    width: 65%;
+}
+
+main p {
+    padding: 12px 85px;
+    font-size: 18px;
+}
+
+main ul {
+    list-style: none;
+}
+
+main li {
+    padding: 0 85px;
+    font-size: 18px;
+}
+
+hr {
+    height: 1px;
+    color: lightgray;
+    background-color: transparent;
+    margin: 32px 0;
+}
+
+address {
+    font-style: normal;
+}
+
+.bottom_container .button {
+    display: block;
+    background-color: #30588a;
+    color: white;
+    text-decoration: none;
+    width: 250px;
+    margin: auto;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+}
+
+.bottom_container .button:hover {
+    opacity: 1;
+    background-color: #5ba4ff;
+}
+
+.bottom_container .small_gray {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: RGBa(150, 150, 150);
+    margin: 12px 0;
+}
+
+.bottom_container .small_gray:hover {
+    text-decoration: underline 1px solid RGBa(150, 150, 150);
+}
+
+.center {
+    text-align: center;
+}
+
+.justify {
+    text-align: justify;
+    hyphens: auto;
+}
+
+@media screen and (max-width: 1350px) {
+    main {
+        margin: 100px 20%;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    main {
+        margin: 100px 15%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    main {
+        margin: 50px 10%;
+    }
+
+    main p {
+        padding: 12px 45px;
+    }
+
+    main li {
+        padding: 0 45px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    main{
+        margin: 40px 10%;
+    }
+    main img{
+        width: 85%;
+    }
+    main p{
+        font-size: 13px;
+        padding: 16px;
+    }
+    main li{        
+        font-size: 13px;
+        padding: 0 16px;
+    }
+}
