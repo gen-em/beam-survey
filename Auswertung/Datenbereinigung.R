@@ -269,17 +269,6 @@ Ergebnisse$Q7 <- ifelse(grepl(", ", Ergebnisse$Q7),
 #Q10 - Wo arbeiten Sie?
 Ergebnisse$Q10 <- as.factor(Ergebnisse$Q10)
 
-#Q12 - Deutsch als Muttersprache
-#Q13 - Was ist ihre Muttersprache, wenn nicht deutsch?
-
-
-
-
-
-
-#Q24 - wie wichtig sind CME Punkte?
-
-
 # Der folgende For Loop kombiniert alle Spalten die aus mehreren Spalten bestehen ineinander
 #sie werden unter einer neuen Spalte "combined_QX" abgespeichert.
 # dies passiert nur für die Spalten mit numerischem Inhalt (um die Likert Skalen in einer Spalte zu haben)

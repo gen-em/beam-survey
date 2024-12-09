@@ -114,13 +114,16 @@ Ergebnisse_bearb$Q9 <- fct_recode(Ergebnisse_bearb$Q9,
  
 Ergebnisse_bearb$Q51InfoFortbildung <- as.logical(Ergebnisse_bearb$Q51InfoFortbildung) 
  
-kontaktaiw <- Ergebnisse_bearb %>%
+kontakaiw <- Ergebnisse_bearb %>%
   filter(Q51InfoFortbildung == TRUE & !is.na(Email) & Email != "" &Q2 =="AiW")
 
-write.xlsx(kontaktaiw, "Kontakt-AiW.xlsx", overwrite = TRUE)
+AiW <- Ergebnisse_bearb %>%
+  filter(Q2 == "AiW")
+
+write.xlsx(kontaktaiw, "Auswertung/Kontakt-AiW.xlsx", overwrite = TRUE)
 
 # Altersverteilung: Daten vorbereiten | Start ggplot 2 mit Daten und so
-alter <- kontaktaiw %>%
+alter <- AiW %>%
   count(Q1) %>%
   mutate(percentage = n / sum(n))
 
@@ -134,7 +137,7 @@ ggplot(alter, aes(x = "", y = percentage, fill = Q1)) +
   theme_void() +
   theme(legend.position = "bottom")
 
-wbjahr <- kontaktaiw %>%  
+wbjahr <- AiW %>%  
   count(Q5Weiterbildungsjahr) %>%
   mutate(percentage = n / sum(n))
 
@@ -161,23 +164,23 @@ ggplot(berufsv, aes(x = "", y = percentage, fill = Q2)) +
   theme_void() +
   theme(legend.position = "bottom")
 
-Interesse <- kontaktaiw %>%
+Interesse <- AiW %>%
   count(Q15Interesse) %>%
   mutate(percentage = n / sum(n))
 
-Angst <- kontaktaiw %>%
+Angst <- AiW %>%
   count(Q15Angst) %>%
   mutate(percentage = n / sum(n))
 
-Stand <- kontaktaiw %>%
+Stand <- AiW %>%
   count(Q15AktuellerStand) %>%
   mutate(percentage = n / sum(n))
 
-QualiS <- kontaktaiw %>%
+QualiS <- AiW %>%
   count(Q15Qualitaetselbst) %>%
   mutate(percentage = n / sum(n))
 
-QualiP <- kontaktaiw %>%
+QualiP <- AiW %>%
   count(Q15QualitaetPat) %>%
   mutate(percentage = n / sum(n))
 
@@ -187,15 +190,15 @@ Q15Zusammenfassung <- Interesse %>%
   full_join(QualiS, by = "percentage") %>%
   full_join(QualiP, by = "percentage")
 
-write.xlsx(Q15Zusammenfassung, "Motivation.xlsx", overwrite = TRUE)
+write.xlsx(Q15Zusammenfassung, "Auswertung/Motivation.xlsx", overwrite = TRUE)
 
-Geld1 <- kontaktaiw %>%
+Geld1 <- AiW %>%
   count(Q49) %>%
   mutate(Anteil = n / sum(n))
 
-Geld2 <- kontaktaiw %>%
+Geld2 <- AiW %>%
   count(Q50) %>%
   mutate(Anteil = n / sum(n))
 
-write.xlsx(Geld1, "Geld1.xlsx", overwirte = TRUE)
-write.xlsx(Geld2, "Geld2.xlsx", overwirte = TRUE)
+write.xlsx(Geld1, "Auswertung/Geld1.xlsx", overwirte = TRUE)
+write.xlsx(Geld2, "Auswertung/Geld2.xlsx", overwirte = TRUE)
