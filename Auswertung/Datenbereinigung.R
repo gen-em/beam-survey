@@ -1,4 +1,4 @@
-source(globals.R)
+source("globals.R")
 #Rohdaten in den DataFrame Ergebnisse laden (ansonsten verwende: import Dataset)
 Ergebnisse <- read_excel("Rohdaten/30.11.24 Beam-Survey Ergebnisse.xlsx", 
                          col_types = c("text", "text", "skip", 
