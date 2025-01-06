@@ -121,11 +121,39 @@ AiW <- Ergebnisse_bearb %>%
   filter(Q2 == "AiW")
 
 write.xlsx(kontaktaiw, "Auswertung/Kontakt-AiW.xlsx", overwrite = TRUE)
+write.xlsx(AiW, "Auswertung/AiW-daten.xlsx", overwrite = TRUE)
 
 # Altersverteilung: Daten vorbereiten | Start ggplot 2 mit Daten und so
 alter <- AiW %>%
   count(Q1) %>%
   mutate(percentage = n / sum(n))
+
+# Vorbereitung wie viele wollen die KlinAm machen?
+KlinAm <- AiW %>%
+  count(Q8) %>%
+  mutate(percentage = n / sum(n))
+
+# Vorbereitung Auswertung Q 10, level angleichen
+
+levelsQ10 <- c("Ambulanter Bereich", 
+               "Rettungswesen", 
+               "Kleines Krankenhaus (<200 Planbetten)", 
+               "Krankenhaus der Schwerpunkt- oder Maximalversorgung (>500 Planbetten)", 
+               "Mittelgroßes Krankenhaus (200-500 Planbetten)", 
+               "Rettungswesen", 
+               "Ehrenamt", 
+               "Kleines Krankenhaus (<200 Planbetten)",
+               "Rettungswesen",
+               "Krankenhaus der Schwerpunkt- oder Maximalversorgung (>500 Planbetten)",
+               "Rettungswesen",
+               "Rettungswesen",
+               "Rettungswesen",
+               "Ruhestand")
+
+levels(AiW$Q10) <- levelsQ10
+
+#Motive für Fortbildung (Q15)
+
 
 # Tortendiagramm erstellen
 ggplot(alter, aes(x = "", y = percentage, fill = Q1)) +
@@ -191,6 +219,12 @@ Q15Zusammenfassung <- Interesse %>%
   full_join(QualiP, by = "percentage")
 
 write.xlsx(Q15Zusammenfassung, "Auswertung/Motivation.xlsx", overwrite = TRUE)
+
+# Motivation in Excel etwas aufgehübscht um es leichter zu bearbeiten und wieder importiert.
+Motivation_final <- read_excel("Auswertung/Motivation-final.xlsx", 
+                                 +     col_types = c("text", "numeric", "numeric"))
+Q16 <- c(AiW$Q16)
+
 
 Geld1 <- AiW %>%
   count(Q49) %>%
