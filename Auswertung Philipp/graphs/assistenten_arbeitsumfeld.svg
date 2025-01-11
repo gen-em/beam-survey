@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='504.00pt' height='360.00pt' viewBox='0 0 504.00 360.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA='>
+    <rect x='0.00' y='0.00' width='504.00' height='360.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMzMuMTR8NDk4LjUyfDIzLjE4fDIzMS40OQ=='>
+    <rect x='33.14' y='23.18' width='465.38' height='208.31' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMzMuMTR8NDk4LjUyfDIzLjE4fDIzMS40OQ==)'>
+<polyline points='33.14,200.55 498.52,200.55 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,157.61 498.52,157.61 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,114.66 498.52,114.66 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,71.72 498.52,71.72 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,28.78 498.52,28.78 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,222.02 498.52,222.02 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,179.08 498.52,179.08 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,136.13 498.52,136.13 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,93.19 498.52,93.19 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='33.14,50.25 498.52,50.25 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='99.62,231.49 99.62,23.18 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='210.43,231.49 210.43,23.18 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='321.23,231.49 321.23,23.18 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='432.04,231.49 432.04,23.18 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<rect x='49.76' y='188.52' width='99.72' height='33.49' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #66C2A5;' />
+<rect x='160.56' y='36.94' width='99.72' height='185.08' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #FC8D62;' />
+<rect x='271.37' y='32.65' width='99.72' height='189.37' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #8DA0CB;' />
+<rect x='382.17' y='209.56' width='99.72' height='12.45' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #E78AC3;' />
+</g>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
+<text x='28.21' y='225.17' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='28.21' y='182.23' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='28.21' y='139.28' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='28.21' y='96.34' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text x='28.21' y='53.40' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text transform='translate(98.49,287.87) rotate(-45)' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='83.17px' lengthAdjust='spacingAndGlyphs'>Kleines Krankenhaus</text>
+<text transform='translate(105.21,294.59) rotate(-45)' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='53.59px' lengthAdjust='spacingAndGlyphs'>(&lt;200 Betten)</text>
+<text transform='translate(209.29,287.87) rotate(-45)' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='102.73px' lengthAdjust='spacingAndGlyphs'>Mittelgroßes Krankenhaus</text>
+<text transform='translate(216.01,294.59) rotate(-45)' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='66.07px' lengthAdjust='spacingAndGlyphs'>(200-500 Betten)</text>
+<text transform='translate(320.10,287.87) rotate(-45)' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='131.08px' lengthAdjust='spacingAndGlyphs'>Schwerpunkt- / Maximalversorger</text>
+<text transform='translate(326.82,294.59) rotate(-45)' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='53.59px' lengthAdjust='spacingAndGlyphs'>(&gt;500 Betten)</text>
+<text transform='translate(434.26,291.23) rotate(-45)' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='37.18px' lengthAdjust='spacingAndGlyphs'>Ambulant</text>
+<text x='265.83' y='352.20' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='67.27px' lengthAdjust='spacingAndGlyphs'>Arbeitsumfeld</text>
+<text transform='translate(13.36,127.33) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='37.92px' lengthAdjust='spacingAndGlyphs'>Prozent</text>
+<text x='33.14' y='14.93' style='font-size: 13.20px; font-family: "Arial";' textLength='261.52px' lengthAdjust='spacingAndGlyphs'>Arbeitsumfeld der ÄrztInnen in Weiterbildung</text>
+</g>
+</svg>

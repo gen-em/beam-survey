@@ -1,10 +1,13 @@
-library(tidyverse)
-library(readxl) # Für Excel-Dateien notwendig
-library(dplyr) # Fürs Filtern verwendet
-library(ggplot2) # Visualisierung von Daten
-
 ########################################################################
 ####### Rohdaten aus Excel-Datei einfügen
+########################################################################
+## Excel Datei ist manuell bereinigt worden 
+## - Nicht-ÄrztInnen entfernt
+## - Sonstiges korrigiert / aufgehübscht
+## - Likert-Scale Spalten zusammengefasst
+## - ja/nein in Boolean TRUE/FALSE überführt
+## - Spaltentitel angepasst
+## - Antworten fürs Einlesen in R verbessert
 ########################################################################
 
 rohdaten_quelldatei <- "./rohdaten/beam-ergebnisse_philipp-edit.xlsx"
