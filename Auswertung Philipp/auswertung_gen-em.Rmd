@@ -2,9 +2,9 @@
 title: "BEAM-Auswertung: ÄrztInnen in Weiterbildung"
 output:
   github_document: default
+  word_document: default
   html_document: default
   pdf_document: default
-  word_document: default
 encoding: UTF-8
 ---
 ---
@@ -23,12 +23,19 @@ knitr::opts_chunk$set(
 # Set working directory for the entire document
 knitr::opts_knit$set(root.dir = here())
 
-source(here("script", "assistenten-auswertung-1-basisdaten.R"), 
+source(here("script", 
+            "assistenten-auswertung-1-basisdaten.R"), 
        local = knitr::knit_global())
-source(here("script", "assistenten-auswertung-2-motive_weiterbildung.R"), 
+source(here("script", 
+            "assistenten-auswertung-2-motive_weiterbildung.R"), 
        local = knitr::knit_global())
-source(here("script", "assistenten-auswertung-3-bisherige_nutzung_elearning.R"), 
+source(here("script",
+            "assistenten-auswertung-3-bisherige_nutzung_elearning.R"), 
        local = knitr::knit_global())
+source(here("script",
+            "assistenten-auswertung-4-bisherige_finanzierung_elearning.R"), 
+       local = knitr::knit_global())
+
 ```
 # 1 - Basisdaten
 ## Frage 1.1 - Welcher Altersgruppe gehören sie an?
@@ -158,3 +165,42 @@ ggsave(here("graphs", "assistenten_elearning_endgeraete.svg"),
 knitr::include_graphics(here("graphs", "assistenten_elearning_endgeraete.svg"))
 ```
 
+# 4 - Bisherige Finanzierung von E-Learning
+## Frage 4.19 - Haben Sie bereits kostenpflichtige E-Learning Inhalte genutzt? (z.B. Amboss, UpToDate, Onlinekurse o.Ä.)
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_bisher_kostenpflichtig_elearning, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_bisher_kostenpflichtig_elearning.svg"), 
+       plot_bisher_kostenpflichtig_elearning)
+knitr::include_graphics(here("graphs", "assistenten_bisher_kostenpflichtig_elearning.svg"))
+```
+
+## Frage 4.20 - Welche Art von kostenpflichtigen E-Learning Angeboten haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_elearning_kostenpflichtig_welches, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_elearning_kostenpflichtig_welches.svg"), 
+       plot_elearning_kostenpflichtig_welches)
+knitr::include_graphics(here("graphs", "assistenten_elearning_kostenpflichtig_welches.svg"))
+```
+
+## Frage 4.21 - Durch wen wurden die von Ihnen genutzten E-Learning Angebote finanziert?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_finanzierung_elearning_kostenpflichtig, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_finanzierung_elearning_kostenpflichtig.svg"), 
+       plot_finanzierung_elearning_kostenpflichtig)
+knitr::include_graphics(here("graphs", "assistenten_finanzierung_elearning_kostenpflichtig.svg"))
+```

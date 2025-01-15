@@ -101,7 +101,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 | Weil mein Umfeld sich regelmäßig fortbildet | 4 | 3.9 |
 | Mein Fortbildungsbudget soll nicht verfallen | 1 | 1.0 |
 | Ich brauche Fortbildungen als Voraussetzung zur Abrechnung bestimmter Leistungen | 0 | 0.0 |
-| Gesamt (N) | 102 | 100.0 |
+| Antworten (N) | 102 | 100.0 |
 
 <img src="graphs/assistenten_weiterbildung_motive.svg" width="100%" />
 
@@ -131,7 +131,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 | On-Demand - einzelne Vorträge | 36 | 35.3 |
 | Online Blogs | 27 | 26.5 |
 | Soziale Medien (X/Twitter, Instagram, TikTok etc.) | 24 | 23.5 |
-| Sonstige (gerne im Textfeld näher beschreiben) | 0 | 0.0 |
+| Sonstige | 0 | 0.0 |
 | Antworten (N) | 102 | 100.0 |
 
 <img src="graphs/assistenten_elearning_bisher_welches.svg" width="100%" />
@@ -146,3 +146,42 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |    Antworten (N)    |  102   |  100.0  |
 
 <img src="graphs/assistenten_elearning_endgeraete.svg" width="100%" />
+
+# 4 - Bisherige Finanzierung von E-Learning
+
+## Frage 4.19 - Haben Sie bereits kostenpflichtige E-Learning Inhalte genutzt? (z.B. Amboss, UpToDate, Onlinekurse o.Ä.)
+
+| Bisher kostenpflichtiges E-Learning genutzt | Anzahl | Prozent |
+|:-------------------------------------------:|:------:|:-------:|
+|                     Ja                      |   91   |  89.2   |
+|                    Nein                     |   11   |  10.8   |
+|                Antworten (N)                |  102   |  100.0  |
+
+<img src="graphs/assistenten_bisher_kostenpflichtig_elearning.svg" width="100%" />
+
+## Frage 4.20 - Welche Art von kostenpflichtigen E-Learning Angeboten haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
+
+| Antwortoption | Anzahl | Prozent |
+|:--:|:--:|:--:|
+| Nachschlagewerke wie UpToDate oder Amboss | 79 | 77.5 |
+| Live-Streaming von Präsenzveranstaltungen (Kongresse, Kurse, Vorträge o. Ä.) | 46 | 45.1 |
+| Ganze Kursformate On-Demand (z.B. EKG-Kurs, Facharztvorbereitungskurs o. Ä.) | 36 | 35.3 |
+| Plattformen zum Abruf von On-Demand-Vorträgen | 18 | 17.6 |
+| Kostenpflichtige Podcasts (z.B. Pincast o. Ä.) | 16 | 15.7 |
+| Sonstiges | 1 | 1.0 |
+| Antworten (N) | 102 | 100.0 |
+
+<img src="graphs/assistenten_elearning_kostenpflichtig_welches.svg" width="100%" />
+
+## Frage 4.21 - Durch wen wurden die von Ihnen genutzten E-Learning Angebote finanziert?
+
+|                       Antwortoption                        | Anzahl | Prozent |
+|:----------------------------------------------------------:|:------:|:-------:|
+|               Vollständig durch mich selbst                |   43   |  42.2   |
+|   Teils durch den Arbeitgeber / Teils durch mich selbst    |   37   |  36.3   |
+|             Vollständig durch den Arbeitgeber              |   21   |  20.6   |
+| Durch Unternehmen (z.B. Pharma, Medizinproduktehersteller) |   4    |   3.9   |
+|                         Sonstiges                          |   0    |   0.0   |
+|                       Antworten (N)                        |  102   |  100.0  |
+
+<img src="graphs/assistenten_finanzierung_elearning_kostenpflichtig.svg" width="100%" />

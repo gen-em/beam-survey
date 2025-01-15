@@ -2,14 +2,19 @@ source("./script/global.R")
 source("./script/filter_grundlegend.R")
 
 ## Definiere Eingangsfilter, um später leichter wechseln zu können
-filtered_data_2 <- filtered_assistent
+filtered_data <- filtered_assistent
 
 ## Entferne alle anderen Filter, belasse nur filtered_data & table_ & plot_
-rm(list = setdiff(ls(), c(ls(pattern = "^filtered_data"), grep("^(table_|plot_|data_)", ls(), value = TRUE))))
+rm(list = setdiff(ls(), 
+                  c(ls(pattern = "^filtered_data"), 
+                    grep("^(table_|plot_|data_)", 
+                         ls(), 
+                         value = TRUE))))
 
-########################################################################
-####### Motive zur Fort- & Weiterbildung
-########################################################################
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# 2.15 Motive zur Fort- & Weiterbildung ----
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## Table ----
 # Specify the columns of interest
 columns_of_interest <- c(
   "2.15-interesse", "2.15-angst_fehler", "2.15-cme", "2.15-arbeitgeber_erwartet",
@@ -19,7 +24,7 @@ columns_of_interest <- c(
 )
 
 # Subset the dataset to include only the specified columns
-filtered_subset <- filtered_data_2[, columns_of_interest]
+filtered_subset <- filtered_data[, columns_of_interest]
 
 # Calculate the count of TRUE values for each column
 true_counts <- colSums(filtered_subset == TRUE, na.rm = TRUE)
@@ -88,9 +93,10 @@ rownames(table_weiterbildung_motive) <- 1:nrow(table_weiterbildung_motive)
 # Combine the original table with the total row
 table_weiterbildung_motive <- rbind(table_weiterbildung_motive, total_row)
 
-#########################
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## Horizontaler Bar-Plot
-#########################
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## Graph ----
 
 plot_weiterbildung_motive <- ggplot(data_weiterbildung_motive_plot, 
        aes(x = Prozent, 
@@ -125,7 +131,11 @@ plot_weiterbildung_motive <- ggplot(data_weiterbildung_motive_plot,
 
 
 
-########################################################################
-####### CLEANUP - Nur plot_ & table_ & filtered_data_2 behalten
-########################################################################
-rm(list = setdiff(ls(), c(ls(pattern = "^filtered_data"), grep("^(table_|plot_|data_)", ls(), value = TRUE))))
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# CLEANUP - Nur plot_ & table_ & filtered_data behalten
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+rm(list = setdiff(ls(), 
+                  c(ls(pattern = "^filtered_data"), 
+                    grep("^(table_|plot_|data_)", 
+                         ls(), 
+                         value = TRUE))))
