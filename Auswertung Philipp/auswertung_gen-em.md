@@ -1,6 +1,8 @@
 BEAM-Auswertung: ÄrztInnen in Weiterbildung
 ================
 
+------------------------------------------------------------------------
+
 # 1 - Basisdaten
 
 ## Frage 1.1 - Welcher Altersgruppe gehören sie an?
@@ -83,6 +85,8 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 
 <img src="graphs/assistenten_hauptsaechlich_notaufnahme.svg" width="100%" />
 
+------------------------------------------------------------------------
+
 # 2 - Motive zur Fort- & Weiterbildung
 
 ## Frage 2.15 - Aus welchen Gründen nehmen Sie regelmäßig an Fort- und Weiterbildungen teil?
@@ -104,6 +108,8 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 | Antworten (N) | 102 | 100.0 |
 
 <img src="graphs/assistenten_weiterbildung_motive.svg" width="100%" />
+
+------------------------------------------------------------------------
 
 # 3 - Bisherige Nutzung von E-Learning
 
@@ -147,6 +153,8 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 
 <img src="graphs/assistenten_elearning_endgeraete.svg" width="100%" />
 
+------------------------------------------------------------------------
+
 # 4 - Bisherige Finanzierung von E-Learning
 
 ## Frage 4.19 - Haben Sie bereits kostenpflichtige E-Learning Inhalte genutzt? (z.B. Amboss, UpToDate, Onlinekurse o.Ä.)
@@ -185,3 +193,17 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |                       Antworten (N)                        |  102   |  100.0  |
 
 <img src="graphs/assistenten_finanzierung_elearning_kostenpflichtig.svg" width="100%" />
+
+------------------------------------------------------------------------
+
+# 5 - Ideales E-Learning
+
+## Frage 5.22 - Können Sie sich vorstellen, in Zukunft E-Learning Inhalte zur Fort- & Weiterbildung zu nutzen?
+
+| Würden in Zukunft E-Learning nutzen | Anzahl | Prozent |
+|:-----------------------------------:|:------:|:-------:|
+|                 Ja                  |  101   |   99    |
+|                Nein                 |   1    |    1    |
+|            Antworten (N)            |  102   |   100   |
+
+<img src="graphs/assistenten_zukuenftig_elearning.svg" width="100%" />

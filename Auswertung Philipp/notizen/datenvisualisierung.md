@@ -4,11 +4,15 @@
 
 
 
-
-
 ## Histogramme
 
 - 5 Alternativen zum Histogramm
   https://medium.com/dev-genius/5-alternatives-to-the-bar-chart-f53660c0e57f
-- 
+  
+  
 
+## Visualize Likert Data
+
+https://daydreamingnumbers.com/blog/4-ways-to-visualize-likert-scales/
+
+https://www.datarevelations.com/howto-likert/

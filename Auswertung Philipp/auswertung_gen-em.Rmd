@@ -23,20 +23,13 @@ knitr::opts_chunk$set(
 # Set working directory for the entire document
 knitr::opts_knit$set(root.dir = here())
 
-source(here("script", 
-            "assistenten-auswertung-1-basisdaten.R"), 
+source(here("script", "assistenten-auswertung.R"), 
        local = knitr::knit_global())
-source(here("script", 
-            "assistenten-auswertung-2-motive_weiterbildung.R"), 
-       local = knitr::knit_global())
-source(here("script",
-            "assistenten-auswertung-3-bisherige_nutzung_elearning.R"), 
-       local = knitr::knit_global())
-source(here("script",
-            "assistenten-auswertung-4-bisherige_finanzierung_elearning.R"), 
-       local = knitr::knit_global())
-
 ```
+
+
+---
+
 # 1 - Basisdaten
 ## Frage 1.1 - Welcher Altersgruppe gehören sie an?
 ```{r, echo = FALSE, message=FALSE}
@@ -111,6 +104,8 @@ ggsave(here("graphs", "assistenten_hauptsaechlich_notaufnahme.svg"),
 knitr::include_graphics(here("graphs", "assistenten_hauptsaechlich_notaufnahme.svg"))
 ```
 
+---
+
 # 2 - Motive zur Fort- & Weiterbildung
 ## Frage 2.15 - Aus welchen Gründen nehmen Sie regelmäßig an Fort- und Weiterbildungen teil?
 
@@ -124,6 +119,8 @@ ggsave(here("graphs", "assistenten_weiterbildung_motive.svg"),
        plot_weiterbildung_motive)
 knitr::include_graphics(here("graphs", "assistenten_weiterbildung_motive.svg"))
 ```
+
+---
 
 # 3 - Bisherige Nutzung von E-Learning
 ## Frage 3.16 - Haben Sie in der Vergangenheit bereits E-Learning Angebote zur medizinischen Fort- & Weiterbildung genutzt?
@@ -165,6 +162,8 @@ ggsave(here("graphs", "assistenten_elearning_endgeraete.svg"),
 knitr::include_graphics(here("graphs", "assistenten_elearning_endgeraete.svg"))
 ```
 
+---
+
 # 4 - Bisherige Finanzierung von E-Learning
 ## Frage 4.19 - Haben Sie bereits kostenpflichtige E-Learning Inhalte genutzt? (z.B. Amboss, UpToDate, Onlinekurse o.Ä.)
 
@@ -204,3 +203,20 @@ ggsave(here("graphs", "assistenten_finanzierung_elearning_kostenpflichtig.svg"),
        plot_finanzierung_elearning_kostenpflichtig)
 knitr::include_graphics(here("graphs", "assistenten_finanzierung_elearning_kostenpflichtig.svg"))
 ```
+
+---
+
+# 5 - Ideales E-Learning
+## Frage 5.22 - Können Sie sich vorstellen, in Zukunft E-Learning Inhalte zur Fort- & Weiterbildung zu nutzen?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_zukuenftig_elearning, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_zukuenftig_elearning.svg"), 
+       plot_zukuenftig_elearning)
+knitr::include_graphics(here("graphs", "assistenten_zukuenftig_elearning.svg"))
+```
+
