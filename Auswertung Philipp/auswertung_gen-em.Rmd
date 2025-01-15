@@ -1,10 +1,11 @@
 ---
 title: "BEAM-Auswertung: ÄrztInnen in Weiterbildung"
-output: 
-  github_document: 
-    default
-  html_document: 
-    default
+output:
+  github_document: default
+  html_document: default
+  pdf_document: default
+  word_document: default
+encoding: UTF-8
 ---
 ---
 ### R Einstellungen fürs Dokument
@@ -24,7 +25,12 @@ knitr::opts_knit$set(root.dir = here())
 
 source(here("script", "assistenten-auswertung-1-basisdaten.R"), 
        local = knitr::knit_global())
+source(here("script", "assistenten-auswertung-2-motive_weiterbildung.R"), 
+       local = knitr::knit_global())
+source(here("script", "assistenten-auswertung-3-bisherige_nutzung_elearning.R"), 
+       local = knitr::knit_global())
 ```
+# 1 - Basisdaten
 ## Frage 1.1 - Welcher Altersgruppe gehören sie an?
 ```{r, echo = FALSE, message=FALSE}
 kable(table_altersverteilung, align = "c")
@@ -88,16 +94,67 @@ knitr::include_graphics(here("graphs", "assistenten_arbeitsumfeld.svg"))
 ## Frage 1.11 - Sind Sie hauptsächlich in der Notaufnahme tätig?
 
 ```{r, echo = FALSE, message=FALSE}
-source(here("script", "auswertung-assistenten-1-basisdaten.R"), 
-       local = knitr::knit_global())
-kable(table_hauptsächlich_notaufnahme, align = "c")
+kable(table_hauptsaechlich_notaufnahme, align = "c")
 ```
 
 ```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-source(here("script", "auswertung-assistenten-1-basisdaten.R"), 
-       local = knitr::knit_global())
 # Save the plot
-ggsave(here("graphs", "assistenten_hauptsächlich_notaufnahme.svg"), 
-       plot_hauptsächlich_notaufnahme)
-knitr::include_graphics(here("graphs", "assistenten_hauptsächlich_notaufnahme.svg"))
+ggsave(here("graphs", "assistenten_hauptsaechlich_notaufnahme.svg"), 
+       plot_hauptsaechlich_notaufnahme)
+knitr::include_graphics(here("graphs", "assistenten_hauptsaechlich_notaufnahme.svg"))
 ```
+
+# 2 - Motive zur Fort- & Weiterbildung
+## Frage 2.15 - Aus welchen Gründen nehmen Sie regelmäßig an Fort- und Weiterbildungen teil?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_weiterbildung_motive, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_weiterbildung_motive.svg"), 
+       plot_weiterbildung_motive)
+knitr::include_graphics(here("graphs", "assistenten_weiterbildung_motive.svg"))
+```
+
+# 3 - Bisherige Nutzung von E-Learning
+## Frage 3.16 - Haben Sie in der Vergangenheit bereits E-Learning Angebote zur medizinischen Fort- & Weiterbildung genutzt?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_bisher_elearning, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_bisher_elearning.svg"), 
+       plot_bisher_elearning)
+knitr::include_graphics(here("graphs", "assistenten_bisher_elearning.svg"))
+```
+
+## Frage 3.17 - Welche Art von E-Learning Angeboten haben Sie bereits zur medizinischen Fort- & Weiterbildung genutzt?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_elearning_bisher_welches, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_elearning_bisher_welches.svg"), 
+       plot_elearning_bisher_welches)
+knitr::include_graphics(here("graphs", "assistenten_elearning_bisher_welches.svg"))
+```
+
+## Frage 3.18 - Mit welchen Endgeräten haben Sie E-Learning Inhalte bisher genutzt?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_elearning_endgeraete, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_elearning_endgeraete.svg"), 
+       plot_elearning_endgeraete)
+knitr::include_graphics(here("graphs", "assistenten_elearning_endgeraete.svg"))
+```
+

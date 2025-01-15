@@ -2,23 +2,23 @@ source("./script/global.R")
 source("./script/filter_grundlegend.R")
 
 ## Definiere Eingangsfilter, um später leichter wechseln zu können
-filtered_data <- filtered_assistent
+filtered_data_1 <- filtered_assistent
 
-## Entferne alle anderen Filter (Übersichtlichkeit)
-rm(list=setdiff(ls(), "filtered_data"))
+## Entferne alle anderen Filter, belasse nur filtered_data & table_ & plot_
+rm(list = setdiff(ls(), c(ls(pattern = "^filtered_data"), grep("^(table_|plot_|data_)", ls(), value = TRUE))))
 
 ########################################################################
-####### Alter
+####### 1.1 Alter
 ########################################################################
 
 ## Manuelle Sortierung (>50 sonst am Anfang)
-filtered_data <- filtered_data %>%
+filtered_data_1 <- filtered_data_1 %>%
   mutate(`1.1` = factor(`1.1`, 
                         levels = c("<25","25-30", "31-35", "36-40", "41-45", "46-50", ">50"),
                         ordered = TRUE))
 
 ## Gruppieren und Prozentzahlen berechnen
-table_altersverteilung <- filtered_data %>%
+table_altersverteilung <- filtered_data_1 %>%
   group_by(`1.1`) %>%
   summarize(Anzahl = n()) %>%
   mutate(Prozent = (Anzahl / sum(Anzahl)) * 100)
@@ -30,10 +30,23 @@ table_altersverteilung <- table_altersverteilung %>%
 ## Anpassen der Spaltennamen
 colnames(table_altersverteilung) <- c("Alter", "Anzahl", "Prozent")
 
+# Kopieren für den Graph
+data_altersverteilung_plot <- table_altersverteilung
+
+# Create a total row
+total_row <- data.frame(
+  Alter = "Antworten (N)",
+  Anzahl = sum(table_altersverteilung$Anzahl),
+  Prozent = 100
+)
+
+# Combine the original table with the total row
+table_altersverteilung <- rbind(table_altersverteilung, total_row)
+
 #######################
 ## Histogramm erstellen
 #######################
-plot_altersverteilung <- ggplot(table_altersverteilung, aes(x = Alter, y = Prozent, fill = Alter)) +
+plot_altersverteilung <- ggplot(data_altersverteilung_plot, aes(x = Alter, y = Prozent, fill = Alter)) +
   geom_bar(stat = "identity", color = "black") +
   theme_minimal() +
   labs(
@@ -45,12 +58,12 @@ plot_altersverteilung <- ggplot(table_altersverteilung, aes(x = Alter, y = Proze
   scale_fill_brewer(palette = "Greens", direction=1) # Color-Scale + Richtungswechsel
 
 ########################################################################
-####### Weiterbildungsjahr
+####### 1.5 Weiterbildungsjahr
 ########################################################################
 
 ## Gruppieren und Prozentzahlen berechnen
 
-table_weiterbildungsjahr <- filtered_data %>%
+table_weiterbildungsjahr <- filtered_data_1 %>%
   filter(!is.na(`1.5`)) %>% # Alle NAs herausgefiltert
   group_by(`1.5`) %>%
   summarize(Anzahl = n()) %>%
@@ -63,10 +76,23 @@ table_weiterbildungsjahr <- table_weiterbildungsjahr %>%
 ## Spaltennamen anpassen
 colnames(table_weiterbildungsjahr) <- c("Weiterbildungsjahr", "Anzahl", "Prozent")
 
+# Kopieren der Tabelle für den Graph
+data_weiterbildungsjahr_plot <- table_weiterbildungsjahr
+
+# Create a total row
+total_row <- data.frame(
+  Weiterbildungsjahr = "Antworten (N)",
+  Anzahl = sum(table_weiterbildungsjahr$Anzahl),
+  Prozent = 100
+)
+
+# Combine the original table with the total row
+table_weiterbildungsjahr <- rbind(table_weiterbildungsjahr, total_row)
+
 #######################
 ## Histogramm erstellen
 #######################
-plot_weiterbildungsjahr <- table_weiterbildungsjahr %>%
+plot_weiterbildungsjahr <- data_weiterbildungsjahr_plot %>%
   mutate(Weiterbildungsjahr = factor(Weiterbildungsjahr, 
                                      levels = sort(unique(Weiterbildungsjahr)))) %>%
   ggplot(aes(x = Weiterbildungsjahr, y = Prozent, fill = Weiterbildungsjahr)) +
@@ -81,12 +107,12 @@ plot_weiterbildungsjahr <- table_weiterbildungsjahr %>%
   scale_fill_brewer(palette = "Purples", direction = 1) # Color-Scale + Richtungswechsel
 
 ########################################################################
-####### Fachrichtung
+####### 1.6 Fachrichtung
 ########################################################################
 
 ## Relevante Zeilen auswählen
-fachrichtung_cols <- filtered_data %>%
-  select(`1.6-innere`, `1.6-allgemein`, `1.6-anästhesie`, `1.6-unfallchirurgie`,
+fachrichtung_cols <- filtered_data_1 %>%
+  select(`1.6-innere`, `1.6-allgemein`, `1.6-anaesthesie`, `1.6-unfallchirurgie`,
          `1.6-viszeralchirurgie`, `1.6-andereschirurgisches`, `1.6-neurologie`,
          `1.6-urologie`, `1.6-sonstiges`)
 
@@ -105,23 +131,36 @@ table_fachrichtung <- data.frame(
   Prozent = round(percentages, 1)  # Round to 1 decimal place
 )
 rownames(table_fachrichtung) <- c("Innere Medizin", 
-                            "Allgemeinmedizin", 
-                            "Anästhesie", 
-                            "Unfallchirurgie", 
-                            "Viszeralchirurgie",
-                            "Anderes chir. Fachgebiet",
-                            "Neurologie",
-                            "Urologie",
-                            "Sonstiges"
-                           )
+                                  "Allgemeinmedizin", 
+                                  "Anästhesie", 
+                                  "Unfallchirurgie", 
+                                  "Viszeralchirurgie",
+                                  "Anderes chir. Fachgebiet",
+                                  "Neurologie",
+                                  "Urologie",
+                                  "Sonstiges"
+)
+
+# Kopie der Tabelle für den Graph
+data_fachrichtung_plot <- table_fachrichtung
+
+# Create a total row
+total_row <- data.frame(
+  Anzahl = total_rows,
+  Prozent = 100
+)
+rownames(total_row) <- "Antworten (N)"
+
+# Combine the original table with the total row
+table_fachrichtung <- rbind(table_fachrichtung, total_row)
 #######################
 ## Histogramm erstellen
 #######################
 
 ## Fachrichtungen mit Anzahl 0 filtern
-table_fachrichtung <- table_fachrichtung[table_fachrichtung$Anzahl != 0, ]
+data_fachrichtung_plot <- data_fachrichtung_plot[data_fachrichtung_plot$Anzahl != 0, ]
 
-plot_fachrichtung <- ggplot(table_fachrichtung, aes(x = row.names(table_fachrichtung), y = Prozent, fill = row.names(table_fachrichtung))) +
+plot_fachrichtung <- ggplot(data_fachrichtung_plot, aes(x = row.names(data_fachrichtung_plot), y = Prozent, fill = row.names(data_fachrichtung_plot))) +
   geom_bar(stat = "identity", color = "black") +
   theme_minimal() +
   labs(
@@ -138,15 +177,15 @@ plot_fachrichtung <- ggplot(table_fachrichtung, aes(x = row.names(table_fachrich
   scale_fill_brewer(palette = "Set2", direction=1) # Color-Scale + Richtungswechsel
 
 ########################################################################
-####### Zusatzbezeichnung
+####### 1.8 Zusatzbezeichnung
 ########################################################################
 
 # Count the occurrences of TRUE and FALSE
-count_true <- sum(filtered_data$`1.8` == TRUE, na.rm = TRUE)
-count_false <- sum(filtered_data$`1.8` == FALSE, na.rm = TRUE)
+count_true <- sum(filtered_data_1$`1.8` == TRUE, na.rm = TRUE)
+count_false <- sum(filtered_data_1$`1.8` == FALSE, na.rm = TRUE)
 
 # Total number of rows
-total_rows <- nrow(filtered_data)
+total_rows <- nrow(filtered_data_1)
 
 # Calculate percentages
 percent_true <- (count_true / total_rows) * 100
@@ -154,17 +193,32 @@ percent_false <- (count_false / total_rows) * 100
 
 # Create a new dataframe for zusatzbezeichnung
 table_zusatzbezeichnung <- data.frame(
-  `Wollen.Zusatzbezeichnung` = c("Ja", "Nein"),  # Directly assign "Ja" and "Nein"
+  Wollen.Zusatzbezeichnung = c("Ja", "Nein"),  # Directly assign "Ja" and "Nein"
   Anzahl = c(count_true, count_false),
   Prozent = c(round(percent_true, 1), round(percent_false, 1))  # Round to 1 decimal place
 )
 colnames(table_zusatzbezeichnung)[1] <- "Wollen Zusatzbezeichnung"
 
+# Kopieren für den Graphen
+data_zusatzbezeichnung_plot <- table_zusatzbezeichnung
+
+# Add a total row
+total_row <- data.frame(
+  `Wollen Zusatzbezeichnung` = "Antworten (N)",
+  Anzahl = total_rows,
+  Prozent = 100
+)
+
+# Combine the original table with the total row
+colnames(total_row) <- colnames(table_zusatzbezeichnung)
+table_zusatzbezeichnung <- rbind(table_zusatzbezeichnung, total_row)
+
+
 #######################
 ## Tortendiagramm erstellen
 #######################
 
-plot_zusatzbezeichnung <- ggplot(table_zusatzbezeichnung, aes(x = "", y = Prozent, fill = `Wollen Zusatzbezeichnung`)) +
+plot_zusatzbezeichnung <- ggplot(data_zusatzbezeichnung_plot, aes(x = "", y = Prozent, fill = `Wollen Zusatzbezeichnung`)) +
   geom_bar(stat = "identity", width = 1, color = "black") +
   coord_polar(theta = "y") +  # Convert to pie chart
   theme_void() +  # Remove background and axes
@@ -174,18 +228,168 @@ plot_zusatzbezeichnung <- ggplot(table_zusatzbezeichnung, aes(x = "", y = Prozen
             position = position_stack(vjust = 0.5),  # Position the text in the middle of each segment
             color = "black", size = 5, # White text with appropriate size
   )
+########################################################################
+####### 1.10 In welchem Umfeld klinisch tätig?
+########################################################################
 
+# Define the order of categories
+categories <- c("<200", "200-500", ">500", "ambulant", "präklinisch", "sonstiges")
+
+# Count the occurrences of each category
+count_values <- table(factor(filtered_data_1$`1.10`, levels = categories))
+
+# Total number of rows
+total_rows <- nrow(filtered_data_1)
+
+# Calculate percentages
+percent_values <- (count_values / total_rows) * 100
+
+# Create a new dataframe for arbeitsumfeld with only the required columns
+table_arbeitsumfeld <- data.frame(
+  Arbeitsumfeld = names(count_values),  # Use the names of the count_values vector
+  Anzahl = as.vector(count_values),  # Convert count_values to a vector
+  Prozent = as.vector(round(percent_values, 1))  # Convert percent_values to a vector and round
+)
+
+# Für den Graphen kopieren
+data_arbeitsumfeld_plot <- table_arbeitsumfeld
+
+# Rename the labels in the 'Arbeitsumfeld' column
+table_arbeitsumfeld$Arbeitsumfeld <- gsub("<200", "Kleines Krankenhaus (<200 Betten)", table_arbeitsumfeld$Arbeitsumfeld)
+table_arbeitsumfeld$Arbeitsumfeld <- gsub("200-500", "Mittelgroßes Krankenhaus (200-500 Betten)", table_arbeitsumfeld$Arbeitsumfeld)
+table_arbeitsumfeld$Arbeitsumfeld <- gsub(">500", "Schwerpunkt- / Maximalversorger (>500 Betten)", table_arbeitsumfeld$Arbeitsumfeld)
+table_arbeitsumfeld$Arbeitsumfeld <- gsub("ambulant", "Ambulant", table_arbeitsumfeld$Arbeitsumfeld)
+table_arbeitsumfeld$Arbeitsumfeld <- gsub("präklinisch", "Ausschließlich Präklinisch", table_arbeitsumfeld$Arbeitsumfeld)
+table_arbeitsumfeld$Arbeitsumfeld <- gsub("sonstiges", "Sonstiges", table_arbeitsumfeld$Arbeitsumfeld)
+
+# Reihenfolge explizit festlegen
+table_arbeitsumfeld$Arbeitsumfeld <- factor(table_arbeitsumfeld$Arbeitsumfeld, 
+                                            levels = c(
+                                              "Kleines Krankenhaus (<200 Betten)",
+                                              "Mittelgroßes Krankenhaus (200-500 Betten)", 
+                                              "Schwerpunkt- / Maximalversorger (>500 Betten)", 
+                                              "Ambulant", 
+                                              "Ausschließlich Präklinisch", 
+                                              "Sonstiges"
+                                            )
+)
+
+
+
+# Add a total row
+total_row <- data.frame(
+  Arbeitsumfeld = "Antworten (N)",
+  Anzahl = total_rows,
+  Prozent = 100
+)
+
+# Combine the original table with the total row
+table_arbeitsumfeld <- rbind(table_arbeitsumfeld, total_row)
+
+#######################
+## Histogramm erstellen
+#######################
+
+# Zeilenumbrüche einfügen und Daten Faktorisieren / Reihenfolge festlegen
+data_arbeitsumfeld_plot$Arbeitsumfeld <- gsub("<200", "Kleines Krankenhaus\n(<200 Betten)", data_arbeitsumfeld_plot$Arbeitsumfeld)
+data_arbeitsumfeld_plot$Arbeitsumfeld <- gsub("200-500", "Mittelgroßes Krankenhaus\n(200-500 Betten)", data_arbeitsumfeld_plot$Arbeitsumfeld)
+data_arbeitsumfeld_plot$Arbeitsumfeld <- gsub(">500", "Schwerpunkt- / Maximalversorger\n(>500 Betten)", data_arbeitsumfeld_plot$Arbeitsumfeld)
+data_arbeitsumfeld_plot$Arbeitsumfeld <- gsub("ambulant", "Ambulant", data_arbeitsumfeld_plot$Arbeitsumfeld)
+data_arbeitsumfeld_plot$Arbeitsumfeld <- gsub("präklinisch", "Ausschließlich\nPräklinisch", data_arbeitsumfeld_plot$Arbeitsumfeld)
+data_arbeitsumfeld_plot$Arbeitsumfeld <- gsub("sonstiges", "Sonstiges", data_arbeitsumfeld_plot$Arbeitsumfeld)
+
+data_arbeitsumfeld_plot$Arbeitsumfeld <- factor(data_arbeitsumfeld_plot$Arbeitsumfeld, 
+                                                levels = c(
+                                                  "Kleines Krankenhaus\n(<200 Betten)",
+                                                  "Mittelgroßes Krankenhaus\n(200-500 Betten)", 
+                                                  "Schwerpunkt- / Maximalversorger\n(>500 Betten)", 
+                                                  "Ambulant", 
+                                                  "Ausschließlich\nPräklinisch", 
+                                                  "Sonstiges"
+                                                )
+)
+
+## Arbeitsumfeld mit Anzahl 0 filtern
+data_arbeitsumfeld_plot <- data_arbeitsumfeld_plot[data_arbeitsumfeld_plot$Anzahl != 0, ]
+
+plot_arbeitsumfeld <- ggplot(data_arbeitsumfeld_plot, aes(x = Arbeitsumfeld, y = Prozent, fill = Arbeitsumfeld)) +
+  geom_bar(stat = "identity", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Arbeitsumfeld der ÄrztInnen in Weiterbildung",
+    x = "Arbeitsumfeld",
+    y = "Prozent"
+  ) +
+  
+  # Remove legend since Arbeitsumfeld is on the x-axis & Rotate x-axis labels by 45 degrees
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5)) + 
+  
+  # Farbpalettenauswahl
+  scale_fill_brewer(palette = "Set2", direction=1) # Color-Scale + Richtungswechsel
 
 ########################################################################
-####### Muttersprache
+####### 1.11 Hauptsächlich Notaufnahme
 ########################################################################
 
 # Count the occurrences of TRUE and FALSE
-count_true <- sum(filtered_data$`1.12` == TRUE, na.rm = TRUE)
-count_false <- sum(filtered_data$`1.12` == FALSE, na.rm = TRUE)
+count_true <- sum(filtered_data_1$`1.11` == TRUE, na.rm = TRUE)
+count_false <- sum(filtered_data_1$`1.11` == FALSE, na.rm = TRUE)
 
 # Total number of rows
-total_rows <- nrow(filtered_data)
+total_rows <- nrow(filtered_data_1)
+
+# Calculate percentages
+percent_true <- (count_true / total_rows) * 100
+percent_false <- (count_false / total_rows) * 100
+
+# Create a new dataframe for Hauptsächlich Notaufnahme
+table_hauptsaechlich_notaufnahme <- data.frame(
+  `Hauptsaechlich.Notaufnahme` = c("Ja", "Nein"),  # Directly assign "Ja" and "Nein"
+  Anzahl = c(count_true, count_false),
+  Prozent = c(round(percent_true, 1), round(percent_false, 1))  # Round to 1 decimal place
+)
+colnames(table_hauptsaechlich_notaufnahme)[1] <- "Hauptarbeitsplatz Notaufnahme"
+
+# Kopieren für den Graphen
+data_hauptsaechlich_notaufnahme <- table_hauptsaechlich_notaufnahme
+
+# Add a total row
+total_row <- data.frame(
+  `Hauptarbeitsplatz Notaufnahme` = "Antworten (N)",
+  Anzahl = total_rows,
+  Prozent = 100
+)
+
+# Combine the original table with the total row
+colnames(total_row) <- colnames(table_hauptsaechlich_notaufnahme)
+table_hauptsaechlich_notaufnahme <- rbind(table_hauptsaechlich_notaufnahme, total_row)
+
+#######################
+## Tortendiagramm erstellen
+#######################
+
+plot_hauptsaechlich_notaufnahme <- ggplot(data_hauptsaechlich_notaufnahme, aes(x = "", y = Prozent, fill = `Hauptarbeitsplatz Notaufnahme`)) +
+  geom_bar(stat = "identity", width = 1, color = "black") +
+  coord_polar(theta = "y") +  # Convert to pie chart
+  theme_void() +  # Remove background and axes
+  labs(title = "Hauptarbeitsort in der Notaufnahme unter ÄrztInnen in Weiterbildung") +
+  scale_fill_brewer(palette = "Pastel2") + # Color palette
+  geom_text(aes(x = 1, label = paste(Prozent, "%")), # x = 1.2 verschiebt das Label nach aussen
+            position = position_stack(vjust = 0.5),  # Position the text in the middle of each segment
+            color = "black", size = 5, # White text with appropriate size
+  )
+
+########################################################################
+####### 1.12 Muttersprache
+########################################################################
+
+# Count the occurrences of TRUE and FALSE
+count_true <- sum(filtered_data_1$`1.12` == TRUE, na.rm = TRUE)
+count_false <- sum(filtered_data_1$`1.12` == FALSE, na.rm = TRUE)
+
+# Total number of rows
+total_rows <- nrow(filtered_data_1)
 
 # Calculate percentages
 percent_true <- (count_true / total_rows) * 100
@@ -213,116 +417,11 @@ plot_muttersprache <- ggplot(table_muttersprache, aes(x = "", y = Prozent, fill 
   labs(title = "Muttersprache der ÄrztInnen in Weiterbildung") +
   scale_fill_brewer(palette = "Pastel2") + # Color palette
   geom_text(aes(x = 1.2, label = paste(Prozent, "%")), # x = 1.2 verschiebt das Label nach aussen
-          position = position_stack(vjust = 0.5),  # Position the text in the middle of each segment
-          color = "black", size = 5, # White text with appropriate size
-  )
-
-########################################################################
-####### In welchem Umfeld klinisch tätig?
-########################################################################
-
-# Define the order of categories
-categories <- c("<200", "200-500", ">500", "ambulant", "präklinisch", "sonstiges")
-
-# Count the occurrences of each category
-count_values <- table(factor(filtered_data$`1.10`, levels = categories))
-
-# Total number of rows
-total_rows <- nrow(filtered_data)
-
-# Calculate percentages
-percent_values <- (count_values / total_rows) * 100
-
-# Create a new dataframe for arbeitsumfeld with only the required columns
-table_arbeitsumfeld <- data.frame(
-  Arbeitsumfeld = names(count_values),  # Use the names of the count_values vector
-  Anzahl = as.vector(count_values),  # Convert count_values to a vector
-  Prozent = as.vector(round(percent_values, 1))  # Convert percent_values to a vector and round
-  )
-
-# Rename the labels in the 'Arbeitsumfeld' column
-table_arbeitsumfeld$Arbeitsumfeld <- gsub("<200", "Kleines Krankenhaus\n(<200 Betten)", table_arbeitsumfeld$Arbeitsumfeld)
-table_arbeitsumfeld$Arbeitsumfeld <- gsub("200-500", "Mittelgroßes Krankenhaus\n(200-500 Betten)", table_arbeitsumfeld$Arbeitsumfeld)
-table_arbeitsumfeld$Arbeitsumfeld <- gsub(">500", "Schwerpunkt- / Maximalversorger\n(>500 Betten)", table_arbeitsumfeld$Arbeitsumfeld)
-table_arbeitsumfeld$Arbeitsumfeld <- gsub("ambulant", "Ambulant", table_arbeitsumfeld$Arbeitsumfeld)
-table_arbeitsumfeld$Arbeitsumfeld <- gsub("präklinisch", "Ausschließlich\nPräklinisch", table_arbeitsumfeld$Arbeitsumfeld)
-table_arbeitsumfeld$Arbeitsumfeld <- gsub("sonstiges", "Sonstiges", table_arbeitsumfeld$Arbeitsumfeld)
-
-# Reihenfolge explizit festlegen
-table_arbeitsumfeld$Arbeitsumfeld <- factor(table_arbeitsumfeld$Arbeitsumfeld, 
-                                  levels = c(
-                                    "Kleines Krankenhaus\n(<200 Betten)",
-                                    "Mittelgroßes Krankenhaus\n(200-500 Betten)", 
-                                    "Schwerpunkt- / Maximalversorger\n(>500 Betten)", 
-                                    "Ambulant", 
-                                    "Ausschließlich\nPräklinisch", 
-                                    "Sonstiges"
-                                    )
-                               )
-
-#######################
-## Histogramm erstellen
-#######################
-
-## Arbeitsumfeld mit Anzahl 0 filtern
-arbeitsumfeld_ohne0 <- table_arbeitsumfeld[table_arbeitsumfeld$Anzahl != 0, ]
-
-plot_arbeitsumfeld <- ggplot(arbeitsumfeld_ohne0, aes(x = Arbeitsumfeld, y = Prozent, fill = Arbeitsumfeld)) +
-  geom_bar(stat = "identity", color = "black") +
-  theme_minimal() +
-  labs(
-    title = "Arbeitsumfeld der ÄrztInnen in Weiterbildung",
-    x = "Arbeitsumfeld",
-    y = "Prozent"
-  ) +
-  
-  # Remove legend since Arbeitsumfeld is on the x-axis & Rotate x-axis labels by 45 degrees
-  theme(legend.position = "none", 
-        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5)) + 
-  
-  # Farbpalettenauswahl
-  scale_fill_brewer(palette = "Set2", direction=1) # Color-Scale + Richtungswechsel
-
-########################################################################
-####### Hauptsächlich Notaufnahme
-########################################################################
-
-# Count the occurrences of TRUE and FALSE
-count_true <- sum(filtered_data$`1.11` == TRUE, na.rm = TRUE)
-count_false <- sum(filtered_data$`1.11` == FALSE, na.rm = TRUE)
-
-# Total number of rows
-total_rows <- nrow(filtered_data)
-
-# Calculate percentages
-percent_true <- (count_true / total_rows) * 100
-percent_false <- (count_false / total_rows) * 100
-
-# Create a new dataframe for Hauptsächlich Notaufnahme
-table_hauptsächlich_notaufnahme <- data.frame(
-  `Hauptsächlich.Notaufnahme` = c("Ja", "Nein"),  # Directly assign "Ja" and "Nein"
-  Anzahl = c(count_true, count_false),
-  Prozent = c(round(percent_true, 1), round(percent_false, 1))  # Round to 1 decimal place
-)
-colnames(table_hauptsächlich_notaufnahme)[1] <- "Hauptarbeitsplatz Notaufnahme"
-
-#######################
-## Tortendiagramm erstellen
-#######################
-
-plot_hauptsächlich_notaufnahme <- ggplot(table_hauptsächlich_notaufnahme, aes(x = "", y = Prozent, fill = `Hauptarbeitsplatz Notaufnahme`)) +
-  geom_bar(stat = "identity", width = 1, color = "black") +
-  coord_polar(theta = "y") +  # Convert to pie chart
-  theme_void() +  # Remove background and axes
-  labs(title = "Hauptarbeitsort in der Notaufnahme unter ÄrztInnen in Weiterbildung") +
-  scale_fill_brewer(palette = "Pastel2") + # Color palette
-  geom_text(aes(x = 1, label = paste(Prozent, "%")), # x = 1.2 verschiebt das Label nach aussen
             position = position_stack(vjust = 0.5),  # Position the text in the middle of each segment
             color = "black", size = 5, # White text with appropriate size
   )
 
-
 ########################################################################
-####### CLEANUP - Nur plot_ & table_ & filtered_data behalten
+####### CLEANUP - Nur plot_ & table_ & filtered_data_1 behalten
 ########################################################################
-rm(list = setdiff(ls(), c("filtered_data", grep("^(table_|plot_)", ls(), value = TRUE))))
+rm(list = setdiff(ls(), c(ls(pattern = "^filtered_data"), grep("^(table_|plot_|data_)", ls(), value = TRUE))))

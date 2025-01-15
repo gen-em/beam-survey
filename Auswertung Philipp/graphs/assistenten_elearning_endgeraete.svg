@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='504.00pt' height='360.00pt' viewBox='0 0 504.00 360.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA='>
+    <rect x='0.00' y='0.00' width='504.00' height='360.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMTAzLjI4fDQ5OC41MnwzNy40M3wzMjcuMzk='>
+    <rect x='103.28' y='37.43' width='395.24' height='289.95' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMTAzLjI4fDQ5OC41MnwzNy40M3wzMjcuMzk=)'>
+<polyline points='156.72,327.39 156.72,37.43 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='263.58,327.39 263.58,37.43 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='370.45,327.39 370.45,37.43 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='477.32,327.39 477.32,37.43 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='103.28,327.39 103.28,37.43 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='210.15,327.39 210.15,37.43 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='317.02,327.39 317.02,37.43 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='423.88,327.39 423.88,37.43 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<rect x='103.28' y='148.43' width='268.02' height='67.96' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFB3;' />
+<rect x='103.28' y='239.04' width='150.90' height='67.96' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBADA;' />
+<rect x='103.28' y='57.82' width='343.68' height='67.96' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #8DD3C7;' />
+<text x='365.05' y='186.36' text-anchor='end' style='font-size: 11.04px; font-family: "Arial";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>62.7%</text>
+<text x='247.92' y='276.97' text-anchor='end' style='font-size: 11.04px; font-family: "Arial";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>35.3%</text>
+<text x='440.71' y='95.75' text-anchor='end' style='font-size: 11.04px; font-family: "Arial";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>80.4%</text>
+</g>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
+<text x='98.35' y='276.60' text-anchor='end' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>Tablet</text>
+<text x='98.35' y='185.99' text-anchor='end' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='54.50px' lengthAdjust='spacingAndGlyphs'>Smartphone</text>
+<text x='98.35' y='95.38' text-anchor='end' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='92.87px' lengthAdjust='spacingAndGlyphs'>Laptop / Desktop-PC</text>
+<text x='103.28' y='339.48' text-anchor='middle' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='5.57px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='210.15' y='339.48' text-anchor='middle' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='11.13px' lengthAdjust='spacingAndGlyphs'>25</text>
+<text x='317.02' y='339.48' text-anchor='middle' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='11.13px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text x='423.88' y='339.48' text-anchor='middle' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='11.13px' lengthAdjust='spacingAndGlyphs'>75</text>
+<text x='300.90' y='352.20' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='37.92px' lengthAdjust='spacingAndGlyphs'>Prozent</text>
+<text x='103.28' y='14.93' style='font-size: 13.20px; font-family: "Arial";' textLength='338.29px' lengthAdjust='spacingAndGlyphs'>Welche Endgeräte wurden von ÄrztInnen in Weiterbildung</text>
+<text x='103.28' y='29.18' style='font-size: 13.20px; font-family: "Arial";' textLength='177.46px' lengthAdjust='spacingAndGlyphs'>bisher für E-Learning genutzt?</text>
+</g>
+</svg>

@@ -14,6 +14,7 @@ Weiterbildungsjahr Q4
 Muttersprache Q12
 Muttersprache Q13
 Sprache Q14
+
 ## Zielgruppe: AiW
 Fachgebietsverteilung Q6
 KlinAm ja/nein Q8 (nicht Q9)
