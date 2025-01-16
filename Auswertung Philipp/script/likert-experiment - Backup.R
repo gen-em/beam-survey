@@ -1,38 +1,40 @@
-# Einstellungen ----
+#==============================================================================
+# CONFIGURATION
+#==============================================================================
+
+# Load required packages and global settings
 source("./script/global.R")
 source("./script/filter_grundlegend.R")
 
-# Definiere Eingangsfilter, um später leichter wechseln zu können
+#------------------------------------------------------------------------------
+# Data filtering setup
+#------------------------------------------------------------------------------
 filtered_data <- filtered_assistent
 
-# Entferne alle anderen Filter, belasse nur filtered_data & table_ & plot_
-rm(list = setdiff(ls(), c(ls(pattern = "^filtered_data"), grep("^(table_|plot_|data_)", ls(), value = TRUE))))
+# Cleanup workspace, keeping only essential objects
+rm(list = setdiff(ls(), c(ls(pattern = "^filtered_data"), 
+                          grep("^(table_|plot_|data_)", ls(), value = TRUE))))
 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-# 1 - Basisdaten ----
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#------------------------------------------------------------------------------
+# Constants and Parameters
+#------------------------------------------------------------------------------
+# Plot Title
+PLOT_TITLE <- "Würden ÄrztInnen in Weiterbildung E-Learning in folgenden Anwendungsfällen nutzen?"
 
-library(ggplot2)
-library(patchwork)
-library(dplyr)
-library(tidyr)
-library(scales)
-library(ggtext)
+# Output names
+OUTPUT_TABLE <- "table_motivation"  
+OUTPUT_PLOT <- "plot_motivation"    
 
-# Filter the relevant columns
-filtered_data_subset <- filtered_data %>%
-  select(
-    `5.23-grundlagen`,
-    `5.23-alternative_praesenz`,
-    `5.23-spezielle_fachbereiche`,
-    `5.23-aktuell`,
-    `5.23-cme`
-  )
+# Column definitions
+SELECTED_COLUMNS <- c(
+  "5.23-grundlagen",
+  "5.23-alternative_praesenz",
+  "5.23-spezielle_fachbereiche",
+  "5.23-aktuell",
+  "5.23-cme"
+)
 
-# Rename the columns for better readability
-colnames(filtered_data_subset) <- c(
+COLUMN_NAMES <- c(
   "Erlernen fachlicher Grundlagen",
   "Alternative zu Präsenzveranstaltungen",
   "Weiterbildung in spez. Fachbereichen",
@@ -40,7 +42,63 @@ colnames(filtered_data_subset) <- c(
   "CME-Punkte sammeln"
 )
 
-# Transform data to long format
+# Visualization parameters (Brewer color palette, Percent-Cutoff for labels)
+BREWER_PALETTE <- "RdBu"
+minimum_label_percentage <- 4
+
+# Label definitions
+labels <- c(
+  "1" = "Auf keinen Fall",
+  "2" = "Wahrscheinlich nicht",
+  "3" = "Eher nicht",
+  "Neutral" = "Unentschlossen",
+  "5" = "Eher ja",
+  "6" = "Wahrscheinlich ja",
+  "7" = "Auf jeden Fall"
+)
+
+#==============================================================================
+# DATA PREPARATION
+#==============================================================================
+
+# Create initial subset
+filtered_data_subset <- filtered_data %>%
+  dplyr::select(all_of(SELECTED_COLUMNS)) %>%
+  setNames(COLUMN_NAMES)
+
+# Create reversed labels for column renaming
+labels_reversed <- setNames(names(labels), labels)
+
+#------------------------------------------------------------------------------
+# Create Summary Table
+#------------------------------------------------------------------------------
+
+assign(OUTPUT_TABLE, filtered_data_subset) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Abfrage",
+    values_to = "rating"
+  ) %>%
+  count(Abfrage, rating) %>%
+  pivot_wider(
+    names_from = rating,
+    values_from = n,
+    values_fill = 0
+  ) %>%
+  dplyr::select(-`NA`) %>%
+  dplyr::select(Abfrage, as.character(1:7)) %>%
+  rename("Neutral" = "4") %>%
+  rename(!!!labels_reversed)
+
+#==============================================================================
+# VISUALIZATION PREPARATION
+#==============================================================================
+
+#------------------------------------------------------------------------------
+# Transform Data for Plotting
+#------------------------------------------------------------------------------
+
+# Create long format data
 filtered_data_long <- filtered_data_subset %>%
   pivot_longer(
     cols = everything(),
@@ -48,42 +106,41 @@ filtered_data_long <- filtered_data_subset %>%
     values_to = "Response"
   )
 
-# Summarize and calculate proportions
-# Summarize and calculate percentages instead of proportions
+# Calculate response percentages
 response_summary <- filtered_data_long %>%
-  group_by(Category) %>%                            
-  mutate(Total = n()) %>%                          
-  group_by(Category, Response) %>%                  
+  group_by(Category) %>%
+  mutate(Total = n()) %>%
+  group_by(Category, Response) %>%
   summarise(
     Count = n(),
-    Total = first(Total),                          
-    Percentage = (Count / Total) * 100,    # Changed from Proportion to Percentage
+    Total = first(Total),
+    Percentage = (Count / Total) * 100,
     .groups = "drop"
   ) %>%
   ungroup()
 
-# Define custom colors and labels
-cols <- c("#D73027", "#FC8D59", "#FEE090", "#B4B4B4", "#91BFDB", "#4575B4", "#313695")
-names(cols) <- c(1, 2, 3, "Neutral", 5, 6, 7)
+#------------------------------------------------------------------------------
+# Color and Label Setup
+#------------------------------------------------------------------------------
 
-labels <- c(
-  "Auf keinen Fall",
-  "Wahrscheinlich nicht",
-  "Eher nicht",
-  "Unentschlossen",
-  "Eher ja",
-  "Wahrscheinlich ja",
-  "Auf jeden Fall"
+# Set up color palette
+brewer_colors <- brewer.pal(n = 7, name = BREWER_PALETTE)
+
+# Define color mapping
+cols <- c(
+  "1" = brewer_colors[1],
+  "2" = brewer_colors[2],
+  "3" = brewer_colors[3],
+  "Neutral" = "#B4B4B4",
+  "5" = brewer_colors[5],
+  "6" = brewer_colors[6],
+  "7" = brewer_colors[7]
 )
 
-names(labels) <- c(1, 2, 3, "Neutral", 5, 6, 7)
-
-# Custom legend labels function
+# Create formatted labels function
 custom_labels <- function(labels, colors) {
   sapply(1:length(labels), function(i) {
-    paste0(
-      "<span style='color:", colors[i], ";'>", labels[i], "</span>"
-    )
+    paste0("<span style='color:", colors[i], ";'>", labels[i], "</span>")
   })
 }
 
@@ -93,12 +150,17 @@ formatted_labels <- custom_labels(
   colors = cols[c(1, 2, 3, 5, 6, 7)]
 )
 
-formatted_labels_neutral <- custom_labels(
-  labels = labels["Neutral"],
-  colors = cols["Neutral"]
+formatted_labels_neutral <- paste0(
+  "<span style='color:", cols["Neutral"], ";'>", 
+  labels["Neutral"], 
+  "</span>"
 )
 
-# Split data into neutral and non-neutral
+#------------------------------------------------------------------------------
+# Data Processing for Visualization
+#------------------------------------------------------------------------------
+
+# Add response codes and split data
 response_summary <- response_summary %>%
   mutate(
     Code = case_when(
@@ -108,10 +170,31 @@ response_summary <- response_summary %>%
     )
   )
 
+# Split into neutral and non-neutral datasets
 df_neutral <- filter(response_summary, Code == "Neutral")
 df_nonneutral <- filter(response_summary, Code != "Neutral")
 
-### Berechnungen für die X-Achsen (Min/Max Größe & Konstante Relationen)
+# Add conditional labels
+df_nonneutral <- df_nonneutral %>%
+  mutate(Label = ifelse(
+    abs(Percentage) >= minimum_label_percentage, 
+    paste0(round(abs(Percentage), 1), "%"), 
+    ""
+  ))
+
+# Split into positive and negative datasets
+df_negative <- df_nonneutral %>%
+  filter(Code %in% c("1", "2", "3")) %>%
+  mutate(Position = -Percentage)
+
+df_positive <- df_nonneutral %>%
+  filter(Code %in% c("5", "6", "7")) %>%
+  mutate(Position = Percentage)
+
+#------------------------------------------------------------------------------
+# Calculate Plot Dimensions
+#------------------------------------------------------------------------------
+
 # Calculate stacked sums
 stacked_sums <- df_nonneutral %>%
   group_by(Category) %>%
@@ -121,31 +204,31 @@ stacked_sums <- df_nonneutral %>%
   ) %>%
   ungroup()
 
-# Get the maximum stacked sums for each side
+# Calculate axis limits
 max_left_stack <- max(stacked_sums$LeftSum)
 max_right_stack <- max(stacked_sums$RightSum)
 max_neutral <- max(df_neutral$Percentage)
 
-# Set X-axis length rounded up to next multiple of 10 or 5 and add Minimum length
-x_left <- max(ceiling(max_left_stack / 10) * 10, 15)  # Minimum 15%
-x_right <- max(ceiling(max_right_stack / 10) * 10, 15)  # Minimum 15%
-x_neutral <- max(ceiling(max_neutral / 5) * 5, 12.5)  # Minimum 12.5%
+# Set and adjust axis ranges
+x_left <- max(ceiling(max_left_stack / 10) * 10, 15)
+x_right <- max(ceiling(max_right_stack / 10) * 10, 15)
+x_neutral <- max(ceiling(max_neutral / 5) * 5, 12.5)
 
-# Cap the limits at 100% if they exceed it
+# Apply limits
 x_left <- min(x_left, 100)
 x_right <- min(x_right, 100)
 x_neutral <- min(x_neutral, 100)
 
-# Calculate the x-axis ranges
-range_p1 <- x_left + x_right  # Total range for p1
-range_p2 <- max(x_neutral, 12.5)       # Total range for p2
-
-# Calculate the width ratio between p1 and p2 to keep x-ratios when joining graphs
+# Calculate plot ratios
+range_p1 <- x_left + x_right
+range_p2 <- max(x_neutral, 12.5)
 width_ratio <- range_p1 / range_p2
 
-### Labeling der X-Achsen
-# Generate breaks dynamically, ensuring 10% is always included, sonst alle 20%
-x_breaks <- unique(sort(c(-10, 10, seq(-ceiling(x_left / 10) * 10, ceiling(x_right / 10) * 10, by = 20))))
+# Generate axis breaks
+x_breaks <- unique(sort(c(
+  -10, 10, 
+  seq(-ceiling(x_left / 10) * 10, ceiling(x_right / 10) * 10, by = 20)
+)))
 
 # Dynamically generate hjust values for the breaks
 hjust_values <- sapply(x_breaks, function(x) {
@@ -158,100 +241,131 @@ hjust_values <- sapply(x_breaks, function(x) {
   }
 })
 
-### Conditional Labels on Bars
-# % CutOff for showing labels on Bars
-percent_cutoff = 7
-# Add a column for conditional labels
-df_nonneutral <- df_nonneutral %>%
-  mutate(Label = ifelse(abs(Percentage) >= percent_cutoff, paste0(round(abs(Percentage), 1), "%"), ""))
+#==============================================================================
+# Store all necessary data into a custom named list
+#==============================================================================
 
+# Create a list with all necessary components
+plot_components <- list(
+  df_neutral = df_neutral,
+  df_nonneutral = df_nonneutral,
+  cols = cols,
+  formatted_labels = formatted_labels,
+  formatted_labels_neutral = formatted_labels_neutral,
+  x_breaks = x_breaks,
+  x_left = x_left,
+  x_right = x_right,
+  x_neutral = x_neutral,
+  hjust_values = hjust_values,
+  width_ratio = width_ratio,
+  minimum_label_percentage = minimum_label_percentage,
+  plot_title = PLOT_TITLE
+)
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Graph erstellen
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Assign the components to our output name with _data suffix
+assign(paste0("data_", OUTPUT_PLOT), plot_components)
 
-# Plot for non-neutral data (responses 1-3 and 5-7)
-p1 <- ggplot(df_nonneutral, aes(x = ifelse(Code %in% c("1", "2", "3"), -Percentage, Percentage), 
-                                y = Category, 
-                                fill = factor(Code, levels = c("3", "2", "1", "5", "6", "7")))) +
-  geom_col(position = position_stack(reverse = TRUE)) +
-  # Use the Label column to ensure proper centering
-  geom_text(aes(label = Label),
-            position = position_stack(vjust = 0.5, reverse = TRUE)) +
-  scale_fill_manual(
-    values = cols[c(1, 2, 3, 5, 6, 7)],
-    labels = formatted_labels
-  ) +
-  guides(fill = guide_legend(
-    title = NULL, 
-    nrow = 1, 
-    byrow = TRUE,
-    override.aes = list(fill = NA, size = 0)
-  )) +
-  scale_x_continuous(
-    breaks = x_breaks,
-    labels = ~ paste0(abs(.x), "%"),  # Standard percentage labels
-    limits = c(-x_left, x_right),
-    expand = c(0, 0)
-  ) +
-  geom_vline(xintercept = 0, linetype = "solid", size = 1, color = "grey30") +  # Bold 0% line
-  theme_bw() +
-  theme(
-    legend.position = "top",
-    legend.text = element_markdown(size = 10, face = "bold"),
-    axis.title = element_blank(),
-    panel.grid.major.y = element_blank(),
-    axis.text = element_markdown(),
-    axis.text.x = element_text(hjust = hjust_values)
-  )
+#==============================================================================
+# PLOT CREATION
+#==============================================================================
 
-# Plot for neutral data (response 4)
-p2 <- ggplot(df_neutral, aes(x = Percentage, y = Category, fill = Code)) +
-  geom_col() +
-  # Inside labels for >=7%
-  geom_text(data = . %>% filter(Percentage >= percent_cutoff),
-            aes(label = paste0(round(Percentage, 1), "%")),
-            position = position_stack(vjust = 0.5)) + 
-  # Outside labels for <7%
-  geom_text(data = . %>% filter(Percentage < percent_cutoff),
-            aes(label = paste0(round(Percentage, 1), "%"),
-                x = Percentage + 1), # Offset to the right
-            hjust = 0) +
-  scale_fill_manual(
-    values = cols["Neutral"],
-    labels = formatted_labels_neutral
-  ) +
-  guides(fill = guide_legend(
-    title = NULL, 
-    nrow = 1,
-    override.aes = list(fill = NA, size = 0)
-  )) +
-  scale_x_continuous(
-    limits = c(0, x_neutral),
-    expand = c(0, 0),
-    labels = ~ paste0(.x, "%")
-  ) +
-  theme_bw() +
-  theme(
-    legend.position = "top",
-    legend.text = element_markdown(size = 10, face = "bold"),
-    axis.title = element_blank(),
-    axis.text.y = element_blank(),  # Remove y-axis labels
-    axis.ticks.y = element_blank(), # Remove y-axis ticks
-    axis.text = element_markdown(),
-    panel.grid.major.y = element_blank()
-  )
+create_plots <- function(components) {
+  # Create main plot
+  p1 <- ggplot(components$df_nonneutral, 
+               aes(x = ifelse(Code %in% c("1", "2", "3"), -Percentage, Percentage),
+                   y = Category,
+                   fill = factor(Code, levels = c("3", "2", "1", "5", "6", "7")))) +
+    geom_col(position = position_stack(reverse = TRUE)) +
+    geom_text(aes(label = Label),
+              position = position_stack(vjust = 0.5, reverse = TRUE)) +
+    scale_fill_manual(values = components$cols[c("1", "2", "3", "5", "6", "7")],
+                      labels = components$formatted_labels) +
+    guides(fill = guide_legend(title = NULL, 
+                               nrow = 1, 
+                               byrow = FALSE,
+                               override.aes = list(fill = NA, size = 0))) +
+    scale_x_continuous(breaks = components$x_breaks,
+                       labels = ~paste0(abs(.x), "%"),
+                       limits = c(-components$x_left, components$x_right),
+                       expand = c(0, 0)) +
+    geom_vline(xintercept = 0, 
+               linetype = "solid", 
+               linewidth = 1.5, 
+               color = "grey30") +
+    theme_bw() +
+    theme(
+      panel.grid.major.y = element_blank(),
+      legend.text = element_markdown(size = 10, face = "bold"),
+      legend.position = c(0.483, 1.1),
+      axis.title = element_blank(),
+      axis.text = element_markdown(),
+      axis.text.x = element_markdown(hjust = hjust_values),
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank()
+    ) +
+    coord_fixed(ratio = 7)
+  
+  # Create neutral response plot
+  p2 <- ggplot(components$df_neutral, aes(x = Percentage, y = Category, fill = Code)) +
+    geom_col() +
+    geom_text(data = components$df_neutral %>% 
+                filter(Percentage >= components$minimum_label_percentage),
+              aes(label = paste0(round(Percentage, 1), "%")),
+              position = position_stack(vjust = 0.5)) +
+    geom_text(data = components$df_neutral %>% 
+                filter(Percentage < components$minimum_label_percentage),
+              aes(label = paste0(round(Percentage, 1), "%"),
+                  x = Percentage + 1),
+              hjust = 0) +
+    scale_fill_manual(values = components$cols["Neutral"],
+                      labels = components$formatted_labels_neutral) +
+    guides(fill = guide_legend(title = NULL,
+                               nrow = 1,
+                               override.aes = list(fill = NA, size = 0))) +
+    scale_x_continuous(limits = c(0, components$x_neutral),
+                       expand = c(0, 0),
+                       labels = ~paste0(.x, "%")) +
+    theme_bw() +
+    theme(
+      panel.grid.major.y = element_blank(),
+      legend.text = element_markdown(size = 10, face = "bold"),
+      legend.position = c(0.4, 1.1),
+      axis.title = element_blank(),
+      axis.text = element_markdown(),
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank()
+    ) +
+    coord_fixed(ratio = 7)
+  
+  # Combine plots
+  (p1 | p2) +
+    plot_layout(
+      guides = "keep",
+      widths = c(1, 1 / components$width_ratio)
+    ) +
+    plot_annotation(                        
+      title = components$plot_title,        
+      theme = theme(                        
+        plot.title = element_text(
+          hjust = 0.5,
+          vjust = 1,
+          size = 12,
+          face = "bold"
+        ),
+      )
+    )
+}
 
-# Combine the plots side by side with adjusted widths
-final_plot <- (p1 | p2) +  # Use | to arrange side by side
-  plot_layout(
-    guides = "collect",     # Collect legends
-    widths = c(1, 1 / width_ratio)  # Dynamically adjust width of p2
-  ) &
-  theme(
-    legend.position = "top", 
-    legend.margin = margin(5, 0, 5, 0)
-  )
+# Create and assign the plot using the components
+assign(OUTPUT_PLOT, create_plots(get(paste0("data_", OUTPUT_PLOT))))
 
-# Print the final plot
-print(final_plot)
+# Clean up keeping only our outputs
+to_keep <- c(
+  OUTPUT_TABLE, 
+  OUTPUT_PLOT,
+  paste0("data_", OUTPUT_PLOT)
+)
+rm(list = setdiff(ls(), to_keep))
+
+# Print the plot (optional, depending on your needs)
+print(plot_motivation)
