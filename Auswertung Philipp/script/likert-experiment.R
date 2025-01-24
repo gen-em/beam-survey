@@ -21,9 +21,11 @@ rm(list = setdiff(ls(), c(ls(pattern = "^filtered_data"),
 # Plot Title
 PLOT_TITLE <- "Würden ÄrztInnen in Weiterbildung E-Learning in folgenden Anwendungsfällen nutzen?"
 
-# Output names
-OUTPUT_TABLE <- "table_motivation"  
-OUTPUT_PLOT <- "plot_motivation"    
+# Output Name (table_**name** und plot_**name** werden automatisch erstellt)
+# Nur NAME_FRAGE definieren
+NAME_FRAGE <- "motivation"  # Define the base name
+OUTPUT_TABLE <- paste0("table_", NAME_FRAGE)
+OUTPUT_PLOT <- paste0("plot_", NAME_FRAGE)   
 
 # Column definitions
 SELECTED_COLUMNS <- c(
@@ -351,9 +353,9 @@ create_plots <- function(components) {
           vjust = 1,
           size = 12,
           face = "bold"
-        ),
-      )
-    )
+    ),
+  )
+)
 }
 
 # Create and assign the plot using the components

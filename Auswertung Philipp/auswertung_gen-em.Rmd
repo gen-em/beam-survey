@@ -25,6 +25,8 @@ knitr::opts_knit$set(root.dir = here())
 
 source(here("script", "assistenten-auswertung.R"), 
        local = knitr::knit_global())
+source(here("script", "likert-questions.R"), 
+       local = knitr::knit_global())
 ```
 
 
@@ -220,3 +222,109 @@ ggsave(here("graphs", "assistenten_zukuenftig_elearning.svg"),
 knitr::include_graphics(here("graphs", "assistenten_zukuenftig_elearning.svg"))
 ```
 
+## Frage 5.23 - Würden Sie E-Learning für folgende Anwendungsfälle nutzen?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_anwendungsfaelle_elearning_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_anwendungsfaelle_elearning_likert.svg"), 
+       plot_anwendungsfaelle_elearning_likert)
+knitr::include_graphics(here("graphs", "assistenten_anwendungsfaelle_elearning_likert.svg"))
+```
+
+## Frage 5.24 - Wie wichtig ist es Ihnen, CME-Punkte für die E-Learning Inhalte zu erhalten?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_cme_wichtig_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_cme_wichtig_likert.svg"), 
+       plot_cme_wichtig_likert)
+knitr::include_graphics(here("graphs", "assistenten_cme_wichtig_likert.svg"))
+```
+
+---
+
+# 6 - Vorbereitung auf notfallmedizinische Krankheitsbilder
+## Frage 6.33 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder in ihrem Fachgebiet vorbereitet?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_nofall_vorbereitet_eigenes_fachgebiet_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_nofall_vorbereitet_eigenes_fachgebiet_likert.svg"), 
+       plot_nofall_vorbereitet_eigenes_fachgebiet_likert)
+knitr::include_graphics(here("graphs", "assistenten_nofall_vorbereitet_eigenes_fachgebiet_likert.svg"))
+```
+
+## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet??
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_nofall_vorbereitet_eigenes_fachgebiet_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_nofall_vorbereitet_anderes_fachgebiet_likert.svg"), 
+       plot_nofall_vorbereitet_anderes_fachgebiet_likert)
+knitr::include_graphics(here("graphs", "assistenten_nofall_vorbereitet_anderes_fachgebiet_likert.svg"))
+```
+
+## Frage 6.39 - Wie sehr belasten Sie **Nachtdienste** in Ihrem aktuellen Ausbildungsstand aus **emotionaler** Sicht?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_belastung_nachtdienste_emotional_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_belastung_nachtdienste_emotional_likert.svg"), 
+       plot_belastung_nachtdienste_emotional_likert)
+knitr::include_graphics(here("graphs", "assistenten_belastung_nachtdienste_emotional_likert.svg"))
+```
+
+## Frage 6.40 - Wie sehr belasten Sie Nachtdienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_belastung_nachtdienste_fachlich_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_belastung_nachtdienste_fachlich_likert.svg"), 
+       plot_belastung_nachtdienste_fachlich_likert)
+knitr::include_graphics(here("graphs", "assistenten_belastung_nachtdienste_fachlich_likert.svg"))
+```
+
+## Frage 6.41 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus emotionaler Sicht?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_belastung_notaufnahmedienste_emotional_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_belastung_notaufnahmedienste_emotional_likert.svg"), 
+       plot_belastung_notaufnahmedienste_emotional_likert)
+knitr::include_graphics(here("graphs", "assistenten_belastung_notaufnahmedienste_emotional_likert.svg"))
+```
+
+## Frage 6.42 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
+
+```{r, echo = FALSE, message=FALSE}
+kable(table_belastung_notaufnahmedienste_fachlich_likert, align = "c")
+```
+
+```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
+# Save the plot
+ggsave(here("graphs", "assistenten_belastung_notaufnahmedienste_fachlich_likert.svg"), 
+       plot_belastung_notaufnahmedienste_fachlich_likert)
+knitr::include_graphics(here("graphs", "assistenten_belastung_notaufnahmedienste_fachlich_likert.svg"))
+```

@@ -207,3 +207,75 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |            Antworten (N)            |  102   |   100   |
 
 <img src="graphs/assistenten_zukuenftig_elearning.svg" width="100%" />
+
+## Frage 5.23 - Würden Sie E-Learning für folgende Anwendungsfälle nutzen?
+
+| Abfrage | Auf keinen Fall | Wahrscheinlich nicht | Eher nicht | Neutral | Eher ja | Wahrscheinlich ja | Auf jeden Fall |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Alternative zu Präsenzveranstaltungen | 0 | 5 | 12 | 14 | 19 | 24 | 27 |
+| CME-Punkte sammeln | 1 | 3 | 2 | 8 | 11 | 23 | 53 |
+| Erlernen fachlicher Grundlagen | 0 | 3 | 4 | 5 | 12 | 28 | 49 |
+| Weiterbildung in spez. Fachbereichen | 1 | 0 | 1 | 7 | 12 | 42 | 38 |
+| Wissen aktuell halten | 0 | 0 | 0 | 3 | 7 | 29 | 62 |
+
+<img src="graphs/assistenten_anwendungsfaelle_elearning_likert.svg" width="100%" />
+
+## Frage 5.24 - Wie wichtig ist es Ihnen, CME-Punkte für die E-Learning Inhalte zu erhalten?
+
+| Abfrage | Unwichtig | Eher unwichtig | Weniger wichtig | Neutral | Eher wichtig | Wichtig | Sehr wichtig |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| CME-Punkte erhalten | 0 | 7 | 9 | 29 | 28 | 15 | 4 |
+
+<img src="graphs/assistenten_cme_wichtig_likert.svg" width="100%" />
+
+------------------------------------------------------------------------
+
+# 6 - Vorbereitung auf notfallmedizinische Krankheitsbilder
+
+## Frage 6.33 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder in ihrem Fachgebiet vorbereitet?
+
+| Abfrage | Sehr schlecht | Schlecht | Eher schlecht | Neutral | Eher gut | Gut | Sehr gut |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Notfallvorbereitung eigenes Fachgebiet | 0 | 2 | 14 | 12 | 38 | 30 | 4 |
+
+<img src="graphs/assistenten_nofall_vorbereitet_eigenes_fachgebiet_likert.svg" width="100%" />
+
+## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet??
+
+| Abfrage | Sehr schlecht | Schlecht | Eher schlecht | Neutral | Eher gut | Gut | Sehr gut |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Notfallvorbereitung eigenes Fachgebiet | 0 | 2 | 14 | 12 | 38 | 30 | 4 |
+
+<img src="graphs/assistenten_nofall_vorbereitet_anderes_fachgebiet_likert.svg" width="100%" />
+
+## Frage 6.39 - Wie sehr belasten Sie **Nachtdienste** in Ihrem aktuellen Ausbildungsstand aus **emotionaler** Sicht?
+
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Emotionale Belastung Nachtdienst | 8 | 25 | 29 | 28 | 9 |
+
+<img src="graphs/assistenten_belastung_nachtdienste_emotional_likert.svg" width="100%" />
+
+## Frage 6.40 - Wie sehr belasten Sie Nachtdienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
+
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Fachliche Belastung Nachtdienst | 5 | 30 | 37 | 22 | 5 |
+
+<img src="graphs/assistenten_belastung_nachtdienste_fachlich_likert.svg" width="100%" />
+
+## Frage 6.41 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus emotionaler Sicht?
+
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Emotionale Belastung Notaufnahmedienst | 15 | 36 | 20 | 24 | 4 |
+
+<img src="graphs/assistenten_belastung_notaufnahmedienste_emotional_likert.svg" width="100%" />
+
+## Frage 6.42 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
+
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Fachliche Belastung Notaufnahmedienst | 11 | 31 | 33 | 19 | 5 |
+
+<img src="graphs/assistenten_belastung_notaufnahmedienste_fachlich_likert.svg" width="100%" />
