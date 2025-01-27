@@ -16,3 +16,16 @@
 https://daydreamingnumbers.com/blog/4-ways-to-visualize-likert-scales/
 
 https://www.datarevelations.com/howto-likert/
+
+
+
+## G Plot + save
+
+https://www.christophenicault.com/post/understand_size_dimension_ggplot2/
+
+
+
+## GGPlot und Rmarkdown
+
+https://benjaminlouis-stat.fr/en/blog/2020-05-21-astuces-ggplot-rmarkdown/
+
