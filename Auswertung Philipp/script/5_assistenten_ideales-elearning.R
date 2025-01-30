@@ -4,20 +4,48 @@ source("./script/config/filter_grundlegend.R")
 source("./script/config/graph-include.R")
 source("./script/config/cleanup.R")
 
-filtered_data <- filtered_assistent
+## Welches KOLLEKTIV soll ausgewertet werden? 
+## Filter in filter_grundlegend definiert
+## Nur LABEL_KOLLEKTIV muss entsprechend angepasst werden
+## Mögliche Werte
+## LABEL_KOLLEKTIV =  studentinnen
+##                    assistentinnen
+##                    fachaerztinnen
+##                    oberaerztinnen
+##                    chefaerztinnen
+
+LABEL_KOLLEKTIV <- "assistentinnen"
+filtered_data <- get(paste0("filtered_", LABEL_KOLLEKTIV))
+NAME_KOLLEKTIV <- get(paste0("name_", LABEL_KOLLEKTIV))
+
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-# 5.22 E-Learning in Zukunft nutzen? ----
+# 5.22 E-Learning in Zukunft nutzen? Pie-Chart ----
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## Configuration ----
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-NAME_FRAGE <- "5_22_assistenten_elearning_zukunft"
-PLOT_TITLE <- "Könnten AssistentInnen in Weiterbildung sich vorstellen, in Zukunft E-Learning Inhalte zu nutzen?"
-TITEL_KURZ <- "Zukünftige Nutzung E-Learning"
+
+## Details zur Frage
+FRAGE_NUMMER <- "5_22"
+LABEL_FRAGE <- "elearning_zukunft"
+
+## Fragennamen zusammensetzen für table_ & plot_ Benennung
+NAME_FRAGE <- paste0(
+  FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+  )
+
+## Titel des Plots festlegen
+## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+PLOT_TITLE <- sprintf(
+  "Können %s sich vorstellen, E-Learning in Zukunft zur Fortbildung zu nutzen?", NAME_KOLLEKTIV
+  )
+
+## Titel der angezeigten Labels (kurz, knackig)
+LABEL_TITLE <- "Zukünftige Nutzung E-Learning"
 
 ## Welche Column?
 COLUMN_OF_INTEREST <- "5.22"
@@ -31,15 +59,16 @@ ANTWORT_OPTIONEN <- c(
 ## Brewer Palette für Farbgebung
 BREWER_PALETTE <- "Pastel2"
 
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Generate Outputs
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 create_pie_chart(
-  filtered_data = filtered_assistent, 
+  filtered_data = filtered_data, 
   column_of_interest = COLUMN_OF_INTEREST, 
   NAME_FRAGE = NAME_FRAGE,
-  TITEL_KURZ = TITEL_KURZ,
+  LABEL_TITLE = LABEL_TITLE,
   ANTWORT_OPTIONEN = ANTWORT_OPTIONEN, 
   PLOT_TITLE = PLOT_TITLE,
   BREWER_PALETTE = BREWER_PALETTE
@@ -47,7 +76,7 @@ create_pie_chart(
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-# 5.23 Anwendungsfälle E-Learning Likert ----
+# 5.23 Anwendungsfälle E-Learning 7-Point Likert ----
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -55,8 +84,20 @@ create_pie_chart(
 ## Configuration ----
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NAME_FRAGE <- "5_25_assistenten_anwendungsfaelle_elearning_likert"
-PLOT_TITLE <- "Würden ÄrztInnen in Weiterbildung E-Learning in folgenden Anwendungsfällen nutzen?"
+## Details zur Frage
+FRAGE_NUMMER <- "5_23"
+LABEL_FRAGE <- "anwendungsfaelle_elearning_likert"
+
+## Fragennamen zusammensetzen für table_ & plot_ Benennung
+NAME_FRAGE <- paste0(
+  FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+)
+
+## Titel des Plots festlegen
+## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+PLOT_TITLE <- sprintf(
+  "Für welche Anwendungsfälle Würden %s E-Learning nutzen?", NAME_KOLLEKTIV
+)
 
 ## Columns of Interest definieren (aus filtered_data)
 SELECTED_COLUMNS <- c(
@@ -126,7 +167,7 @@ assign(paste0("plot_", NAME_FRAGE),
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-# 5.24 Anwendungsfälle E-Learning Likert ----
+# 5.24 CME-Punkte wie wichtig? 5-point Likert ----
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -134,8 +175,21 @@ assign(paste0("plot_", NAME_FRAGE),
 ## Configuration ----
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NAME_FRAGE <- "5_25_assistenten_cme_wichtig_likert"
-PLOT_TITLE <- "Wie wichtig ist es ÄrztInnen in Weiterbildung für E-Learning CME-Punkte zu erhalten?"
+## Details zur Frage
+FRAGE_NUMMER <- "5_24"
+LABEL_FRAGE <- "cme_wichtig_likert"
+
+## Fragennamen zusammensetzen für table_ & plot_ Benennung
+NAME_FRAGE <- paste0(
+  FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+)
+
+## Titel des Plots festlegen
+## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+PLOT_TITLE <- sprintf(
+  "Wie wichtig ist es %s für E-Learning CME-Punkte zu erhalten?", NAME_KOLLEKTIV
+)
+
 SELECTED_COLUMNS <- c(
   "5.24"
 )
@@ -192,8 +246,20 @@ assign(paste0("plot_", NAME_FRAGE),
 ## Configuration ----
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NAME_FRAGE <- "5_25_assistenten_wuensche_inhaltsvermittlung"
-PLOT_TITLE <- "Wünsche von ÄrztInnen in Weiterbildung an Arten der Inhaltsvermittlung im E-Learning"
+## Details zur Frage
+FRAGE_NUMMER <- "5_25"
+LABEL_FRAGE <- "wuensche_inhaltsvermittlung"
+
+## Fragennamen zusammensetzen für table_ & plot_ Benennung
+NAME_FRAGE <- paste0(
+  FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+)
+
+## Titel des Plots festlegen
+## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+PLOT_TITLE <- sprintf(
+  "Wünsche von %s an Arten der Inhaltsvermittlung im E-Learning", NAME_KOLLEKTIV
+)
 
 ## Anzeige von "Antworten N=XXX" auf dem Graph
 ANNOTATE_ANZAHL = TRUE
@@ -258,8 +324,20 @@ create_horizontal_bar_plot_percentages(
 ## Configuration ----
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NAME_FRAGE <- "5_26_assistenten_kriterien_kursauswahl"
-PLOT_TITLE <- "Welche Kriterien sind für ÄrztInnen in Weiterbildung relevant für die Auswahl von Kursen?"
+## Details zur Frage
+FRAGE_NUMMER <- "5_26"
+LABEL_FRAGE <- "kriterien_kursauswahl"
+
+## Fragennamen zusammensetzen für table_ & plot_ Benennung
+NAME_FRAGE <- paste0(
+  FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+)
+
+## Titel des Plots festlegen
+## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+PLOT_TITLE <- sprintf(
+  "Nach welchen Kriterien wählen %s Kurse aus?", NAME_KOLLEKTIV
+)
 
 ## Anzeige von "Antworten N=XXX" auf dem Graph
 ANNOTATE_ANZAHL = TRUE
@@ -319,8 +397,22 @@ create_horizontal_bar_plot_percentages(
 ## Configuration ----
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NAME_FRAGE <- "5_31_assistenten_veranstaltungen_bisher_gefunden"
-PLOT_TITLE <- "Wie haben ÄrztInnen in Weiterbildung Fortbildungen bisher gefunden?"
+## Details zur Frage
+FRAGE_NUMMER <- "5_31"
+LABEL_FRAGE <- "veranstaltungen_bisher_gefunden"
+
+## Fragennamen zusammensetzen für table_ & plot_ Benennung
+NAME_FRAGE <- paste0(
+  FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+)
+
+## Titel des Plots festlegen
+## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+PLOT_TITLE <- sprintf(
+  "Auf welchen Wegen haben %s Fortbildungen bisher gefunden?", NAME_KOLLEKTIV
+)
+
+
 
 ## Anzeige von "Antworten N=XXX" auf dem Graph
 ANNOTATE_ANZAHL = TRUE
@@ -382,7 +474,9 @@ cleanup_workspace()
 # PRINT'em ----
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-print(plot_5_25_assistenten_wuensche_inhaltsvermittlung)
-print(plot_5_22_assistenten_elearning_zukunft)
-print(plot_5_26_assistenten_kriterien_kursauswahl)
-print(plot_5_31_assistenten_veranstaltungen_bisher_gefunden)
+print(plot_5_22_assistentinnen_elearning_zukunft)
+print(plot_5_23_assistentinnen_anwendungsfaelle_elearning_likert)
+print(plot_5_24_assistentinnen_cme_wichtig_likert)
+print(plot_5_25_assistentinnen_wuensche_inhaltsvermittlung)
+print(plot_5_26_assistentinnen_kriterien_kursauswahl)
+print(plot_5_31_assistentinnen_veranstaltungen_bisher_gefunden)

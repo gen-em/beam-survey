@@ -4,7 +4,19 @@ source("./script/config/filter_grundlegend.R")
 source("./script/config/graph-include.R")
 source("./script/config/cleanup.R")
 
-filtered_data <- filtered_assistent
+## Welches KOLLEKTIV soll ausgewertet werden? 
+## Filter in filter_grundlegend definiert
+## Nur LABEL_KOLLEKTIV muss entsprechend angepasst werden
+## Mögliche Werte
+## LABEL_KOLLEKTIV =  studentinnen
+##                    assistentinnen
+##                    fachaerztinnen
+##                    oberaerztinnen
+##                    chefaerztinnen
+
+LABEL_KOLLEKTIV <- "assistentinnen"
+filtered_data <- get(paste0("filtered_", LABEL_KOLLEKTIV))
+NAME_KOLLEKTIV <- get(paste0("name_", LABEL_KOLLEKTIV))
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

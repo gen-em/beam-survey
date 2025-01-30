@@ -16,35 +16,50 @@ rohdaten <- read_excel(rohdaten_quelldatei, sheet = 1)
 ########################################################################
 ####### Filter nach Gen-EM Kriterien
 ####### 
-####### filtered_student   = Studenten
-####### filtered_assistent = Assistenzärzte + vor Beginn Weiterbildung
-####### filtered_facharzt  = Fachärzte
-####### filtered_oberarzt  = Oberärzte
-####### filtered_chefarzt  = Chefärzte
+####### filtered_studentinnen   = Studenten
+####### filtered_assistentinnen = Assistenzärzte + vor Beginn Weiterbildung
+####### filtered_fachaerztinnen  = Fachärzte
+####### filtered_oberaerztinnen  = Oberärzte
+####### filtered_filtered_chefaerztinnen  = Chefärzte
 ####### 
 ########################################################################
 
 ## StudentInnen
-## Var = filtered_student
-filtered_student <- rohdaten %>%
+## Var = filtered_studentinnen
+## LABEL = studentinnen
+filtered_studentinnen <- rohdaten %>%
   filter(`1.2` %in% c("student"))
+## Name für das Kollektiv, um es in den Grafiktiteln einzubinden
+name_studentinnen <- "StudentInnen"
 
 ## Arzt in Weiterbildung + Approbiert vor Beginn Weiterbildung
-## Var = filtered_assistent
-filtered_assistent <- rohdaten %>%
+## Var = filtered_assistentinnen
+## LABEL = assistentinnen
+filtered_assistentinnen <- rohdaten %>%
   filter(`1.2` %in% c("arzt_weiterbildung", "approbiert_vor_beginn"))
+## Name für das Kollektiv, um es in den Grafiktiteln einzubinden
+name_assistentinnen <- "MedizinerInnen in Weiterbildung"
 
 ## Facharzt 
-## Var = filtered_facharzt
-filtered_facharzt <- rohdaten %>%
+## Var = filtered_fachaerztinnen
+## LABEL = fachaerztinnen
+filtered_fachaerztinnen <- rohdaten %>%
   filter(`1.2` %in% c("facharzt"))
+## Name für das Kollektiv, um es in den Grafiktiteln einzubinden
+name_fachaerztinnen <- "FachärztInnen"
 
 ## Oberarzt
-## Var = filtered_oberarzt
-filtered_oberarzt <- rohdaten %>%
+## Var = filtered_oberaerztinnen
+## LABEL = oberaerztinnen
+filtered_oberaerztinnen <- rohdaten %>%
   filter(`1.2` %in% c("oberarzt"))
+## Name für das Kollektiv, um es in den Grafiktiteln einzubinden
+name_oberaerztinnen <- "OberärztInnen"
 
 ## Chefarzt
-## Var = filtered_chefarzt
-filtered_chefarzt <- rohdaten %>%
+## Var = filtered_chefaerztinnen
+## LABEL = chefaerztinnen
+filtered_chefaerztinnen <- rohdaten %>%
   filter(`1.2` %in% c("chefarzt"))
+## Name für das Kollektiv, um es in den Grafiktiteln einzubinden
+name_chefaerztinnen <- "ChefärztInnen"

@@ -7,7 +7,7 @@ create_pie_chart <- function(
     filtered_data,
     column_of_interest,
     NAME_FRAGE,
-    TITEL_KURZ,
+    LABEL_TITLE,
     ANTWORT_OPTIONEN,
     PLOT_TITLE,
     BREWER_PALETTE
@@ -31,14 +31,14 @@ create_pie_chart <- function(
     Anzahl = as.numeric(count_values),
     Prozent = round(as.numeric(percent_values), 1)
   )
-  colnames(table_result)[1] <- TITEL_KURZ
+  colnames(table_result)[1] <- LABEL_TITLE
   
   # Create a copy for the plot
   data_plot <- table_result
   
   # Add a total row to the table
   total_row <- data.frame(
-    TITEL_KURZ = "Antworten (N)",
+    LABEL_TITLE = "Antworten (N)",
     Anzahl = total_rows,
     Prozent = 100
   )
@@ -54,7 +54,7 @@ create_pie_chart <- function(
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   
-  plot_result <- ggplot(data_plot, aes(x = "", y = Prozent, fill = !!sym(TITEL_KURZ))) +
+  plot_result <- ggplot(data_plot, aes(x = "", y = Prozent, fill = !!sym(LABEL_TITLE))) +
     geom_bar(stat = "identity", width = 1, color = "black") +
     coord_polar(theta = "y") +  # Convert to pie chart
     theme_void() +  # Remove background and axes
@@ -73,15 +73,27 @@ create_pie_chart <- function(
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Konfiguration ----
 # In die sourcende Datei einfügen und # entfernen :)
+# LABEL_KOLLEKTIV & filtered_data & NAME_KOLLEKTIV müssen definiert sein
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # 
 # 
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# ## Configuration ----
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# NAME_FRAGE <- "5_22_assistenten_elearning_zukunft"
-# PLOT_TITLE <- "Könnten AssistentInnen in Weiterbildung sich vorstellen, in Zukunft E-Learning Inhalte zu nutzen?"
-# TITEL_KURZ <- "Zukünftige Nutzung E-Learning"
+# ## Details zur Frage
+# FRAGE_NUMMER <- "5_22"
+# LABEL_FRAGE <- "elearning_zukunft"
+# 
+# ## Fragennamen zusammensetzen für table_ & plot_ Benennung
+# NAME_FRAGE <- paste0(
+#   FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+# )
+# 
+# ## Titel des Plots festlegen
+# ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+# PLOT_TITLE <- sprintf(
+#   "Können %s sich vorstellen, E-Learning in Zukunft zur Fortbildung zu nutzen?", NAME_KOLLEKTIV
+# )
+# 
+# ## Titel der angezeigten Labels (kurz, knackig)
+# LABEL_TITLE <- "Zukünftige Nutzung E-Learning"
 # 
 # ## Welche Column?
 # COLUMN_OF_INTEREST <- "5.22"
@@ -100,10 +112,10 @@ create_pie_chart <- function(
 # #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # 
 # create_pie_chart(
-#   filtered_data = filtered_assistent, 
+#   filtered_data = filtered_data, 
 #   column_of_interest = COLUMN_OF_INTEREST, 
 #   NAME_FRAGE = NAME_FRAGE,
-#   TITEL_KURZ = TITEL_KURZ,
+#   LABEL_TITLE = LABEL_TITLE,
 #   ANTWORT_OPTIONEN = ANTWORT_OPTIONEN, 
 #   PLOT_TITLE = PLOT_TITLE,
 #   BREWER_PALETTE = BREWER_PALETTE
