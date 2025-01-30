@@ -1,134 +1,9 @@
 # Load dependencies
 source("./script/global.R")
 source("./script/filter_grundlegend.R")
-source("./script/likert_scale_7.R")
-source("./script/likert_scale_5.R")
+source("./script/graphs.R")
 
 filtered_data <- filtered_assistent
-
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-# 5.23 Anwendungsfälle E-Learning Likert ----
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-## Configuration ----
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-NAME_FRAGE <- "anwendungsfaelle_elearning_likert"
-PLOT_TITLE <- "Würden ÄrztInnen in Weiterbildung E-Learning in folgenden Anwendungsfällen nutzen?"
-SELECTED_COLUMNS <- c(
-  "5.23-grundlagen",
-  "5.23-alternative_praesenz",
-  "5.23-spezielle_fachbereiche",
-  "5.23-aktuell",
-  "5.23-cme"
-)
-COLUMN_NAMES <- c(
-  "Erlernen fachlicher Grundlagen",
-  "Alternative zu Präsenzveranstaltungen",
-  "Weiterbildung in spez. Fachbereichen",
-  "Wissen aktuell halten",
-  "CME-Punkte sammeln"
-)
-BREWER_PALETTE <- "RdBu"
-MINIMUM_LABEL_PERCENTAGE <- 4
-SHOW_Y_LABELS <- TRUE  # Y-Achsen Labels anzeigen
-LABELS <- c(
-  "1" = "Auf keinen Fall",
-  "2" = "Wahrscheinlich nicht",
-  "3" = "Eher nicht",
-  "Neutral" = "Unentschlossen",
-  "5" = "Eher ja",
-  "6" = "Wahrscheinlich ja",
-  "7" = "Auf jeden Fall"
-)
-
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Generate Outputs
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-assign(paste0("table_", NAME_FRAGE), 
-       create_likert_7_table(
-         filtered_data, 
-         SELECTED_COLUMNS, 
-         COLUMN_NAMES, 
-         LABELS
-         )
-       )
-
-assign(paste0("plot_", NAME_FRAGE), 
-       create_likert_7_plot(
-         filtered_data, 
-         SELECTED_COLUMNS, 
-         COLUMN_NAMES,
-         PLOT_TITLE, 
-         BREWER_PALETTE, 
-         MINIMUM_LABEL_PERCENTAGE, 
-         LABELS, 
-         SHOW_Y_LABELS)
-       )
-
-
-
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-# 5.24 Anwendungsfälle E-Learning Likert ----
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-## Configuration ----
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-NAME_FRAGE <- "cme_wichtig_likert"
-PLOT_TITLE <- "Wie wichtig ist es ÄrztInnen in Weiterbildung für E-Learning CME-Punkte zu erhalten?"
-SELECTED_COLUMNS <- c(
-  "5.24"
-)
-COLUMN_NAMES <- c(
-  "CME-Punkte erhalten"
-)
-BREWER_PALETTE <- "RdBu"
-MINIMUM_LABEL_PERCENTAGE <- 4
-SHOW_Y_LABELS <- FALSE  # Y-Achsen Labels anzeigen
-LABELS <- c(
-  "1" = "Unwichtig",
-  "2" = "Eher unwichtig",
-  "3" = "Weniger wichtig",
-  "Neutral" = "Neutral",
-  "5" = "Eher wichtig",
-  "6" = "Wichtig",
-  "7" = "Sehr wichtig"
-)
-
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Generate Outputs
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-assign(paste0("table_", NAME_FRAGE), 
-       create_likert_7_table(
-         filtered_data, 
-         SELECTED_COLUMNS, 
-         COLUMN_NAMES, 
-         LABELS
-       )
-)
-
-assign(paste0("plot_", NAME_FRAGE), 
-       create_likert_7_plot(
-         filtered_data, 
-         SELECTED_COLUMNS, 
-         COLUMN_NAMES,
-         PLOT_TITLE, 
-         BREWER_PALETTE, 
-         MINIMUM_LABEL_PERCENTAGE, 
-         LABELS, 
-         SHOW_Y_LABELS)
-)
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -421,15 +296,27 @@ assign(paste0("plot_", NAME_FRAGE),
 
 NAME_FRAGE <- "belastung_notaufnahmedienste_fachlich_likert"
 PLOT_TITLE <- "Wie sehr belasten Notaufnahmedienste AssistenzärztInnen in Weiterbildung aus fachlicher Sicht?"
+
+## Welche columns aus filtered_data soll eingeschlossen werden?
 SELECTED_COLUMNS <- c(
   "6.42"
 )
+
+## Column Namen definieren
 COLUMN_NAMES <- c(
   "Fachliche Belastung Notaufnahmedienst"
 )
+
+## Welche Brewer Palette zur Farbgebung des Graph?
 BREWER_PALETTE <- "Reds"
+
+## Minimaler Prozentsatz, ab welchem die % auf dem Bar-Part angezeigt werden
 MINIMUM_LABEL_PERCENTAGE <- 4
+
+## Show Y Axis labels? (Falls mehrere columns / fragen auf einem Graph)
 SHOW_Y_LABELS <- FALSE  # Y-Achsen Labels anzeigen
+
+## Definiere die Labels / Likert-Punkte
 LABELS <- c(
   "1" = "Überhaupt nicht",
   "2" = "Kaum",

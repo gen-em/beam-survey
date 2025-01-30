@@ -1,3 +1,8 @@
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# R Code ----
+# Functions for creating 5-point Likert scale visualizations and tables
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 create_likert_5_table <- function(filtered_data, selected_columns, column_names, labels) {
   # Create initial subset and prepare labels
   filtered_data_subset <- filtered_data %>%
@@ -134,3 +139,70 @@ create_likert_5_plot <- function(filtered_data, selected_columns, column_names, 
     ggtitle(plot_title) +
     coord_flip()  # Flip the axes for horizontal orientation
 }
+
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Konfiguration ----
+# In die sourcende Datei einfügen und # entfernen :)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# 
+# 
+# NAME_FRAGE <- "name_der_variablen für plot_ und table_"
+# PLOT_TITLE <- "Titel auf dem Graph"
+# 
+# ## Welche columns aus filtered_data soll eingeschlossen werden?
+# SELECTED_COLUMNS <- c(
+#   "6.42"
+# )
+# 
+# ## Column Namen definieren
+# COLUMN_NAMES <- c(
+#   "Fachliche Belastung Notaufnahmedienst"
+# )
+# 
+# ## Welche Brewer Palette zur Farbgebung des Graph?
+# BREWER_PALETTE <- "Reds"
+# 
+# ## Minimaler Prozentsatz, ab welchem die % auf dem Bar-Part angezeigt werden
+# MINIMUM_LABEL_PERCENTAGE <- 4
+# 
+# ## Show Y Axis labels? (Falls mehrere columns / fragen auf einem Graph)
+# SHOW_Y_LABELS <- FALSE  # Y-Achsen Labels anzeigen
+# 
+# ## Definiere die Labels / Likert-Punkte
+# LABELS <- c(
+#   "1" = "Überhaupt nicht",
+#   "2" = "Kaum",
+#   "3" = "Ein bisschen",
+#   "4" = "Belastet",
+#   "5" = "Sehr"
+# )
+# 
+# 
+# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# # Generate Outputs
+# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# 
+# assign(paste0("table_", NAME_FRAGE), 
+#        create_likert_5_table(
+#          filtered_data, 
+#          SELECTED_COLUMNS, 
+#          COLUMN_NAMES, 
+#          LABELS
+#        )
+# )
+# 
+# assign(paste0("plot_", NAME_FRAGE), 
+#        create_likert_5_plot(
+#          filtered_data, 
+#          SELECTED_COLUMNS, 
+#          COLUMN_NAMES,
+#          PLOT_TITLE, 
+#          BREWER_PALETTE, 
+#          MINIMUM_LABEL_PERCENTAGE, 
+#          LABELS, 
+#          SHOW_Y_LABELS)
+# )
+# 
+# ## Print bei Bedarf
+# print(plot_anwendungsfaelle_elearning_likert)

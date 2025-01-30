@@ -1,7 +1,6 @@
 # Einstellungen ----
-source("./script/config/global.R")
-source("./script/config/filter_grundlegend.R")
-source("./script/config/graph-include.R")
+source("./script/global.R")
+source("./script/filter_grundlegend.R")
 
 # Definiere Eingangsfilter, um später leichter wechseln zu können
 filtered_data <- filtered_assistent

@@ -1,11 +1,12 @@
-#==============================================================================
-# Functions for creating Likert scale visualizations and tables
-#==============================================================================
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# R Code ----
+# Functions for creating 7-point Likert scale visualizations and tables
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 create_likert_7_table <- function(filtered_data, selected_columns, column_names, labels) {
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Create Summary Table
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   # Create initial subset and prepare labels
   filtered_data_subset <- filtered_data %>%
@@ -42,9 +43,9 @@ create_likert_7_table <- function(filtered_data, selected_columns, column_names,
 
 create_likert_7_plot <- function(filtered_data, selected_columns, column_names, plot_title, 
                                brewer_palette, minimum_label_percentage, labels, show_y_labels = TRUE) {
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Data Preparation
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   # Create initial subset
   filtered_data_subset <- filtered_data %>%
@@ -59,9 +60,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
       values_to = "Response"
     )
   
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Calculate Response Percentages
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   response_summary <- filtered_data_long %>%
     group_by(Category) %>%
@@ -75,9 +76,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     ) %>%
     ungroup()
   
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Color and Label Setup
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   brewer_colors <- brewer.pal(n = 7, name = brewer_palette)
   cols <- c(
@@ -107,9 +108,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     "</span>"
   )
   
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Data Processing
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   response_summary <- response_summary %>%
     mutate(
@@ -130,9 +131,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
       ""
     ))
   
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Calculate Plot Dimensions
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   stacked_sums <- df_nonneutral %>%
     group_by(Category) %>%
@@ -171,9 +172,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     }
   })
   
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Create Plots
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   p1 <- ggplot(df_nonneutral, 
                aes(x = ifelse(Code %in% c("1", "2", "3"), -Percentage, Percentage),
@@ -243,9 +244,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     ) +
     coord_fixed(ratio = 7)
   
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Combine and Return Plots
-  #------------------------------------------------------------------------------
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   (p1 | p2) +
     plot_layout(
@@ -264,3 +265,74 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
       )
     )
 }
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Konfiguration ----
+# In die sourcende Datei einfügen und # entfernen :)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# 
+# NAME_FRAGE <- "name_der_variablen für plot_ und table_"
+# PLOT_TITLE <- "Titeltext des Plots"
+# 
+# ## Columns of Interest definieren (aus filtered_data)
+# SELECTED_COLUMNS <- c(
+#   "5.23-grundlagen",
+#   "5.23-alternative_praesenz",
+#   "5.23-spezielle_fachbereiche",
+#   "5.23-aktuell",
+#   "5.23-cme"
+# )
+# 
+# ## Columns benennen
+# COLUMN_NAMES <- c(
+#   "Erlernen fachlicher Grundlagen",
+#   "Alternative zu Präsenzveranstaltungen",
+#   "Weiterbildung in spez. Fachbereichen",
+#   "Wissen aktuell halten",
+#   "CME-Punkte sammeln"
+# )
+# 
+# ## Welche Brewer Palette zur Farbgebung des Graphen?
+# BREWER_PALETTE <- "RdBu"
+# 
+# ## Minimum % pro Bar-Part ab welchem die % angezeigt werden
+# MINIMUM_LABEL_PERCENTAGE <- 4
+# 
+# ## Labels an der Y-Achse zeigen? TRUE & FALSE
+# SHOW_Y_LABELS <- TRUE  # Y-Achsen Labels anzeigen
+# 
+# ## Labels definieren
+# LABELS <- c(
+#   "1" = "Auf keinen Fall",
+#   "2" = "Wahrscheinlich nicht",
+#   "3" = "Eher nicht",
+#   "Neutral" = "Unentschlossen",
+#   "5" = "Eher ja",
+#   "6" = "Wahrscheinlich ja",
+#   "7" = "Auf jeden Fall"
+# )
+# 
+# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# # Generate Outputs
+# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# 
+# assign(paste0("table_", NAME_FRAGE), 
+#        create_likert_7_table(
+#          filtered_data, 
+#          SELECTED_COLUMNS, 
+#          COLUMN_NAMES, 
+#          LABELS
+#        )
+# )
+# 
+# assign(paste0("plot_", NAME_FRAGE), 
+#        create_likert_7_plot(
+#          filtered_data, 
+#          SELECTED_COLUMNS, 
+#          COLUMN_NAMES,
+#          PLOT_TITLE, 
+#          BREWER_PALETTE, 
+#          MINIMUM_LABEL_PERCENTAGE, 
+#          LABELS, 
+#          SHOW_Y_LABELS)
+# )
