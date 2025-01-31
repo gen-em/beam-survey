@@ -8,7 +8,7 @@ create_pie_chart <- function(
     column_of_interest,
     NAME_FRAGE,
     LABEL_TITLE,
-    ANTWORT_OPTIONEN,
+    VALUE_MAPPING,
     PLOT_TITLE,
     BREWER_PALETTE
 ) {
@@ -17,6 +17,9 @@ create_pie_chart <- function(
   # Data Preparation
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
+  # Convert logical values to character before applying recode
+  filtered_data[[column_of_interest]] <- as.character(filtered_data[[column_of_interest]])
+  filtered_data[[column_of_interest]] <- recode(filtered_data[[column_of_interest]], !!!VALUE_MAPPING)
   
   # Count occurrences of each response
   count_values <- table(filtered_data[[column_of_interest]], useNA = "no")
@@ -27,7 +30,7 @@ create_pie_chart <- function(
   
   # Create a dataframe for the table
   table_result <- data.frame(
-    Antwort = ANTWORT_OPTIONEN,
+    Antwort = names(count_values),
     Anzahl = as.numeric(count_values),
     Prozent = round(as.numeric(percent_values), 1)
   )
@@ -53,21 +56,19 @@ create_pie_chart <- function(
   # Pie Chart
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-  
   plot_result <- ggplot(data_plot, aes(x = "", y = Prozent, fill = !!sym(LABEL_TITLE))) +
     geom_bar(stat = "identity", width = 1, color = "black") +
     coord_polar(theta = "y") +  # Convert to pie chart
     theme_void() +  # Remove background and axes
     labs(title = PLOT_TITLE) +
+    theme(plot.title = element_text(hjust = 0.5)) +  # Center the title
     scale_fill_brewer(palette = BREWER_PALETTE) +  # Apply chosen color palette
     geom_text(aes(x = 1, label = paste(Prozent, "%")),
               position = position_stack(vjust = 0.5),
               color = "black", size = 5)  # Add percentage labels
   
-  
   # Assign plot to global environment with dynamic naming
   assign(paste0("plot_", NAME_FRAGE), plot_result, envir = .GlobalEnv)
-
 }
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -78,8 +79,8 @@ create_pie_chart <- function(
 # 
 # 
 # ## Details zur Frage
-# FRAGE_NUMMER <- "5_22"
-# LABEL_FRAGE <- "elearning_zukunft"
+# FRAGE_NUMMER <- "1_11"
+# LABEL_FRAGE <- "hauptsaechlich_notaufnahme"
 # 
 # ## Fragennamen zusammensetzen für table_ & plot_ Benennung
 # NAME_FRAGE <- paste0(
@@ -89,34 +90,35 @@ create_pie_chart <- function(
 # ## Titel des Plots festlegen
 # ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 # PLOT_TITLE <- sprintf(
-#   "Können %s sich vorstellen, E-Learning in Zukunft zur Fortbildung zu nutzen?", NAME_KOLLEKTIV
+#   "Anteil der %s, welche hauptsächlich in der Notaufnahme tätig sind", NAME_KOLLEKTIV
 # )
 # 
 # ## Titel der angezeigten Labels (kurz, knackig)
-# LABEL_TITLE <- "Zukünftige Nutzung E-Learning"
+# LABEL_TITLE <- "Hauptsächlich Notaufnahme"
 # 
 # ## Welche Column?
-# COLUMN_OF_INTEREST <- "5.22"
+# COLUMN_OF_INTEREST <- "1.11"
 # 
-# ## Benennung der Antwortoptionen
-# ANTWORT_OPTIONEN <- c(
-#   "Ja", 
-#   "Nein"
+# ## Benennung / Assoziation der Antwortoptionen
+# VALUE_MAPPING <- c(
+#   "TRUE" = "Ja",
+#   "FALSE" = "Nein"
 # )
 # 
 # ## Brewer Palette für Farbgebung
 # BREWER_PALETTE <- "Pastel2"
 # 
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# 
+# #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # # Generate Outputs
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # 
 # create_pie_chart(
 #   filtered_data = filtered_data, 
 #   column_of_interest = COLUMN_OF_INTEREST, 
 #   NAME_FRAGE = NAME_FRAGE,
 #   LABEL_TITLE = LABEL_TITLE,
-#   ANTWORT_OPTIONEN = ANTWORT_OPTIONEN, 
+#   VALUE_MAPPING = VALUE_MAPPING,
 #   PLOT_TITLE = PLOT_TITLE,
 #   BREWER_PALETTE = BREWER_PALETTE
 # )

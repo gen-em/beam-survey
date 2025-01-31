@@ -6,3 +6,4 @@ library(kableExtra)  # Erweiterte Tabellen in Markdown
 library(patchwork) # Zusammenfügen von Graphen
 library(ggtext) # Markdown und HTML in Graphen
 library(RColorBrewer) # Brewer Farbskalen
+library(scales) # Für Farbanalyse (Dunkel vs. Hell) zur Beschriftung

@@ -12,6 +12,7 @@ create_horizontal_bar_plot_percentages <- function(
     ANNOTATE_ANZAHL = FALSE,
     brewer_palette
 ) {
+  
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Data Preparation
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,13 +122,24 @@ create_horizontal_bar_plot_percentages <- function(
 # In die sourcende Datei einfügen und # entfernen :)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # 
-# NAME_FRAGE <- "FRAGENNAME"
-# PLOT_TITLE <- "TITEL DES PLOTS"
+# ## Details zur Frage
+# FRAGE_NUMMER <- "5_25"
+# LABEL_FRAGE <- "wuensche_inhaltsvermittlung"
 # 
-# ## Anzeige von "Antworten N=XXX" auf dem Graph wenn TRUE
+# ## Fragennamen zusammensetzen für table_ & plot_ Benennung
+# NAME_FRAGE <- paste0(
+#   FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE
+# )
+# 
+# ## Titel des Plots festlegen
+# ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
+# PLOT_TITLE <- sprintf(
+#   "Wünsche von %s an Arten der Inhaltsvermittlung im E-Learning", NAME_KOLLEKTIV
+# )
+# 
+# ## Anzeige von "Antworten N=XXX" auf dem Graph
 # ANNOTATE_ANZAHL = TRUE
 # 
-# ## Columns of Interes aus filtered_data
 # columns_of_interest <- c(
 #   "5.25-kurze_textinhalte",
 #   "5.25-lange_textinhalte",	
@@ -138,7 +150,6 @@ create_horizontal_bar_plot_percentages <- function(
 #   "5.25-onlinevortraege"
 # )
 # 
-# ## Umbenennung der Columns of Interest
 # column_mapping <- c(
 #   "5.25-kurze_textinhalte" = "Kurze Textinhalte (<10 Minuten), welche sich im Alltag zwischendurch lesen lassen",
 #   "5.25-lange_textinhalte" = "Lange Textinhalte (> 10 Minuten), in welchen Themen ausführlicher erläutert werden",
@@ -149,7 +160,6 @@ create_horizontal_bar_plot_percentages <- function(
 #   "5.25-onlinevortraege" = "Online-Vorträge (live) mit der Möglichkeit Fragen zu stellen"
 # )
 # 
-# ## Kurze Titel für Graph- & Tabelle
 # short_column_names <- c(
 #   "Kurze Textinhalte \n(<10 Minuten)",
 #   "Lange Textinhalte \n(>10 Minuten)",
@@ -160,13 +170,12 @@ create_horizontal_bar_plot_percentages <- function(
 #   "Reine Online-Vorträge"
 # )
 # 
-# ## Bestimmung der Farbpalette
 # brewer_palette <- "Set3"
 # 
 # 
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # # Generate Outputs
-# #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # 
 # create_horizontal_bar_plot_percentages(
 #   filtered_data, 
@@ -178,6 +187,3 @@ create_horizontal_bar_plot_percentages <- function(
 #   ANNOTATE_ANZAHL,
 #   brewer_palette
 # )
-# 
-# ## Bei Bedarf printen
-# print(plot_5_25_wuensche_inhaltsvermittlung)

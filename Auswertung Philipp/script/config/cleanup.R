@@ -16,7 +16,7 @@ cleanup_workspace <- function() {
   rm(list = setdiff(all_objects, objects_to_keep), envir = .GlobalEnv)
   
   # Inform the user
-  message("Workspace cleaned.")
+  # message("Workspace cleaned.")
 }
 
 

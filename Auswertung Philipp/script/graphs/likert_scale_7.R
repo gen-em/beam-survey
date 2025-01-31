@@ -11,7 +11,8 @@ create_likert_7_table <- function(filtered_data, selected_columns, column_names,
   # Create initial subset and prepare labels
   filtered_data_subset <- filtered_data %>%
     dplyr::select(all_of(selected_columns)) %>%
-    setNames(column_names)
+    setNames(column_names) %>%
+    drop_na()  # Remove rows where any selected column has NA
   
   labels_reversed <- setNames(names(labels), labels)
   
@@ -37,8 +38,7 @@ create_likert_7_table <- function(filtered_data, selected_columns, column_names,
     mutate(across(everything(), ~replace_na(., 0))) %>%  # Replace NAs with 0
     rename_with(~"4", matches("^4$")) %>%  # Rename 4 first
     rename_with(~"Neutral", matches("^4$")) %>%  # Then rename 4 to Neutral
-    rename_with(~labels[.x], matches("^[1-7]$")) %>%  # Then apply the labels
-    select(-`NA`)  # Remove the NA column if it exists
+    rename_with(~labels[.x], matches("^[1-7]$"))  # Then apply the labels
 }
 
 create_likert_7_plot <- function(filtered_data, selected_columns, column_names, plot_title, 
