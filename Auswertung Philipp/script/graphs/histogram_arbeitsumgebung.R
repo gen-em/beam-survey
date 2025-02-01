@@ -50,6 +50,9 @@ create_work_environment_distribution_plot <- function(
   
   table_result <- rbind(table_result, total_row)
   
+  # Alle Zeilenumbrüche aus der Tabelle entfernen
+  table_result$Arbeitsumfeld <- gsub("\n", " ", table_result$Arbeitsumfeld)
+  
   # Tabelle global speichern
   assign(paste0("table_", NAME_FRAGE), table_result, envir = .GlobalEnv)
   
@@ -71,6 +74,10 @@ create_work_environment_distribution_plot <- function(
     theme(
       legend.position = "none", 
       axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
+      panel.grid.major.x = element_blank(),  # Remove major x-axis gridlines
+      panel.grid.minor.x = element_blank(),   # Remove minor x-axis gridlines
+      panel.grid.major.y = element_line(size = 0.1),  # Make major y-gridlines thinner
+      panel.grid.minor.y = element_line(size = 0.05),   # Make minor y-gridlines thinner
       plot.title = element_text(hjust = 0.5)
     ) +
     scale_fill_brewer(palette = BREWER_PALETTE, direction = 1)

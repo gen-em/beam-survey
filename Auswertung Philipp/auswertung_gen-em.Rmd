@@ -1,5 +1,5 @@
 ---
-title: "BEAM-Auswertung: ÄrztInnen in Weiterbildung"
+title: "BEAM-Auswertung: MedizinerInnen in Weiterbildung"
 output:
   github_document: default
   word_document: default
@@ -7,203 +7,402 @@ output:
   pdf_document: default
 encoding: UTF-8
 ---
----
-### R Einstellungen fürs Dokument
----
+
 ```{r setup, include=FALSE}
+### R Einstellungen fürs Dokument
 library(here) # Pfade korrekt und stabil angeben
 library(knitr) # Tabellen
 library(svglite) #SVG Files erstellen
+library(magick) # Bildmanipulation
 
+LABEL_KOLLEKTIV <- "assistentinnen"
+
+# Function to determine output format and set appropriate settings
+set_output_settings <- function() {
+  format <- knitr::opts_chunk$get("rmarkdown.pandoc.to")
+  if (is.null(format)) format <- "html"  # Default to html if format not detected
+  
+  settings <- list()
+  
+  if (format %in% c("latex", "pdf")) {
+    settings$dpi <- 300
+    settings$dev <- "pdf"  # Use PDF device for LaTeX output
+  } else if (format %in% c("html", "gfm", "github_document")) {
+    settings$dpi <- 150
+    settings$dev <- "png"
+  } else {  # docx and others
+    settings$dpi <- 300
+    settings$dev <- "png"
+  }
+  
+  return(settings)
+}
+
+# Get output settings
+output_settings <- set_output_settings()
+
+# Set chunk options
 knitr::opts_chunk$set(
   fig.path = here("graphs/"),
-  dev = "svg",
-  dpi = 300
+  dev = output_settings$dev,
+  dpi = output_settings$dpi,
+  fig.retina = 2
 )
+
 # Set working directory for the entire document
 knitr::opts_knit$set(root.dir = here())
-
-source(here("script", "assistenten-auswertung.R"), 
-       local = knitr::knit_global())
-source(here("script", "likert-questions.R"), 
-       local = knitr::knit_global())
 ```
 
 
 ---
 
 # 1 - Basisdaten
-## Frage 1.1 - Welcher Altersgruppe gehören sie an?
-```{r, echo = FALSE, message=FALSE}
-kable(table_altersverteilung, align = "c")
+```{r, include=FALSE}
+source(here("script", paste0(LABEL_KOLLEKTIV, "_1_basisdaten.R")), 
+       local = knitr::knit_global())
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_altersverteilung.svg"), 
-       plot_altersverteilung)
-knitr::include_graphics(here("graphs", "assistenten_altersverteilung.svg"))
+## Frage 1.1 - Welcher Altersgruppe gehören sie an?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NR <<- "1_01"
+LABEL <<- "alter"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ## Frage 1.5 - In welchem Weiterbildungsjahr befinden Sie sich zum Zeitpunkt der Umfrage?
 ```{r, echo = FALSE, message=FALSE}
-kable(table_weiterbildungsjahr, align = "c")
+FRAGE_NR <<- "1_05"
+LABEL <<- "weiterbildungsjahr"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_weiterbildungsjahr.svg"), 
-       plot_weiterbildungsjahr)
-knitr::include_graphics(here("graphs", "assistenten_weiterbildungsjahr.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ## Frage 1.6 - In welchem Fachgebiet streben Sie einen Facharzttitel an?
 ```{r, echo = FALSE, message=FALSE}
-kable(table_fachrichtung, align = "c")
+FRAGE_NR <<- "1_06"
+LABEL <<- "fachrichtung"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_fachrichtung.svg"), 
-       plot_fachrichtung)
-knitr::include_graphics(here("graphs", "assistenten_fachrichtung.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ## Frage 1.8 - Planen Sie, die Zusatzbezeichnung "Klinische Akut- und Notfallmedizin" zu erwerben?
 ```{r, echo = FALSE, message=FALSE}
-kable(table_zusatzbezeichnung, align = "c")
+FRAGE_NR <<- "1_08"
+LABEL <<- "zusatzbezeichnung"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_zusatzbezeichnung.svg"), 
-       plot_zusatzbezeichnung)
-knitr::include_graphics(here("graphs", "assistenten_zusatzbezeichnung.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ## Frage 1.10 - In welchem Arbeitsumfeld sind Sie klinisch tätig?
 ```{r, echo = FALSE, message=FALSE}
-kable(table_arbeitsumfeld, align = "c")
+FRAGE_NR <<- "1_10"
+LABEL <<- "arbeitsumfeld"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_arbeitsumfeld.svg"), 
-       plot_arbeitsumfeld)
-knitr::include_graphics(here("graphs", "assistenten_arbeitsumfeld.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ## Frage 1.11 - Sind Sie hauptsächlich in der Notaufnahme tätig?
-
 ```{r, echo = FALSE, message=FALSE}
-kable(table_hauptsaechlich_notaufnahme, align = "c")
+FRAGE_NR <<- "1_11"
+LABEL <<- "hauptsaechlich_notaufnahme"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_hauptsaechlich_notaufnahme.svg"), 
-       plot_hauptsaechlich_notaufnahme)
-knitr::include_graphics(here("graphs", "assistenten_hauptsaechlich_notaufnahme.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 1.12 - Ist Deutsch Ihre Muttersprache?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NR <<- "1_12"
+LABEL <<- "muttersprache"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ---
 
 # 2 - Motive zur Fort- & Weiterbildung
+```{r, include=FALSE}
+source(here("script", paste0(LABEL_KOLLEKTIV, "_2_fortbildungsmotive.R")), 
+       local = knitr::knit_global())
+```
 ## Frage 2.15 - Aus welchen Gründen nehmen Sie regelmäßig an Fort- und Weiterbildungen teil?
-
 ```{r, echo = FALSE, message=FALSE}
-kable(table_weiterbildung_motive, align = "c")
+FRAGE_NR <<- "2_15"
+LABEL <<- "motive_fortbildung"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_weiterbildung_motive.svg"), 
-       plot_weiterbildung_motive)
-knitr::include_graphics(here("graphs", "assistenten_weiterbildung_motive.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.9, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ---
 
 # 3 - Bisherige Nutzung von E-Learning
+```{r, include=FALSE}
+source(here("script", paste0(LABEL_KOLLEKTIV, "_3_bisherige_elearning_nutzung.R")), 
+       local = knitr::knit_global())
+```
 ## Frage 3.16 - Haben Sie in der Vergangenheit bereits E-Learning Angebote zur medizinischen Fort- & Weiterbildung genutzt?
-
 ```{r, echo = FALSE, message=FALSE}
-kable(table_bisher_elearning, align = "c")
+FRAGE_NR <<- "3_16"
+LABEL <<- "bisher_elearning_genutzt"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_bisher_elearning.svg"), 
-       plot_bisher_elearning)
-knitr::include_graphics(here("graphs", "assistenten_bisher_elearning.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ## Frage 3.17 - Welche Art von E-Learning Angeboten haben Sie bereits zur medizinischen Fort- & Weiterbildung genutzt?
-
 ```{r, echo = FALSE, message=FALSE}
-kable(table_elearning_bisher_welches, align = "c")
+FRAGE_NR <<- "3_17"
+LABEL <<- "welches_elearning_bisher"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_elearning_bisher_welches.svg"), 
-       plot_elearning_bisher_welches)
-knitr::include_graphics(here("graphs", "assistenten_elearning_bisher_welches.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.9, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ## Frage 3.18 - Mit welchen Endgeräten haben Sie E-Learning Inhalte bisher genutzt?
-
 ```{r, echo = FALSE, message=FALSE}
-kable(table_elearning_endgeraete, align = "c")
+FRAGE_NR <<- "3_18"
+LABEL <<- "endgeraete_elearning_bisher"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_elearning_endgeraete.svg"), 
-       plot_elearning_endgeraete)
-knitr::include_graphics(here("graphs", "assistenten_elearning_endgeraete.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.5, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ---
 
 # 4 - Bisherige Finanzierung von E-Learning
+```{r, include=FALSE}
+source(here("script", paste0(LABEL_KOLLEKTIV, "_4_finanzierung-elearning-bisher.R")), 
+       local = knitr::knit_global())
+```
 ## Frage 4.19 - Haben Sie bereits kostenpflichtige E-Learning Inhalte genutzt? (z.B. Amboss, UpToDate, Onlinekurse o.Ä.)
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NR <<- "4_19"
+LABEL <<- "bisher_elearning_genutzt_kostenpflichtig"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
+```
 
 ```{r, echo = FALSE, message=FALSE}
-kable(table_bisher_kostenpflichtig_elearning, align = "c")
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_bisher_kostenpflichtig_elearning.svg"), 
-       plot_bisher_kostenpflichtig_elearning)
-knitr::include_graphics(here("graphs", "assistenten_bisher_kostenpflichtig_elearning.svg"))
-```
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
 
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
 ## Frage 4.20 - Welche Art von kostenpflichtigen E-Learning Angeboten haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NR <<- "4_20"
+LABEL <<- "welches_elearning_bisher_kostenpflichtig"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
+```
 
 ```{r, echo = FALSE, message=FALSE}
-kable(table_elearning_kostenpflichtig_welches, align = "c")
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_elearning_kostenpflichtig_welches.svg"), 
-       plot_elearning_kostenpflichtig_welches)
-knitr::include_graphics(here("graphs", "assistenten_elearning_kostenpflichtig_welches.svg"))
+```{r, echo=FALSE, message=FALSE, fig.asp=0.75, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
+
 
 ## Frage 4.21 - Durch wen wurden die von Ihnen genutzten E-Learning Angebote finanziert?
-
 ```{r, echo = FALSE, message=FALSE}
-kable(table_finanzierung_elearning_kostenpflichtig, align = "c")
+FRAGE_NR <<- "4_21"
+LABEL <<- "finanzierung_elearning"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL))
+file_name <- paste0("graphs/", "graph_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL, ".png")
 ```
 
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_finanzierung_elearning_kostenpflichtig.svg"), 
-       plot_finanzierung_elearning_kostenpflichtig)
-knitr::include_graphics(here("graphs", "assistenten_finanzierung_elearning_kostenpflichtig.svg"))
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NR, "_", LABEL_KOLLEKTIV, "_", LABEL)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.7, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
 ```
 
 ---
@@ -211,120 +410,29 @@ knitr::include_graphics(here("graphs", "assistenten_finanzierung_elearning_koste
 # 5 - Ideales E-Learning
 ## Frage 5.22 - Können Sie sich vorstellen, in Zukunft E-Learning Inhalte zur Fort- & Weiterbildung zu nutzen?
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_zukuenftig_elearning, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_zukuenftig_elearning.svg"), 
-       plot_zukuenftig_elearning)
-knitr::include_graphics(here("graphs", "assistenten_zukuenftig_elearning.svg"))
-```
 
 ## Frage 5.23 - Würden Sie E-Learning für folgende Anwendungsfälle nutzen?
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_anwendungsfaelle_elearning_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_anwendungsfaelle_elearning_likert.svg"), 
-       plot_anwendungsfaelle_elearning_likert)
-knitr::include_graphics(here("graphs", "assistenten_anwendungsfaelle_elearning_likert.svg"))
-```
 
 ## Frage 5.24 - Wie wichtig ist es Ihnen, CME-Punkte für die E-Learning Inhalte zu erhalten?
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_cme_wichtig_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_cme_wichtig_likert.svg"), 
-       plot_cme_wichtig_likert)
-knitr::include_graphics(here("graphs", "assistenten_cme_wichtig_likert.svg"))
-```
 
 ---
 
 # 6 - Vorbereitung auf notfallmedizinische Krankheitsbilder
 ## Frage 6.33 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder in ihrem Fachgebiet vorbereitet?
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_nofall_vorbereitet_eigenes_fachgebiet_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_nofall_vorbereitet_eigenes_fachgebiet_likert.svg"), 
-       plot_nofall_vorbereitet_eigenes_fachgebiet_likert)
-knitr::include_graphics(here("graphs", "assistenten_nofall_vorbereitet_eigenes_fachgebiet_likert.svg"))
-```
 
 ## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet??
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_nofall_vorbereitet_eigenes_fachgebiet_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_nofall_vorbereitet_anderes_fachgebiet_likert.svg"), 
-       plot_nofall_vorbereitet_anderes_fachgebiet_likert)
-knitr::include_graphics(here("graphs", "assistenten_nofall_vorbereitet_anderes_fachgebiet_likert.svg"))
-```
 
 ## Frage 6.39 - Wie sehr belasten Sie **Nachtdienste** in Ihrem aktuellen Ausbildungsstand aus **emotionaler** Sicht?
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_belastung_nachtdienste_emotional_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_belastung_nachtdienste_emotional_likert.svg"), 
-       plot_belastung_nachtdienste_emotional_likert)
-knitr::include_graphics(here("graphs", "assistenten_belastung_nachtdienste_emotional_likert.svg"))
-```
 
 ## Frage 6.40 - Wie sehr belasten Sie Nachtdienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_belastung_nachtdienste_fachlich_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_belastung_nachtdienste_fachlich_likert.svg"), 
-       plot_belastung_nachtdienste_fachlich_likert)
-knitr::include_graphics(here("graphs", "assistenten_belastung_nachtdienste_fachlich_likert.svg"))
-```
 
 ## Frage 6.41 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus emotionaler Sicht?
 
-```{r, echo = FALSE, message=FALSE}
-kable(table_belastung_notaufnahmedienste_emotional_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_belastung_notaufnahmedienste_emotional_likert.svg"), 
-       plot_belastung_notaufnahmedienste_emotional_likert)
-knitr::include_graphics(here("graphs", "assistenten_belastung_notaufnahmedienste_emotional_likert.svg"))
-```
 
 ## Frage 6.42 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
-
-```{r, echo = FALSE, message=FALSE}
-kable(table_belastung_notaufnahmedienste_fachlich_likert, align = "c")
-```
-
-```{r, echo = FALSE, message=FALSE, out.width = "100%", dev = "svg"}
-# Save the plot
-ggsave(here("graphs", "assistenten_belastung_notaufnahmedienste_fachlich_likert.svg"), 
-       plot_belastung_notaufnahmedienste_fachlich_likert)
-knitr::include_graphics(here("graphs", "assistenten_belastung_notaufnahmedienste_fachlich_likert.svg"))
-```

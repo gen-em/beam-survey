@@ -21,7 +21,7 @@ filtered_data <- get(paste0("filtered_", LABEL_KOLLEKTIV))
 NAME_KOLLEKTIV <- get(paste0("name_", LABEL_KOLLEKTIV))
 
 ## Sollen die Plots geprintet werden? TRUE = ja, FALSE = nein
-PRINT_PLOTS = TRUE
+PRINT_PLOTS = FALSE
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
@@ -45,7 +45,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Anteil der %s, welche bereits kostenpflichtiges E-Learning genutzt haben", NAME_KOLLEKTIV
+  "Anteil der %s, welche bereits \nkostenpflichtiges E-Learning genutzt haben", NAME_KOLLEKTIV
 )
 
 ## Titel der angezeigten Labels (kurz, knackig)
@@ -99,7 +99,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Welche Arten von kostenpflichtigem E-Learning haben %s bisher genutzt?", NAME_KOLLEKTIV
+  "Welche Arten von kostenpflichtigem E-Learning haben \n%s bisher genutzt?", NAME_KOLLEKTIV
 )
 
 ## Anzeige von "Antworten N=XXX" auf dem Graph
@@ -172,7 +172,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie wurde das von %s bisher genutzte E-Learning finanziert?", NAME_KOLLEKTIV
+  "Wie wurde das von %s \nbisher genutzte E-Learning finanziert?", NAME_KOLLEKTIV
 )
 
 ## Anzeige von "Antworten N=XXX" auf dem Graph
@@ -240,4 +240,4 @@ if (PRINT_PLOTS) {
 #...........................................................................................
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-cleanup_workspace()
+#cleanup_workspace()

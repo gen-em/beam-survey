@@ -1,4 +1,4 @@
-BEAM-Auswertung: ÄrztInnen in Weiterbildung
+BEAM-Auswertung: MedizinerInnen in Weiterbildung
 ================
 
 ------------------------------------------------------------------------
@@ -17,7 +17,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |     \>50      |   1    |   1.0   |
 | Antworten (N) |  102   |  100.0  |
 
-<img src="graphs/assistenten_altersverteilung.svg" width="100%" />
+<img src="graphs/graph_1_01_assistentinnen_alter.png" width="65%" style="display: block; margin: auto;" />
 
 ## Frage 1.5 - In welchem Weiterbildungsjahr befinden Sie sich zum Zeitpunkt der Umfrage?
 
@@ -32,7 +32,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |         8          |   1    |   1.0   |
 |   Antworten (N)    |   99   |  100.0  |
 
-<img src="graphs/assistenten_weiterbildungsjahr.svg" width="100%" />
+<img src="graphs/graph_1_05_assistentinnen_weiterbildungsjahr.png" width="65%" style="display: block; margin: auto;" />
 
 ## Frage 1.6 - In welchem Fachgebiet streben Sie einen Facharzttitel an?
 
@@ -49,7 +49,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 | Sonstiges                |   2    |   6.2   |
 | Antworten (N)            |   32   |  100.0  |
 
-<img src="graphs/assistenten_fachrichtung.svg" width="100%" />
+<img src="graphs/graph_1_06_assistentinnen_fachrichtung.png" width="65%" style="display: block; margin: auto;" />
 
 ## Frage 1.8 - Planen Sie, die Zusatzbezeichnung “Klinische Akut- und Notfallmedizin” zu erwerben?
 
@@ -59,7 +59,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |           Nein           |   36   |  35.3   |
 |      Antworten (N)       |  102   |  100.0  |
 
-<img src="graphs/assistenten_zusatzbezeichnung.svg" width="100%" />
+<img src="graphs/graph_1_08_assistentinnen_zusatzbezeichnung.png" width="65%" style="display: block; margin: auto;" />
 
 ## Frage 1.10 - In welchem Arbeitsumfeld sind Sie klinisch tätig?
 
@@ -73,17 +73,27 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |                   Sonstiges                    |   0    |   0.0   |
 |                 Antworten (N)                  |  102   |  100.0  |
 
-<img src="graphs/assistenten_arbeitsumfeld.svg" width="100%" />
+<img src="graphs/graph_1_10_assistentinnen_arbeitsumfeld.png" width="65%" style="display: block; margin: auto;" />
 
 ## Frage 1.11 - Sind Sie hauptsächlich in der Notaufnahme tätig?
 
-| Hauptarbeitsplatz Notaufnahme | Anzahl | Prozent |
-|:-----------------------------:|:------:|:-------:|
-|              Ja               |   28   |  27.5   |
-|             Nein              |   69   |  67.6   |
-|         Antworten (N)         |  102   |  100.0  |
+| Hauptsächlich Notaufnahme | Anzahl | Prozent |
+|:-------------------------:|:------:|:-------:|
+|            Ja             |   28   |  28.9   |
+|           Nein            |   69   |  71.1   |
+|       Antworten (N)       |   97   |  100.0  |
 
-<img src="graphs/assistenten_hauptsaechlich_notaufnahme.svg" width="100%" />
+<img src="graphs/graph_1_11_assistentinnen_hauptsaechlich_notaufnahme.png" width="65%" style="display: block; margin: auto;" />
+
+## Frage 1.12 - Ist Deutsch Ihre Muttersprache?
+
+| Muttersprache | Anzahl | Prozent |
+|:-------------:|:------:|:-------:|
+|    Deutsch    |   90   |  89.1   |
+|    Andere     |   11   |  10.9   |
+| Antworten (N) |  101   |  100.0  |
+
+<img src="graphs/graph_1_12_assistentinnen_muttersprache.png" width="65%" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 
@@ -107,7 +117,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 | Ich brauche Fortbildungen als Voraussetzung zur Abrechnung bestimmter Leistungen | 0 | 0.0 |
 | Antworten (N) | 102 | 100.0 |
 
-<img src="graphs/assistenten_weiterbildung_motive.svg" width="100%" />
+<img src="graphs/graph_2_15_assistentinnen_motive_fortbildung.png" width="80%" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 
@@ -115,13 +125,13 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 
 ## Frage 3.16 - Haben Sie in der Vergangenheit bereits E-Learning Angebote zur medizinischen Fort- & Weiterbildung genutzt?
 
-| Bisher E-Learning genutzt | Anzahl | Prozent |
-|:-------------------------:|:------:|:-------:|
-|            Ja             |   92   |  90.2   |
-|           Nein            |   10   |   9.8   |
-|       Antworten (N)       |  102   |  100.0  |
+| Bereits E-Learning genutzt | Anzahl | Prozent |
+|:--------------------------:|:------:|:-------:|
+|             Ja             |   92   |  90.2   |
+|            Nein            |   10   |   9.8   |
+|       Antworten (N)        |  102   |  100.0  |
 
-<img src="graphs/assistenten_bisher_elearning.svg" width="100%" />
+<img src="graphs/graph_3_16_assistentinnen_bisher_elearning_genutzt.png" width="65%" style="display: block; margin: auto;" />
 
 ## Frage 3.17 - Welche Art von E-Learning Angeboten haben Sie bereits zur medizinischen Fort- & Weiterbildung genutzt?
 
@@ -140,7 +150,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 | Sonstige | 0 | 0.0 |
 | Antworten (N) | 102 | 100.0 |
 
-<img src="graphs/assistenten_elearning_bisher_welches.svg" width="100%" />
+<img src="graphs/graph_3_17_assistentinnen_welches_elearning_bisher.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 3.18 - Mit welchen Endgeräten haben Sie E-Learning Inhalte bisher genutzt?
 
@@ -151,7 +161,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |       Tablet        |   36   |  35.3   |
 |    Antworten (N)    |  102   |  100.0  |
 
-<img src="graphs/assistenten_elearning_endgeraete.svg" width="100%" />
+<img src="graphs/graph_3_18_assistentinnen_endgeraete_elearning_bisher.png" width="65%" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 
@@ -159,15 +169,15 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 
 ## Frage 4.19 - Haben Sie bereits kostenpflichtige E-Learning Inhalte genutzt? (z.B. Amboss, UpToDate, Onlinekurse o.Ä.)
 
-| Bisher kostenpflichtiges E-Learning genutzt | Anzahl | Prozent |
-|:-------------------------------------------:|:------:|:-------:|
-|                     Ja                      |   91   |  89.2   |
-|                    Nein                     |   11   |  10.8   |
-|                Antworten (N)                |  102   |  100.0  |
+| Bereits kostenpflichtiges E-Learning genutzt | Anzahl | Prozent |
+|:--------------------------------------------:|:------:|:-------:|
+|                      Ja                      |   91   |  89.2   |
+|                     Nein                     |   11   |  10.8   |
+|                Antworten (N)                 |  102   |  100.0  |
 
-<img src="graphs/assistenten_bisher_kostenpflichtig_elearning.svg" width="100%" />
-
-## Frage 4.20 - Welche Art von kostenpflichtigen E-Learning Angeboten haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
+<img src="graphs/graph_4_19_assistentinnen_bisher_elearning_genutzt_kostenpflichtig.png" width="65%" style="display: block; margin: auto;" />
+\## Frage 4.20 - Welche Art von kostenpflichtigen E-Learning Angeboten
+haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 | Antwortoption | Anzahl | Prozent |
 |:--:|:--:|:--:|
@@ -179,7 +189,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 | Sonstiges | 1 | 1.0 |
 | Antworten (N) | 102 | 100.0 |
 
-<img src="graphs/assistenten_elearning_kostenpflichtig_welches.svg" width="100%" />
+<img src="graphs/graph_4_20_assistentinnen_welches_elearning_bisher_kostenpflichtig.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 4.21 - Durch wen wurden die von Ihnen genutzten E-Learning Angebote finanziert?
 
@@ -192,7 +202,7 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 |                         Sonstiges                          |   0    |   0.0   |
 |                       Antworten (N)                        |  102   |  100.0  |
 
-<img src="graphs/assistenten_finanzierung_elearning_kostenpflichtig.svg" width="100%" />
+<img src="graphs/graph_4_21_assistentinnen_finanzierung_elearning.png" width="65%" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 
@@ -200,33 +210,9 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 
 ## Frage 5.22 - Können Sie sich vorstellen, in Zukunft E-Learning Inhalte zur Fort- & Weiterbildung zu nutzen?
 
-| Würden in Zukunft E-Learning nutzen | Anzahl | Prozent |
-|:-----------------------------------:|:------:|:-------:|
-|                 Ja                  |  101   |   99    |
-|                Nein                 |   1    |    1    |
-|            Antworten (N)            |  102   |   100   |
-
-<img src="graphs/assistenten_zukuenftig_elearning.svg" width="100%" />
-
 ## Frage 5.23 - Würden Sie E-Learning für folgende Anwendungsfälle nutzen?
 
-| Abfrage | Auf keinen Fall | Wahrscheinlich nicht | Eher nicht | Neutral | Eher ja | Wahrscheinlich ja | Auf jeden Fall |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Alternative zu Präsenzveranstaltungen | 0 | 5 | 12 | 14 | 19 | 24 | 27 |
-| CME-Punkte sammeln | 1 | 3 | 2 | 8 | 11 | 23 | 53 |
-| Erlernen fachlicher Grundlagen | 0 | 3 | 4 | 5 | 12 | 28 | 49 |
-| Weiterbildung in spez. Fachbereichen | 1 | 0 | 1 | 7 | 12 | 42 | 38 |
-| Wissen aktuell halten | 0 | 0 | 0 | 3 | 7 | 29 | 62 |
-
-<img src="graphs/assistenten_anwendungsfaelle_elearning_likert.svg" width="100%" />
-
 ## Frage 5.24 - Wie wichtig ist es Ihnen, CME-Punkte für die E-Learning Inhalte zu erhalten?
-
-| Abfrage | Unwichtig | Eher unwichtig | Weniger wichtig | Neutral | Eher wichtig | Wichtig | Sehr wichtig |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| CME-Punkte erhalten | 0 | 7 | 9 | 29 | 28 | 15 | 4 |
-
-<img src="graphs/assistenten_cme_wichtig_likert.svg" width="100%" />
 
 ------------------------------------------------------------------------
 
@@ -234,48 +220,12 @@ BEAM-Auswertung: ÄrztInnen in Weiterbildung
 
 ## Frage 6.33 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder in ihrem Fachgebiet vorbereitet?
 
-| Abfrage | Sehr schlecht | Schlecht | Eher schlecht | Neutral | Eher gut | Gut | Sehr gut |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Notfallvorbereitung eigenes Fachgebiet | 0 | 2 | 14 | 12 | 38 | 30 | 4 |
-
-<img src="graphs/assistenten_nofall_vorbereitet_eigenes_fachgebiet_likert.svg" width="100%" />
-
 ## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet??
-
-| Abfrage | Sehr schlecht | Schlecht | Eher schlecht | Neutral | Eher gut | Gut | Sehr gut |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Notfallvorbereitung eigenes Fachgebiet | 0 | 2 | 14 | 12 | 38 | 30 | 4 |
-
-<img src="graphs/assistenten_nofall_vorbereitet_anderes_fachgebiet_likert.svg" width="100%" />
 
 ## Frage 6.39 - Wie sehr belasten Sie **Nachtdienste** in Ihrem aktuellen Ausbildungsstand aus **emotionaler** Sicht?
 
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Emotionale Belastung Nachtdienst | 8 | 25 | 29 | 28 | 9 |
-
-<img src="graphs/assistenten_belastung_nachtdienste_emotional_likert.svg" width="100%" />
-
 ## Frage 6.40 - Wie sehr belasten Sie Nachtdienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
-
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Fachliche Belastung Nachtdienst | 5 | 30 | 37 | 22 | 5 |
-
-<img src="graphs/assistenten_belastung_nachtdienste_fachlich_likert.svg" width="100%" />
 
 ## Frage 6.41 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus emotionaler Sicht?
 
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Emotionale Belastung Notaufnahmedienst | 15 | 36 | 20 | 24 | 4 |
-
-<img src="graphs/assistenten_belastung_notaufnahmedienste_emotional_likert.svg" width="100%" />
-
 ## Frage 6.42 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
-
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Fachliche Belastung Notaufnahmedienst | 11 | 31 | 33 | 19 | 5 |
-
-<img src="graphs/assistenten_belastung_notaufnahmedienste_fachlich_likert.svg" width="100%" />

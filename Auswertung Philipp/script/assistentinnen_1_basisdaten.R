@@ -88,7 +88,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Verteilung der Weiterbildungsjahre unter %s", NAME_KOLLEKTIV
+  "Verteilung der Weiterbildungsjahre \n%s", NAME_KOLLEKTIV
 )
 
 ## Welche Spalte wird ausgewertet?
@@ -130,7 +130,7 @@ NAME_FRAGE <- paste0(
 
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
-PLOT_TITLE <- sprintf("Angestrebte Facharztbezeichnung von %s", NAME_KOLLEKTIV)
+PLOT_TITLE <- sprintf("Angestrebte Facharztbezeichnung \n%s", NAME_KOLLEKTIV)
 
 ## Farbe des Graphen festlegen
 BREWER_PALETTE <- "Set2"
@@ -192,7 +192,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wollen %s die Zusatzbezeichnung Klinische Akut- und Notfallmedizin erwerben?", NAME_KOLLEKTIV
+  "Wollen %s die Zusatzbezeichnung \nKlinische Akut- und Notfallmedizin erwerben?", NAME_KOLLEKTIV
 )
 
 ## Titel der angezeigten Labels (kurz, knackig)
@@ -247,7 +247,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "In welchem Arbeitsumfeld sind die %s tätig?", NAME_KOLLEKTIV
+  "In welchem Arbeitsumfeld sind die \n%s tätig?", NAME_KOLLEKTIV
 )
 
 ## Welche Column?
@@ -312,11 +312,11 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Anteil der %s, welche hauptsächlich in der Notaufnahme tätig sind", NAME_KOLLEKTIV
+  "Anteil der hauptsächlich in der Notaufnahme tätigen \n%s", NAME_KOLLEKTIV
 )
 
 ## Titel der angezeigten Labels (kurz, knackig)
-LABEL_TITLE <- "Hauptsächlich Notaufnahme"
+LABEL_TITLE <- "Hauptsächlich \nNotaufnahme"
 
 ## Welche Column?
 COLUMN_OF_INTEREST <- "1.11"
@@ -382,7 +382,7 @@ VALUE_MAPPING <- c(
   "FALSE" = "Andere"
 )
 ## Brewer Palette für Farbgebung
-BREWER_PALETTE <- "Pastel2"
+BREWER_PALETTE <- "Pastel1"
 
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -422,4 +422,4 @@ if (PRINT_PLOTS) {
 #...........................................................................................
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-cleanup_workspace()
+#cleanup_workspace()

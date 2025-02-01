@@ -87,9 +87,12 @@ create_horizontal_bar_plot_percentages <- function(
     theme(
       axis.title.y = element_blank(),
       panel.grid.major.y = element_blank(),
+      panel.grid.major.x = element_line(size = 0.1),  # Make major x-axis gridlines thinner
+      panel.grid.minor.x = element_line(size = 0.05),  # Make minor x-axi
       axis.text = element_text(size = 10),
       legend.position = "none",
-      plot.title = element_text(hjust = 0.5) # Center title
+      plot.title.position = "plot",  # Ensures title spans the entire plot width
+      plot.title = element_text(hjust = 0.5, vjust = 1) # Center title
     ) +
     
     labs(
@@ -98,7 +101,7 @@ create_horizontal_bar_plot_percentages <- function(
     ) +
     
     scale_x_continuous(
-      limits = c(0, max(table_result$Prozent) * 1.15),
+      limits = c(0, max(table_result$Prozent) * 1.15),  # Dynamically scales up, no forced 100%
       expand = c(0, 0)
     ) +
     
@@ -107,7 +110,7 @@ create_horizontal_bar_plot_percentages <- function(
   # Conditionally add annotation if ANNOTATE_ANZAHL is TRUE
   if (ANNOTATE_ANZAHL) {
     plot_result <- plot_result +
-      annotate("text", x = max(table_result$Prozent) * 0.975, y = 1, 
+      annotate("text", x = max(table_result$Prozent) * 0.85, y = 1, 
                label = paste("Antworten\nN=", total_rows), 
                hjust = 0.5, vjust = 0.5, size = 4, color = "black")
   }

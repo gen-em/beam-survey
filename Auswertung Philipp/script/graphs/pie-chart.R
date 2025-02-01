@@ -21,6 +21,12 @@ create_pie_chart <- function(
   filtered_data[[column_of_interest]] <- as.character(filtered_data[[column_of_interest]])
   filtered_data[[column_of_interest]] <- recode(filtered_data[[column_of_interest]], !!!VALUE_MAPPING)
   
+  # Set the factor levels in the order of VALUE_MAPPING (default order)
+  filtered_data[[column_of_interest]] <- factor(
+    filtered_data[[column_of_interest]], 
+    levels = VALUE_MAPPING
+  )
+  
   # Count occurrences of each response
   count_values <- table(filtered_data[[column_of_interest]], useNA = "no")
   total_rows <- sum(count_values)
@@ -36,6 +42,12 @@ create_pie_chart <- function(
   )
   colnames(table_result)[1] <- LABEL_TITLE
   
+  # Ensure the table keeps VALUE_MAPPING order
+  table_result[[LABEL_TITLE]] <- factor(
+    table_result[[LABEL_TITLE]], 
+    levels = VALUE_MAPPING
+  )
+  
   # Create a copy for the plot
   data_plot <- table_result
   
@@ -48,6 +60,7 @@ create_pie_chart <- function(
   
   colnames(total_row) <- colnames(table_result)
   table_result <- rbind(table_result, total_row)
+  colnames(table_result)[1] <- gsub("\n", "", colnames(table_result)[1])  # Clean column header
   
   # Assign table to global environment with dynamic naming
   assign(paste0("table_", NAME_FRAGE), table_result, envir = .GlobalEnv)
@@ -61,7 +74,9 @@ create_pie_chart <- function(
     coord_polar(theta = "y") +  # Convert to pie chart
     theme_void() +  # Remove background and axes
     labs(title = PLOT_TITLE) +
-    theme(plot.title = element_text(hjust = 0.5)) +  # Center the title
+    theme(plot.title = element_text(hjust = 0.5, vjust = -1),  # Center title fully
+          plot.title.position = "plot",  # Extend title alignment across the entire plot
+          ) +
     scale_fill_brewer(palette = BREWER_PALETTE) +  # Apply chosen color palette
     geom_text(aes(x = 1, label = paste(Prozent, "%")),
               position = position_stack(vjust = 0.5),

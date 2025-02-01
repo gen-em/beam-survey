@@ -60,7 +60,14 @@ create_age_distribution_plot <- function(
       x = "Alter",
       y = "Prozent"
     ) +
-    theme(legend.position = "none") +
+    theme(
+      legend.position = "none",  # Remove legend
+      plot.title = element_text(hjust = 0.5),  # Center title
+      panel.grid.major.x = element_blank(),  # Remove major x-axis gridlines
+      panel.grid.minor.x = element_blank(),   # Remove minor x-axis gridlines
+      panel.grid.major.y = element_line(size = 0.1),  # Make major y-gridlines thinner
+      panel.grid.minor.y = element_line(size = 0.05)   # Make minor y-gridlines thinner
+    ) +
     scale_fill_brewer(palette = BREWER_PALETTE, direction = 1)
   
   # Graph global speichern
