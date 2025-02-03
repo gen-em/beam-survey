@@ -115,7 +115,7 @@ SELECTED_COLUMNS <- c(
 
 ## Columns benennen
 COLUMN_NAMES <- c(
-  "Erlernen fachlicher Grundlagen",
+  "Erlernen fachlicher \nGrundlagen",
   "Alternative zu Präsenzveranstaltungen",
   "Weiterbildung in spez. Fachbereichen",
   "Wissen aktuell halten",
@@ -126,7 +126,7 @@ COLUMN_NAMES <- c(
 BREWER_PALETTE <- "RdBu"
 
 ## Minimum % pro Bar-Part ab welchem die % angezeigt werden
-MINIMUM_LABEL_PERCENTAGE <- 4
+MINIMUM_LABEL_PERCENTAGE <- 5
 
 ## Labels an der Y-Achse zeigen? TRUE & FALSE
 SHOW_Y_LABELS <- TRUE  # Y-Achsen Labels anzeigen
@@ -443,7 +443,7 @@ column_mapping <- c(
 short_column_names <- c(
   "Suchmaschinen",
   "Datenbanken von\nÄrztekammern",
-  "Anzeigen in \nPrintmedien",
+  "Anzeigen in <br>Printmedien",
   "Email Werbung",
   "Empfehlungen von \nKollegInnen",
   "Mailings von\nFachgesellschaften"

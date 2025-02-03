@@ -36,18 +36,18 @@ BEAM-Auswertung: MedizinerInnen in Weiterbildung
 
 ## Frage 1.6 - In welchem Fachgebiet streben Sie einen Facharzttitel an?
 
-|                          | Anzahl | Prozent |
-|:-------------------------|:------:|:-------:|
-| Innere Medizin           |   13   |  40.6   |
-| Allgemeinmedizin         |   7    |  21.9   |
-| Anästhesie               |   11   |  34.4   |
-| Unfallchirurgie          |   1    |   3.1   |
-| Viszeralchirurgie        |   0    |   0.0   |
-| Anderes chir. Fachgebiet |   0    |   0.0   |
-| Neurologie               |   0    |   0.0   |
-| Urologie                 |   0    |   0.0   |
-| Sonstiges                |   2    |   6.2   |
-| Antworten (N)            |   32   |  100.0  |
+| Anzahl | Prozent |
+|:------:|:-------:|
+|   13   |  40.6   |
+|   7    |  21.9   |
+|   11   |  34.4   |
+|   1    |   3.1   |
+|   0    |   0.0   |
+|   0    |   0.0   |
+|   0    |   0.0   |
+|   0    |   0.0   |
+|   2    |   6.2   |
+|   32   |  100.0  |
 
 <img src="graphs/graph_1_06_assistentinnen_fachrichtung.png" width="65%" style="display: block; margin: auto;" />
 
@@ -210,9 +210,34 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 ## Frage 5.22 - Können Sie sich vorstellen, in Zukunft E-Learning Inhalte zur Fort- & Weiterbildung zu nutzen?
 
+| Zukünftige Nutzung E-Learning | Anzahl | Prozent |
+|:-----------------------------:|:------:|:-------:|
+|              Ja               |  101   |   99    |
+|             Nein              |   1    |    1    |
+|         Antworten (N)         |  102   |   100   |
+
+<img src="graphs/graph_5_22_assistentinnen_elearning_zukunft.png" width="65%" style="display: block; margin: auto;" />
+
 ## Frage 5.23 - Würden Sie E-Learning für folgende Anwendungsfälle nutzen?
 
+| Abfrage | Antworten N (%) | Auf keinen Fall | Wahrscheinlich nicht | Eher nicht | Neutral | Eher ja | Wahrscheinlich ja | Auf jeden Fall |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Erlernen fachlicher |  |  |  |  |  |  |  |  |
+| Grundlagen | 101 (100%) | 0 (0%) | 3 (3%) | 4 (4%) | 5 (5%) | 12 (11.9%) | 28 (27.7%) | 49 (48.5%) |
+| Alternative zu Präsenzveranstaltungen | 101 (100%) | 0 (0%) | 5 (5%) | 12 (11.9%) | 14 (13.9%) | 19 (18.8%) | 24 (23.8%) | 27 (26.7%) |
+| Weiterbildung in spez. Fachbereichen | 101 (100%) | 1 (1%) | 0 (0%) | 1 (1%) | 7 (6.9%) | 12 (11.9%) | 42 (41.6%) | 38 (37.6%) |
+| Wissen aktuell halten | 101 (100%) | 0 (0%) | 0 (0%) | 0 (0%) | 3 (3%) | 7 (6.9%) | 29 (28.7%) | 62 (61.4%) |
+| CME-Punkte sammeln | 101 (100%) | 1 (1%) | 3 (3%) | 2 (2%) | 8 (7.9%) | 11 (10.9%) | 23 (22.8%) | 53 (52.5%) |
+
+<img src="graphs/graph_5_23_assistentinnen_anwendungsfaelle_elearning_likert.png" width="100%" style="display: block; margin: auto;" />
+
 ## Frage 5.24 - Wie wichtig ist es Ihnen, CME-Punkte für die E-Learning Inhalte zu erhalten?
+
+| Abfrage | Antworten N (%) | Unwichtig | Eher unwichtig | Weniger wichtig | Neutral | Eher wichtig | Wichtig | Sehr wichtig |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| CME-Punkte erhalten | 92 (100%) | 0 (0%) | 7 (7.6%) | 9 (9.8%) | 29 (31.5%) | 28 (30.4%) | 15 (16.3%) | 4 (4.3%) |
+
+<img src="graphs/graph_5_24_assistentinnen_cme_wichtig_likert.png" width="80%" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 
@@ -220,12 +245,112 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 ## Frage 6.33 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder in ihrem Fachgebiet vorbereitet?
 
-## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet??
+| Abfrage | Antworten N (%) | Sehr schlecht | Schlecht | Eher schlecht | Neutral | Eher gut | Gut | Sehr gut |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Notfallvorbereitung eigenes Fachgebiet | 100 (100%) | 0 (0%) | 2 (2%) | 14 (14%) | 12 (12%) | 38 (38%) | 30 (30%) | 4 (4%) |
+
+<img src="graphs/graph_6_33_assistentinnen_nofall_vorbereitet_eigenes_fachgebiet_likert.png" width="80%" style="display: block; margin: auto;" />
+
+## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet?
+
+| Abfrage | Antworten N (%) | Sehr schlecht | Schlecht | Eher schlecht | Neutral | Eher gut | Gut | Sehr gut |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Notfallvorbereitung andere Fachgebiete | 100 (100%) | 2 (2%) | 10 (10%) | 25 (25%) | 21 (21%) | 31 (31%) | 11 (11%) | 0 (0%) |
+
+<img src="graphs/graph_6_35_assistentinnen_nofall_vorbereitet_anderes_fachgebiet_likert.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 6.39 - Wie sehr belasten Sie **Nachtdienste** in Ihrem aktuellen Ausbildungsstand aus **emotionaler** Sicht?
 
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Emotionale Belastung Nachtdienst | 8 | 25 | 29 | 28 | 9 |
+
+<img src="graphs/graph_6_39_assistentinnen_belastung_nachtdienste_emotional_likert.png" width="80%" style="display: block; margin: auto;" />
+
 ## Frage 6.40 - Wie sehr belasten Sie Nachtdienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
+
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Fachliche Belastung Nachtdienst | 5 | 30 | 37 | 22 | 5 |
+
+<img src="graphs/graph_6_40_assistentinnen_belastung_nachtdienste_fachlich_likert.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 6.41 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus emotionaler Sicht?
 
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Emotionale Belastung Notaufnahmedienst | 15 | 36 | 20 | 24 | 4 |
+
+<img src="graphs/graph_6_41_assistentinnen_belastung_notaufnahmedienste_emotional_likert.png" width="80%" style="display: block; margin: auto;" />
+
 ## Frage 6.42 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
+
+| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Fachliche Belastung Notaufnahmedienst | 11 | 31 | 33 | 19 | 5 |
+
+<img src="graphs/graph_6_42_assistentinnen_belastung_notaufnahmedienste_fachlich_likert.png" width="80%" style="display: block; margin: auto;" />
+
+------------------------------------------------------------------------
+
+# 7 - Fortbildungsbudget und Zahlungsbereitschaft
+
+## Frage 7.43 - Wie hoch ist das Fortbildungsbudget, welches Ihnen ihr Arbeitgeber pro Jahr zur Verfügung stellt?
+
+| Fortbildungsbudget | Anzahl | Prozent |
+|:------------------:|:------:|:-------:|
+|     Anzahl (N)     |   67   |  100.0  |
+|      \>1000€       |   10   |  14.9   |
+|    801 - 1000€     |   4    |   6.0   |
+|     601 - 800€     |   3    |   4.5   |
+|     401 - 600€     |   16   |  23.9   |
+|     200 - 400€     |   15   |  22.4   |
+|      \< 200€       |   5    |   7.5   |
+|    Kein Budget     |   14   |  20.9   |
+
+<img src="graphs/graph_7_43_assistentinnen_fortbildungsbudget.png" width="65%" style="display: block; margin: auto;" />
+
+## Frage 7.44 - Wie viele als Arbeitszeit gewertete Fortbildungstage gewährt Ihnen ihr Arbeitgeber pro Jahr?
+
+| Fortbildungstage | Anzahl | Prozent |
+|:----------------:|:------:|:-------:|
+|    Anzahl (N)    |   79   |  100.0  |
+|     \>5 Tage     |   12   |  15.2   |
+|      5 Tage      |   35   |  44.3   |
+|      4 Tage      |   8    |  10.1   |
+|      3 Tage      |   16   |  20.3   |
+|      2 Tage      |   4    |   5.1   |
+|      1 Tag       |   1    |   1.3   |
+|      Keine       |   3    |   3.8   |
+
+<img src="graphs/graph_7_44_assistentinnen_fortbildungstage.png" width="65%" style="display: block; margin: auto;" />
+
+## Frage 7.49 - Wie viel würden Sie persönlich, zusätzlich zum Fortbildungsbudget Ihres Arbeitgebers, für einen qualitativ hochwertigen Fortbildungskurs ausgeben?
+
+| Zusätzliche Ausgabe | Anzahl | Prozent |
+|:-------------------:|:------:|:-------:|
+|     Anzahl (N)      |  102   |  100.0  |
+|       \> 750€       |   36   |  35.3   |
+|     601 - 750€      |   4    |   3.9   |
+|     451 - 600€      |   24   |  23.5   |
+|     301 - 450€      |   5    |   4.9   |
+|     150 - 300€      |   24   |  23.5   |
+|       \< 150€       |   4    |   3.9   |
+|       Keines        |   5    |   4.9   |
+
+<img src="graphs/graph_7_49_assistentinnen_ausgabe_zusaetzlich.png" width="65%" style="display: block; margin: auto;" />
+
+## Frage 7.50 - Wie viel Geld würden Sie persönlich, zusätzlich zum Fortbildungsbudget Ihres Arbeitgebers, für einen qualitativ hochwertigen Fortbildungskurs in interdisziplinärer klinischer Notfallmedizin ausgeben?
+
+| Zusätzliche Ausgabe | Anzahl | Prozent |
+|:-------------------:|:------:|:-------:|
+|     Anzahl (N)      |  102   |  100.0  |
+|       \> 750€       |   30   |  29.4   |
+|     601 - 750€      |   8    |   7.8   |
+|     451 - 600€      |   16   |  15.7   |
+|     301 - 450€      |   12   |  11.8   |
+|     150 - 300€      |   20   |  19.6   |
+|       \< 150€       |   7    |   6.9   |
+|       Keines        |   9    |   8.8   |
+
+<img src="graphs/graph_7_50_assistentinnen_ausgabe_zusaetzlich_klinam.png" width="65%" style="display: block; margin: auto;" />

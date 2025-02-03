@@ -88,7 +88,7 @@ create_horizontal_bar_plot_percentages <- function(
       axis.title.y = element_blank(),
       panel.grid.major.y = element_blank(),
       panel.grid.major.x = element_line(size = 0.1),  # Make major x-axis gridlines thinner
-      panel.grid.minor.x = element_line(size = 0.05),  # Make minor x-axi
+      panel.grid.minor.x = element_line(size = 0.05),  # Make minor x-axis  gridlines thinner
       axis.text = element_text(size = 10),
       legend.position = "none",
       plot.title.position = "plot",  # Ensures title spans the entire plot width

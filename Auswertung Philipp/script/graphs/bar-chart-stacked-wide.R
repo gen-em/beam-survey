@@ -62,6 +62,7 @@ create_stacked_bar_chart_wide <- function(
   # Append the summary row while ensuring column names align
   colnames(summary_row) <- colnames(table_result)
   table_result <- rbind(table_result, summary_row)
+  table_result <- table_result[rev(order(match(table_result[,1], ordered_levels))), ]
   
   # Assign table to global environment with dynamic naming
   assign(paste0("table_", NAME_FRAGE), table_result, envir = .GlobalEnv)
@@ -88,6 +89,8 @@ create_stacked_bar_chart_wide <- function(
     theme(
       panel.grid.major.x = element_blank(),  # Remove major gridlines
       panel.grid.minor.x = element_blank(),  # Remove minor gridlines
+      panel.grid.major.y = element_line(size = 0.1),  # Make major y-axis gridlines thinner
+      panel.grid.minor.y = element_line(size = 0.05),  # Make minor y-axis  gridlines thinner
       panel.background = element_blank(),  # Ensures a clean, white background
       axis.text.x = element_blank(),  # Remove X-axis labels
       axis.ticks.x = element_blank(), # Remove X-axis ticks
@@ -95,7 +98,7 @@ create_stacked_bar_chart_wide <- function(
       legend.position = "right",  # Place legend next to bars
       legend.title = element_blank(), # Keine Label Titel
       legend.text = element_text(size = 9, hjust = 0.5),  # Legend labels formatting
-      plot.title = element_text(hjust = 0.5),
+      plot.title = element_text(hjust = 0.5, face = "bold"),
       plot.title.position = "plot",  # Extend centering across the entire plot area (including labels)
     ) +
     ## Prozent-Labels in den Bar-Parts

@@ -1,0 +1,272 @@
+---
+title: "BEAM-Auswertung: FachärztInnen und WeiterbilderInnen"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+  github_document: default
+encoding: UTF-8
+---
+
+```{r setup, include=FALSE}
+### R Einstellungen fürs Dokument
+library(here) # Pfade korrekt und stabil angeben
+library(knitr) # Tabellen
+library(svglite) #SVG Files erstellen
+library(magick) # Bildmanipulation
+
+LABEL_KOLLEKTIV <- "fachaerztinnen"
+
+# Function to determine output format and set appropriate settings
+set_output_settings <- function() {
+  format <- knitr::opts_chunk$get("rmarkdown.pandoc.to")
+  if (is.null(format)) format <- "html"  # Default to html if format not detected
+  
+  settings <- list()
+  
+  if (format %in% c("latex", "pdf")) {
+    settings$dpi <- 300
+    settings$dev <- "pdf"  # Use PDF device for LaTeX output
+  } else if (format %in% c("html", "gfm", "github_document")) {
+    settings$dpi <- 150
+    settings$dev <- "png"
+  } else {  # docx and others
+    settings$dpi <- 300
+    settings$dev <- "png"
+  }
+  
+  return(settings)
+}
+
+# Get output settings
+output_settings <- set_output_settings()
+
+# Set chunk options
+knitr::opts_chunk$set(
+  fig.path = here("graphs/"),
+  dev = output_settings$dev,
+  dpi = output_settings$dpi,
+  fig.retina = 2
+)
+
+# Set working directory for the entire document
+knitr::opts_knit$set(root.dir = here())
+```
+
+---
+
+# 6 - Vorbereitung auf notfallmedizinische Krankheitsbilder
+```{r, include=FALSE}
+source(here("script", paste0(LABEL_KOLLEKTIV, "_6_notfaelle-vorbereitung.R")), 
+       local = knitr::knit_global())
+```
+
+## Frage 6.33 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder in ihrem Fachgebiet vorbereitet?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "6_33"
+LABEL_FRAGE <- "nofall_vorbereitet_eigenes_fachgebiet_likert"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.25, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet?
+
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "6_35"
+LABEL_FRAGE <- "nofall_vorbereitet_anderes_fachgebiet_likert"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.25, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+\newpage
+
+---
+
+# 7 - Fortbildungsbudget und Zahlungsbereitschaft
+```{r, include=FALSE}
+source(here("script", paste0(LABEL_KOLLEKTIV, "_7_fortbildungsbudget-zahlungsbereitschaft.R")), 
+       local = knitr::knit_global())
+```
+
+## Frage 7.43 - Wie hoch ist das Fortbildungsbudget, welches Ihnen ihr Arbeitgeber pro Jahr zur Verfügung stellt?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "7_43"
+LABEL_FRAGE <- "fortbildungsbudget"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.9, fig.width=7, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 7.44 - Wie viele als Arbeitszeit gewertete Fortbildungstage gewährt Ihnen ihr Arbeitgeber pro Jahr?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "7_44"
+LABEL_FRAGE <- "fortbildungstage"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 7.49 - Wie viel würden Sie persönlich, zusätzlich zum Fortbildungsbudget Ihres Arbeitgebers, für einen qualitativ hochwertigen Fortbildungskurs ausgeben?
+
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "7_49"
+LABEL_FRAGE <- "ausgabe_zusaetzlich"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 7.50 - Wie viel Geld würden Sie persönlich, zusätzlich zum Fortbildungsbudget Ihres Arbeitgebers, für einen qualitativ hochwertigen Fortbildungskurs in interdisziplinärer klinischer Notfallmedizin ausgeben?
+
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "7_50"
+LABEL_FRAGE <- "ausgabe_zusaetzlich_klinam"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+\newpage
+
+---
+# Weiterbildende - Fortbildungsbudget der MedizinerInnen in Weiterbildung
+```{r, include=FALSE}
+LABEL_KOLLEKTIV <- "weiterbildende"
+source(here("script", paste0(LABEL_KOLLEKTIV, "_7_fortbildungsbudget-assistentInnen.R")), 
+       local = knitr::knit_global())
+```
+
+## Frage 7.45 - Wie hoch ist das Fortbildungsbudget, welches Ihr Arbeitgeber Ihren ÄrztInnen in Weiterbildung pro Jahr zur Verfügung stellt?
+
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "7_45"
+LABEL_FRAGE <- "fortbildungsbudget_weiterzubildende"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+
+## Frage 7.46 - Wie viele als Arbeitszeit gewertete Fortbildungstage gewährt Ihr Arbeitgeber Ihren ÄrztInnen in Weiterbildung pro Jahr?
+
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "7_46"
+LABEL_FRAGE <- "fortbildungstage_weiterzubildende"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.8, fig.width=6, out.width="65%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```

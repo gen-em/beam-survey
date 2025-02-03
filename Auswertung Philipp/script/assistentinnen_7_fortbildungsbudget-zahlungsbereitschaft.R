@@ -45,7 +45,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie hoch ist das Fortbildungsbudget von %s?", NAME_KOLLEKTIV
+  "Wie hoch ist das Fortbildungsbudget von \n%s?", NAME_KOLLEKTIV
 )
 
 ## Kurztitel für Tabelle etc.
@@ -124,7 +124,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie viele Fortbildungstage haben %s?", NAME_KOLLEKTIV
+  "Wie viele Fortbildungstage haben \n%s?", NAME_KOLLEKTIV
 )
 
 ## Kurztitel für Tabelle etc.

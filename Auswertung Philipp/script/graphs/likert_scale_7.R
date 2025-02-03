@@ -14,31 +14,43 @@ create_likert_7_table <- function(filtered_data, selected_columns, column_names,
     setNames(column_names) %>%
     drop_na()  # Remove rows where any selected column has NA
   
-  labels_reversed <- setNames(names(labels), labels)
+  # Create a factor with levels in the original order
+  ordered_names <- column_names
   
   # Generate and transform table
-  filtered_data_subset %>%
+  summary_table <- filtered_data_subset %>%
     pivot_longer(
       cols = everything(),
       names_to = "Abfrage",
       values_to = "rating"
     ) %>%
+    mutate(Abfrage = factor(Abfrage, levels = ordered_names)) %>%
     count(Abfrage, rating) %>%
-    # Ensure all ratings 1-7 are included
     complete(
       Abfrage,
       rating = 1:7,
       fill = list(n = 0)
     ) %>%
+    group_by(Abfrage) %>%
+    mutate(
+      percentage = round((n / sum(n)) * 100, 1),  # Calculate percentage
+      formatted = paste0(n, " (", percentage, "%)"),  # Format count and percentage
+      count_total = sum(n)  # Calculate total count once per group
+    ) %>%
+    select(-n, -percentage) %>%
     pivot_wider(
       names_from = rating,
-      values_from = n,
-      values_fill = 0
+      values_from = formatted,
+      values_fill = "0 (0%)"
     ) %>%
-    mutate(across(everything(), ~replace_na(., 0))) %>%  # Replace NAs with 0
     rename_with(~"4", matches("^4$")) %>%  # Rename 4 first
     rename_with(~"Neutral", matches("^4$")) %>%  # Then rename 4 to Neutral
-    rename_with(~labels[.x], matches("^[1-7]$"))  # Then apply the labels
+    rename_with(~labels[.x], matches("^[1-7]$")) %>%  # Apply custom labels
+    ungroup() %>%
+    mutate(`Antworten N (%)` = paste0(count_total, " (100%)")) %>%  # Create new column
+    select(Abfrage, `Antworten N (%)`, everything(), -count_total) %>%  # Remove 'count_total' from final output
+    arrange(Abfrage)
+  
 }
 
 create_likert_7_plot <- function(filtered_data, selected_columns, column_names, plot_title, 
@@ -50,7 +62,11 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
   # Create initial subset
   filtered_data_subset <- filtered_data %>%
     dplyr::select(all_of(selected_columns)) %>%
-    setNames(column_names)
+    setNames(column_names) %>%
+    drop_na()  # Remove rows where any selected column has NA
+  
+  # Create ordered factor levels
+  ordered_names <- column_names
   
   # Transform data for plotting
   filtered_data_long <- filtered_data_subset %>%
@@ -58,7 +74,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
       cols = everything(),
       names_to = "Category",
       values_to = "Response"
-    )
+    ) %>%
+  # Convert Category to factor with ordered levels
+    mutate(Category = factor(Category, levels = rev(ordered_names)))  # Ensure matching order to table
   
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Calculate Response Percentages
@@ -118,7 +136,9 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
         Response %in% c(1, 2, 3) ~ as.character(Response),
         Response == 4 ~ "Neutral",
         Response %in% c(5, 6, 7) ~ as.character(Response)
-      )
+      ),
+      # Ensure Category maintains the correct order
+      Category = factor(Category, levels = ordered_names)
     )
   
   df_neutral <- filter(response_summary, Code == "Neutral")
@@ -171,14 +191,14 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
       0.5
     }
   })
-  
+  print(levels(response_summary$Category))
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Create Plots
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   p1 <- ggplot(df_nonneutral, 
                aes(x = ifelse(Code %in% c("1", "2", "3"), -Percentage, Percentage),
-                   y = Category,
+                   y = factor(Category, levels = rev(ordered_names)),  # Force the correct order
                    fill = factor(Code, levels = c("3", "2", "1", "5", "6", "7")))) +
     geom_col(position = position_stack(reverse = TRUE)) +
     geom_text(aes(label = Label),
@@ -201,12 +221,13 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     theme_bw() +
     theme(
       panel.grid.major.y = element_blank(),
-      legend.text = element_markdown(size = 9, face = "bold"),
+      legend.text = element_markdown(size = 8, face = "bold"),
+      legend.box.just = "left",
       legend.position = "top",
       axis.title = element_blank(),
       axis.text = element_markdown(),
       axis.text.x = element_markdown(hjust = hjust_values),
-      axis.text.y = if(show_y_labels) element_text() else element_blank(),
+      axis.text.y = if(show_y_labels) element_markdown() else element_blank(),
       axis.ticks.y = if(show_y_labels) element_line() else element_blank()
     ) +
     coord_fixed(ratio = 7)
@@ -235,7 +256,7 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     theme_bw() +
     theme(
       panel.grid.major.y = element_blank(),
-      legend.text = element_markdown(size = 9, face = "bold"),
+      legend.text = element_markdown(size = 8, face = "bold"),
       legend.position = "top",
       axis.title = element_blank(),
       axis.text = element_markdown(),

@@ -45,7 +45,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie gut fühlen sich %s auf Notfälle in Ihrem Fachgebiet vorbereitet?", NAME_KOLLEKTIV
+  "Wie gut fühlen sich %s auf \nNotfälle in Ihrem Fachgebiet vorbereitet?", NAME_KOLLEKTIV
 )
 
 
@@ -116,7 +116,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie gut fühlen sich %s auf Notfälle außerhalb ihres Fachgebietes vorbereitet?", NAME_KOLLEKTIV
+  "Wie gut fühlen sich %s auf \nNotfälle außerhalb ihres Fachgebietes vorbereitet?", NAME_KOLLEKTIV
 )
 
 
@@ -187,7 +187,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie sehr sind %s aus emotionaler Sicht durch Nachtdienste belastet?", NAME_KOLLEKTIV
+  "Wie sehr sind %s durch Nachtdienste \naus emotionaler Sicht belastet?", NAME_KOLLEKTIV
 )
 
 SELECTED_COLUMNS <- c(
@@ -255,7 +255,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie sehr sind %s durch Nachtdienste aus fachlicher Sicht belastet?", NAME_KOLLEKTIV
+  "Wie sehr sind %s durch Nachtdienste \naus fachlicher Sicht belastet?", NAME_KOLLEKTIV
 )
 
 SELECTED_COLUMNS <- c(
@@ -323,7 +323,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie sehr sind %s aus emotionaler Sicht durch Notaufnahmedienste belastet?", NAME_KOLLEKTIV
+  "Wie sehr sind %s durch Notaufnahmedienste \naus emotionaler Sicht belastet?", NAME_KOLLEKTIV
 )
 
 SELECTED_COLUMNS <- c(
@@ -391,7 +391,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie sehr sind %s durch Notaufnahmedienste aus fachlicher Sicht belastet?", NAME_KOLLEKTIV
+  "Wie sehr sind %s durch Notaufnahmedienste \naus fachlicher Sicht belastet?", NAME_KOLLEKTIV
 )
 
 ## Welche columns aus filtered_data soll eingeschlossen werden?
