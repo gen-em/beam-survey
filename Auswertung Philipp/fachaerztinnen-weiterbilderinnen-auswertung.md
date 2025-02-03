@@ -11,18 +11,6 @@ BEAM-Auswertung: FachärztInnen und WeiterbilderInnen
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | Notfallvorbereitung eigenes Fachgebiet | 69 (100%) | 0 (0%) | 1 (1.4%) | 1 (1.4%) | 7 (10.1%) | 16 (23.2%) | 35 (50.7%) | 9 (13%) |
 
-    ## Warning in mapply(make_inner_box, text, halign, valign, use_markdown, gp_list,
-    ## : longer argument not a multiple of length of shorter
-    ## Warning in mapply(make_inner_box, text, halign, valign, use_markdown, gp_list,
-    ## : longer argument not a multiple of length of shorter
-
-    ## Warning in mapply(make_outer_box, inner_boxes, width, height, x_list, y_list, :
-    ## longer argument not a multiple of length of shorter
-    ## Warning in mapply(make_outer_box, inner_boxes, width, height, x_list, y_list, :
-    ## longer argument not a multiple of length of shorter
-    ## Warning in mapply(make_outer_box, inner_boxes, width, height, x_list, y_list, :
-    ## longer argument not a multiple of length of shorter
-
 <img src="graphs/graph_6_33_fachaerztinnen_nofall_vorbereitet_eigenes_fachgebiet_likert.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 6.35 - Wie gut fühlen Sie sich auf die Behandlung akut- & notfallmedizinischer Krankheitsbilder anderer Fachbereiche vorbereitet?
