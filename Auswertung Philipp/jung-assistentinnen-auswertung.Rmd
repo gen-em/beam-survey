@@ -1,5 +1,5 @@
 ---
-title: "BEAM-Auswertung: MedizinerInnen in Weiterbildung"
+title: "BEAM-Auswertung: (Jung-)assistentInnen in Weiterbildung - 1. & 2. WB-Jahr"
 output:
   pdf_document: default
   word_document: default

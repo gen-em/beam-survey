@@ -1,4 +1,5 @@
-BEAM-Auswertung: MedizinerInnen in Weiterbildung
+BEAM-Auswertung: (Alt-)assistentInnen in Weiterbildung - 3. WB-Jahr und
+höher
 ================
 
 ------------------------------------------------------------------------

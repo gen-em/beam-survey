@@ -1,10 +1,10 @@
 ---
-title: "BEAM-Auswertung: MedizinerInnen in Weiterbildung"
+title: "BEAM-Auswertung: (Alt-)assistentInnen in Weiterbildung - 3. WB-Jahr und höher"
 output:
-  github_document: default
+  pdf_document: default
   word_document: default
   html_document: default
-  pdf_document: default
+  github_document: default
 encoding: UTF-8
 ---
 
