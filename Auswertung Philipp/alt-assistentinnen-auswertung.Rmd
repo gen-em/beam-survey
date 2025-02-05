@@ -1,10 +1,10 @@
 ---
 title: "BEAM-Auswertung: MedizinerInnen in Weiterbildung"
 output:
-  pdf_document: default
+  github_document: default
   word_document: default
   html_document: default
-  github_document: default
+  pdf_document: default
 encoding: UTF-8
 ---
 
@@ -15,7 +15,7 @@ library(knitr) # Tabellen
 library(svglite) #SVG Files erstellen
 library(magick) # Bildmanipulation
 
-LABEL_KOLLEKTIV <- "jung_assistentinnen"
+LABEL_KOLLEKTIV <- "alt_assistentinnen"
 
 # Function to determine output format and set appropriate settings
 set_output_settings <- function() {

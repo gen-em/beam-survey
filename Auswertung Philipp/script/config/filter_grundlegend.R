@@ -75,6 +75,17 @@ filtered_jung_assistentinnen <- rohdaten %>%
 # Name für das Kollektiv, um es in den Grafiktiteln einzubinden
 name_jung_assistentinnen <- "MedizinerInnen in Weiterbildung im 1. & 2. WB-Jahr"
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+## Alt-AssistentInnen in WB-Jahren ≥3 ----
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Var = filtered_Alt_assistentinnen
+# LABEL = alt_assistentinnen
+filtered_alt_assistentinnen <- rohdaten %>%
+  filter(`1.2` %in% c("arzt_weiterbildung", "approbiert_vor_beginn") & `1.5` >= 3)
+# Name für das Kollektiv, um es in den Grafiktiteln einzubinden
+name_alt_assistentinnen <- "MedizinerInnen in Weiterbildung im ≥3. WB-Jahr"
+
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ## Facharzt ----
