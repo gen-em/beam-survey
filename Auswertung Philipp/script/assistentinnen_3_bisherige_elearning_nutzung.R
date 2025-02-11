@@ -46,7 +46,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Anteil der %s, welche bereits E-Learning genutzt haben", NAME_KOLLEKTIV
+  "Anteil der %s, \nwelche bereits E-Learning genutzt haben", NAME_KOLLEKTIV
 )
 
 ## Titel der angezeigten Labels (kurz, knackig)

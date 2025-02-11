@@ -22,6 +22,8 @@ rohdaten <- read_excel(rohdaten_quelldatei, sheet = 1)
 # filtered_alle = Alle TeilnehmerInnen
 # filtered_studentinnen = Studenten
 # filtered_assistentinnen = MedizinerInnen in Weiterbildung
+# filtered_jung_assistentinnen = Jung-AssistentInnen in WB-Jahren 1&2
+# filtered_alt_assistentinnen = Alt-AssistentInnen in WB-Jahren ≥3
 # filtered_fachaerztinnen = FachärztInnen
 # filtered_oberaerztinnen = OberärztInnen
 # filtered_chefaerztinnen = ChefärztInnen
@@ -79,7 +81,7 @@ name_jung_assistentinnen <- "MedizinerInnen in Weiterbildung im 1. & 2. WB-Jahr"
 ## Alt-AssistentInnen in WB-Jahren ≥3 ----
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# Var = filtered_Alt_assistentinnen
+# Var = filtered_alt_assistentinnen
 # LABEL = alt_assistentinnen
 filtered_alt_assistentinnen <- rohdaten %>%
   filter(`1.2` %in% c("arzt_weiterbildung", "approbiert_vor_beginn") & `1.5` >= 3)

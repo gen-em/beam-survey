@@ -46,7 +46,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Können %s sich vorstellen, E-Learning in Zukunft zur Fortbildung zu nutzen?", NAME_KOLLEKTIV
+  "Können %s sich \nvorstellen, E-Learning in Zukunft zur Fortbildung zu nutzen?", NAME_KOLLEKTIV
   )
 
 ## Titel der angezeigten Labels (kurz, knackig)
@@ -101,7 +101,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Für welche Anwendungsfälle Würden %s E-Learning nutzen?", NAME_KOLLEKTIV
+  "Für welche Anwendungsfälle würden %s E-Learning nutzen?", NAME_KOLLEKTIV
 )
 
 ## Columns of Interest definieren (aus filtered_data)
@@ -192,7 +192,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie wichtig ist es %s für E-Learning CME-Punkte zu erhalten?", NAME_KOLLEKTIV
+  "Wie wichtig ist es %s \nfür E-Learning CME-Punkte zu erhalten?", NAME_KOLLEKTIV
 )
 
 SELECTED_COLUMNS <- c(
@@ -263,7 +263,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wünsche von %s an Arten der Inhaltsvermittlung im E-Learning", NAME_KOLLEKTIV
+  "Wünsche von %s \nan Arten der Inhaltsvermittlung im E-Learning", NAME_KOLLEKTIV
 )
 
 ## Anzeige von "Antworten N=XXX" auf dem Graph
@@ -414,7 +414,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Auf welchen Wegen haben %s Fortbildungen bisher gefunden?", NAME_KOLLEKTIV
+  "Auf welchen Wegen haben %s \nFortbildungen bisher gefunden?", NAME_KOLLEKTIV
 )
 
 

@@ -43,7 +43,6 @@ create_likert_7_table <- function(filtered_data, selected_columns, column_names,
       values_from = formatted,
       values_fill = "0 (0%)"
     ) %>%
-    rename_with(~"4", matches("^4$")) %>%  # Rename 4 first
     rename_with(~"Neutral", matches("^4$")) %>%  # Then rename 4 to Neutral
     rename_with(~labels[.x], matches("^[1-7]$")) %>%  # Apply custom labels
     ungroup() %>%
@@ -109,22 +108,15 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     "7" = brewer_colors[7]
   )
   
+  # Function to create formatted legend labels
   custom_labels <- function(labels, colors) {
-    sapply(1:length(labels), function(i) {
+    sapply(names(labels), function(i) {
       paste0("<span style='color:", colors[i], ";'>", labels[i], "</span>")
     })
   }
   
-  formatted_labels <- custom_labels(
-    labels = labels[c(1, 2, 3, 5, 6, 7)],
-    colors = cols[c(1, 2, 3, 5, 6, 7)]
-  )
-  
-  formatted_labels_neutral <- paste0(
-    "<span style='color:", cols["Neutral"], ";'>", 
-    labels["Neutral"], 
-    "</span>"
-  )
+  # Create one formatted label set for all values (1-7 + Neutral)
+  formatted_labels <- custom_labels(labels, cols)
   
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # Data Processing
@@ -132,14 +124,13 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
   
   response_summary <- response_summary %>%
     mutate(
-      Code = case_when(
+      Code = factor(case_when(
         Response %in% c(1, 2, 3) ~ as.character(Response),
         Response == 4 ~ "Neutral",
         Response %in% c(5, 6, 7) ~ as.character(Response)
-      ),
-      # Ensure Category maintains the correct order
-      Category = factor(Category, levels = ordered_names)
-    )
+      ), levels = c("1", "2", "3", "Neutral", "5", "6", "7"))  # Ensure all levels exist
+    ) %>%
+    complete(Category, Code, fill = list(Count = 0, Percentage = 0))  # Ensure "Neutral" exists
   
   df_neutral <- filter(response_summary, Code == "Neutral")
   df_nonneutral <- filter(response_summary, Code != "Neutral")
@@ -196,20 +187,39 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
   # Create Plots
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-  p1 <- ggplot(df_nonneutral, 
-               aes(x = ifelse(Code %in% c("1", "2", "3"), -Percentage, Percentage),
-                   y = factor(Category, levels = rev(ordered_names)),  # Force the correct order
-                   fill = factor(Code, levels = c("3", "2", "1", "5", "6", "7")))) +
+  p1 <- ggplot(
+    df_nonneutral,
+    aes(
+      x = ifelse(Code %in% c("1", "2", "3"), -Percentage, Percentage),
+      y = factor(Category, levels = rev(ordered_names)), # Force the correct order
+      fill = Code,
+      group = factor(Code, levels = c("3", "2", "1", "5", "6", "7"))
+    )
+  ) +
     geom_col(position = position_stack(reverse = TRUE)) +
     geom_text(aes(label = Label),
               position = position_stack(vjust = 0.5, reverse = TRUE),
               size = 2.5) + #Reduced Text Size
-    scale_fill_manual(values = cols[c("1", "2", "3", "5", "6", "7")],
-                      labels = formatted_labels) +
-    guides(fill = guide_legend(title = NULL, 
-                               nrow = 1, 
-                               byrow = FALSE,
-                               override.aes = list(fill = NA, size = 0))) +
+    scale_fill_manual(
+#      values = cols,
+#      labels = formatted_labels,
+      values = cols[names(cols) != "Neutral"],  # Remove "Neutral" from color mapping
+      labels = formatted_labels[names(formatted_labels) != "Neutral"],  # Remove from legend      
+      drop = FALSE
+    ) +
+    guides(fill = guide_legend(
+      title = NULL,
+      nrow = 1,
+      byrow = FALSE,
+      theme = theme(
+        legend.text.position = "top",
+        legend.key.width = unit(1, "null"),
+        legend.key.height = unit(0, "null")
+      ),
+      override.aes = list(
+        size = 0
+      )
+    )) +
     scale_x_continuous(breaks = x_breaks,
                        labels = ~paste0(abs(.x), "%"),
                        limits = c(-x_left, x_right),
@@ -223,13 +233,17 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
       panel.grid.major.y = element_blank(),
       legend.text = element_markdown(size = 8, face = "bold"),
       legend.box.just = "left",
+      legend.justification = "left",
       legend.position = "top",
       axis.title = element_blank(),
       axis.text = element_markdown(),
       axis.text.x = element_markdown(hjust = hjust_values),
       axis.text.y = if(show_y_labels) element_markdown() else element_blank(),
-      axis.ticks.y = if(show_y_labels) element_line() else element_blank()
-    ) +
+      axis.ticks.y = if(show_y_labels) element_line() else element_blank(),
+      panel.background = element_blank(),
+      plot.background = element_rect(fill = "transparent", color = NA),
+      legend.background = element_blank(),
+      ) +
     coord_fixed(ratio = 7)
   
   p2 <- ggplot(df_neutral, aes(x = Percentage, y = Category, fill = Code)) +
@@ -245,11 +259,20 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
                   x = Percentage + 1),
               hjust = 0,
               size = 2.5) +  # Reduced text size
-    scale_fill_manual(values = cols["Neutral"],
-                      labels = formatted_labels_neutral) +
-    guides(fill = guide_legend(title = NULL,
-                               nrow = 1,
-                               override.aes = list(fill = NA, size = 0))) +
+    scale_fill_manual(
+      values = cols,
+      labels = formatted_labels
+      ) +
+    guides(fill = guide_legend(
+      title = NULL,
+      nrow = 1,
+      theme = theme(
+        legend.text.position = "top",
+        legend.key.width = unit(1, "null"),
+        legend.key.height = unit(0, "null")
+      ),
+      override.aes = list(size = 0)
+    )) +
     scale_x_continuous(limits = c(0, x_neutral),
                        expand = c(0, 0),
                        labels = ~paste0(.x, "%")) +
@@ -257,11 +280,15 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
     theme(
       panel.grid.major.y = element_blank(),
       legend.text = element_markdown(size = 8, face = "bold"),
+      legend.justification = "left",
       legend.position = "top",
       axis.title = element_blank(),
       axis.text = element_markdown(),
       axis.text.y = element_blank(),
-      axis.ticks.y = element_blank()
+      axis.ticks.y = element_blank(),
+      panel.background = element_blank(),
+      plot.background = element_rect(fill = "transparent", color = NA),
+      legend.background = element_blank()
     ) +
     coord_fixed(ratio = 7)
   
@@ -282,7 +309,11 @@ create_likert_7_plot <- function(filtered_data, selected_columns, column_names, 
           vjust = 1,
           size = 12,
           face = "bold"
-        )
+        ),
+        plot.background = element_rect(fill = "transparent", color = NA),
+        legend.position = "top",
+        legend.justification = "left",
+        legend.box.just = "left"
       )
     )
 }

@@ -45,7 +45,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Anteil der %s, welche bereits \nkostenpflichtiges E-Learning genutzt haben", NAME_KOLLEKTIV
+  "Anteil der %s, \nwelche bereits kostenpflichtiges E-Learning genutzt haben", NAME_KOLLEKTIV
 )
 
 ## Titel der angezeigten Labels (kurz, knackig)
@@ -172,7 +172,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wie wurde das von %s \nbisher genutzte E-Learning finanziert?", NAME_KOLLEKTIV
+  "Wie wurde das von\n %s \nbisher genutzte E-Learning finanziert?", NAME_KOLLEKTIV
 )
 
 ## Anzeige von "Antworten N=XXX" auf dem Graph

@@ -192,7 +192,7 @@ NAME_FRAGE <- paste0(
 ## Titel des Plots festlegen
 ## %s wird durch die Beschreibung in "filter_grundlegend" ersetzt (Als Plural hinterlegt)
 PLOT_TITLE <- sprintf(
-  "Wollen %s die Zusatzbezeichnung \nKlinische Akut- und Notfallmedizin erwerben?", NAME_KOLLEKTIV
+  "Wollen %s \ndie Zusatzbezeichnung Klinische Akut- und Notfallmedizin erwerben?", NAME_KOLLEKTIV
 )
 
 ## Titel der angezeigten Labels (kurz, knackig)

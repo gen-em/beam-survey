@@ -14,7 +14,7 @@ create_specialty_distribution_plot <- function(
   # Relevante Zeilen auswählen
   fachrichtung_cols <- filtered_data %>%
     select(all_of(cols_of_interest))
-  
+
   # Leere Zeilen herausfiltern
   fachrichtung_cols <- fachrichtung_cols %>%
     filter(rowSums(is.na(.)) < ncol(.))
@@ -34,13 +34,16 @@ create_specialty_distribution_plot <- function(
   # Kopie der Tabelle für den Graph
   data_plot <- table_result
   
+  # Fachrichtungen als column hinterlegen (sonst nicht in Ausgabetabellen enthalten)
+  table_result <- cbind(Fachrichtung = rownames(table_result), table_result)
+
   # Gesamtzeile hinzufügen
   total_row <- data.frame(
+    Fachrichtung = "",
     Anzahl = total_rows,
     Prozent = 100
   )
   rownames(total_row) <- "Antworten (N)"
-  
   table_result <- rbind(table_result, total_row)
   
   # Tabelle global speichern

@@ -3,16 +3,18 @@
 # Functions for creating 5-point Likert scale visualizations and tables
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## TABELLE generieren ----
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 create_likert_5_table <- function(filtered_data, selected_columns, column_names, labels) {
   # Create initial subset and prepare labels
   filtered_data_subset <- filtered_data %>%
     dplyr::select(all_of(selected_columns)) %>%
     setNames(column_names)
   
-  labels_reversed <- setNames(names(labels), labels)
-  
   # Generate and transform table
-  filtered_data_subset %>%
+  summary_table <- filtered_data_subset %>%
     pivot_longer(
       cols = everything(),
       names_to = "Abfrage",
@@ -25,15 +27,27 @@ create_likert_5_table <- function(filtered_data, selected_columns, column_names,
       rating = 1:5,
       fill = list(n = 0)
     ) %>%
+    group_by(Abfrage) %>%
+    mutate(
+      percentage = round((n / sum(n)) * 100, 1),  # Calculate percentage
+      formatted = paste0(n, " (", percentage, "%)"),  # Format count and percentage
+      count_total = sum(n)  # Calculate total count per group
+    ) %>%
+    select(-n, -percentage) %>%
     pivot_wider(
       names_from = rating,
-      values_from = n,
-      values_fill = 0
+      values_from = formatted,
+      values_fill = "0 (0%)"
     ) %>%
-    mutate(across(everything(), ~replace_na(., 0))) %>%
-    rename_with(~labels[.x], matches("^[1-5]$"))
+    rename_with(~labels[.x], matches("^[1-5]$")) %>%  # Apply custom labels
+    ungroup() %>%
+    mutate(`Antworten N (%)` = paste0(count_total, " (100%)")) %>%  # Create total column
+    select(Abfrage, `Antworten N (%)`, everything(), -count_total)  # Remove temp column
 }
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## PLOT generieren ----
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 create_likert_5_plot <- function(filtered_data, selected_columns, column_names, plot_title, 
                                  brewer_palette, minimum_label_percentage, labels, show_y_labels = TRUE) {
   # Data Preparation

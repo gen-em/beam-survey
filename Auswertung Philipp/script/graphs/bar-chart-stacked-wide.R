@@ -51,6 +51,9 @@ create_stacked_bar_chart_wide <- function(
   # Save Data for Plot before adding the summarizing row
   plot_data <- table_result
   
+  # Append the summary row while ensuring column names align
+  table_result <- table_result[rev(order(match(table_result[,1], ordered_levels))), ]
+
   # Add a summary row at the bottom, Ensure column names match exactly
   summary_row <- data.frame(
     Category = "Anzahl (N)",  
@@ -58,11 +61,8 @@ create_stacked_bar_chart_wide <- function(
     Prozent = 100,
     stringsAsFactors = FALSE  # Prevent factor coercion issues
   )
-  
-  # Append the summary row while ensuring column names align
   colnames(summary_row) <- colnames(table_result)
   table_result <- rbind(table_result, summary_row)
-  table_result <- table_result[rev(order(match(table_result[,1], ordered_levels))), ]
   
   # Assign table to global environment with dynamic naming
   assign(paste0("table_", NAME_FRAGE), table_result, envir = .GlobalEnv)

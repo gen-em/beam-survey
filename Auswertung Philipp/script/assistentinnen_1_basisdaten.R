@@ -21,7 +21,7 @@ filtered_data <- get(paste0("filtered_", LABEL_KOLLEKTIV))
 NAME_KOLLEKTIV <- get(paste0("name_", LABEL_KOLLEKTIV))
 
 ## Sollen die Plots geprintet werden? TRUE = ja, FALSE = nein
-PRINT_PLOTS = TRUE
+PRINT_PLOTS = FALSE
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°

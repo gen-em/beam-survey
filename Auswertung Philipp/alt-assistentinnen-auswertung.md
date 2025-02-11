@@ -34,18 +34,18 @@ höher
 
 ## Frage 1.6 - In welchem Fachgebiet streben Sie einen Facharzttitel an?
 
-| Anzahl | Prozent |
-|:------:|:-------:|
-|   6    |  33.3   |
-|   3    |  16.7   |
-|   8    |  44.4   |
-|   1    |   5.6   |
-|   0    |   0.0   |
-|   0    |   0.0   |
-|   0    |   0.0   |
-|   0    |   0.0   |
-|   1    |   5.6   |
-|   18   |  100.0  |
+|       Fachrichtung       | Anzahl | Prozent |
+|:------------------------:|:------:|:-------:|
+|      Innere Medizin      |   6    |  33.3   |
+|     Allgemeinmedizin     |   3    |  16.7   |
+|        Anästhesie        |   8    |  44.4   |
+|     Unfallchirurgie      |   1    |   5.6   |
+|    Viszeralchirurgie     |   0    |   0.0   |
+| Anderes chir. Fachgebiet |   0    |   0.0   |
+|        Neurologie        |   0    |   0.0   |
+|         Urologie         |   0    |   0.0   |
+|        Sonstiges         |   1    |   5.6   |
+|                          |   18   |  100.0  |
 
 <img src="graphs/graph_1_06_alt_assistentinnen_fachrichtung.png" width="65%" style="display: block; margin: auto;" />
 
@@ -237,6 +237,48 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 <img src="graphs/graph_5_24_alt_assistentinnen_cme_wichtig_likert.png" width="80%" style="display: block; margin: auto;" />
 
+## Frage 5.25 - Welche Arten der Inhaltsvermittlung würden Sie in E-Learning Formaten gerne sehen?
+
+| Antwortoption | Anzahl | Prozent |
+|:--:|:--:|:--:|
+| Kurze Textinhalte (\<10 Minuten), welche sich im Alltag zwischendurch lesen lassen | 38 | 55.1 |
+| Video-Inhalte On-Demand | 37 | 53.6 |
+| Audio-Inhalte On-Demand (Podcast, Audiomitschnitte von Vorträgen oä.) | 35 | 50.7 |
+| Livestreams von Veranstaltungen / Vorträgen / Seminaren | 30 | 43.5 |
+| Online-Vorträge (live) mit der Möglichkeit Fragen zu stellen | 28 | 40.6 |
+| Online-Seminare in kleineren Gruppen | 15 | 21.7 |
+| Lange Textinhalte (\> 10 Minuten), in welchen Themen ausführlicher erläutert werden | 13 | 18.8 |
+| Antworten (N) | 69 | 100.0 |
+
+<img src="graphs/graph_5_25_alt_assistentinnen_wuensche_inhaltsvermittlung.png" width="80%" style="display: block; margin: auto;" />
+
+## Frage 5.26 - Welche Kriterien wären/sind Ihnen wichtig für die Auswahl von Kursen & Inhalten?
+
+| Antwortoption | Anzahl | Prozent |
+|:--:|:--:|:--:|
+| Alltagsrelevanz des Themas | 64 | 92.8 |
+| Qualitätseindruck des Kurses und der Inhalte | 64 | 92.8 |
+| Beteiligung von Fachgesellschaften am Kurs | 29 | 42.0 |
+| Erhalt eines Zertifikates / einer Qualifikation mit Abschluss des Kurses | 17 | 24.6 |
+| Bekannte Namen / Firmen hinter dem Kurs | 4 | 5.8 |
+| Antworten (N) | 69 | 100.0 |
+
+<img src="graphs/graph_5_26_alt_assistentinnen_kriterien_kursauswahl.png" width="80%" style="display: block; margin: auto;" />
+
+## Frage 5.31 - Auf welchen Wegen haben Sie bisher ihre Veranstaltungen zu Fort- & Weiterbildung hauptsächlich gefunden?
+
+|                      Antwortoption                      | Anzahl | Prozent |
+|:-------------------------------------------------------:|:------:|:-------:|
+|              Empfehlungen von KollegInnen               |   52   |  75.4   |
+|           Internetsuchmaschinen (Google o.Ä.)           |   42   |  60.9   |
+| Anzeigen in Printmedien (Zeitschriften / Journals o.Ä.) |   23   |  33.3   |
+|             Mailings von Fachgesellschaften             |   23   |  33.3   |
+|        Fortbildungsdatenbanken der Ärztekammern         |   13   |  18.8   |
+|                    Werbung per Email                    |   12   |  17.4   |
+|                      Antworten (N)                      |   69   |  100.0  |
+
+<img src="graphs/graph_5_31_alt_assistentinnen_veranstaltungen_bisher_gefunden.png" width="80%" style="display: block; margin: auto;" />
+
 ------------------------------------------------------------------------
 
 # 6 - Vorbereitung auf notfallmedizinische Krankheitsbilder
@@ -259,33 +301,33 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 ## Frage 6.39 - Wie sehr belasten Sie **Nachtdienste** in Ihrem aktuellen Ausbildungsstand aus **emotionaler** Sicht?
 
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Emotionale Belastung Nachtdienst | 6 | 22 | 20 | 16 | 5 |
+| Abfrage | Antworten N (%) | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Emotionale Belastung Nachtdienst | 69 (100%) | 6 (8.7%) | 22 (31.9%) | 20 (29%) | 16 (23.2%) | 5 (7.2%) |
 
 <img src="graphs/graph_6_39_alt_assistentinnen_belastung_nachtdienste_emotional_likert.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 6.40 - Wie sehr belasten Sie Nachtdienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
 
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Fachliche Belastung Nachtdienst | 4 | 23 | 28 | 12 | 2 |
+| Abfrage | Antworten N (%) | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Fachliche Belastung Nachtdienst | 69 (100%) | 4 (5.8%) | 23 (33.3%) | 28 (40.6%) | 12 (17.4%) | 2 (2.9%) |
 
 <img src="graphs/graph_6_40_alt_assistentinnen_belastung_nachtdienste_fachlich_likert.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 6.41 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus emotionaler Sicht?
 
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Emotionale Belastung Notaufnahmedienst | 12 | 27 | 16 | 13 | 1 |
+| Abfrage | Antworten N (%) | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Emotionale Belastung Notaufnahmedienst | 69 (100%) | 12 (17.4%) | 27 (39.1%) | 16 (23.2%) | 13 (18.8%) | 1 (1.4%) |
 
 <img src="graphs/graph_6_41_alt_assistentinnen_belastung_notaufnahmedienste_emotional_likert.png" width="80%" style="display: block; margin: auto;" />
 
 ## Frage 6.42 - Wie sehr belasten Sie Notaufnahmedienste in Ihrem aktuellen Ausbildungsstand aus fachlicher Sicht?
 
-| Abfrage | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Fachliche Belastung Notaufnahmedienst | 11 | 26 | 21 | 9 | 2 |
+| Abfrage | Antworten N (%) | Überhaupt nicht | Kaum | Ein bisschen | Belastet | Sehr |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Fachliche Belastung Notaufnahmedienst | 69 (100%) | 11 (15.9%) | 26 (37.7%) | 21 (30.4%) | 9 (13%) | 2 (2.9%) |
 
 <img src="graphs/graph_6_42_alt_assistentinnen_belastung_notaufnahmedienste_fachlich_likert.png" width="80%" style="display: block; margin: auto;" />
 
@@ -297,7 +339,6 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 | Fortbildungsbudget | Anzahl | Prozent |
 |:------------------:|:------:|:-------:|
-|     Anzahl (N)     |   49   |  100.0  |
 |      \>1000€       |   7    |  14.3   |
 |    801 - 1000€     |   3    |   6.1   |
 |     601 - 800€     |   2    |   4.1   |
@@ -305,6 +346,7 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 |     200 - 400€     |   11   |  22.4   |
 |      \< 200€       |   4    |   8.2   |
 |    Kein Budget     |   11   |  22.4   |
+|     Anzahl (N)     |   49   |  100.0  |
 
 <img src="graphs/graph_7_43_alt_assistentinnen_fortbildungsbudget.png" width="65%" style="display: block; margin: auto;" />
 
@@ -312,7 +354,6 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 | Fortbildungstage | Anzahl | Prozent |
 |:----------------:|:------:|:-------:|
-|    Anzahl (N)    |   53   |  100.0  |
 |     \>5 Tage     |   4    |   7.5   |
 |      5 Tage      |   24   |  45.3   |
 |      4 Tage      |   5    |   9.4   |
@@ -320,6 +361,7 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 |      2 Tage      |   4    |   7.5   |
 |      1 Tag       |   1    |   1.9   |
 |      Keine       |   3    |   5.7   |
+|    Anzahl (N)    |   53   |  100.0  |
 
 <img src="graphs/graph_7_44_alt_assistentinnen_fortbildungstage.png" width="65%" style="display: block; margin: auto;" />
 
@@ -327,7 +369,6 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 | Zusätzliche Ausgabe | Anzahl | Prozent |
 |:-------------------:|:------:|:-------:|
-|     Anzahl (N)      |   69   |  100.0  |
 |       \> 750€       |   30   |  43.5   |
 |     601 - 750€      |   2    |   2.9   |
 |     451 - 600€      |   16   |  23.2   |
@@ -335,6 +376,7 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 |     150 - 300€      |   12   |  17.4   |
 |       \< 150€       |   2    |   2.9   |
 |       Keines        |   3    |   4.3   |
+|     Anzahl (N)      |   69   |  100.0  |
 
 <img src="graphs/graph_7_49_alt_assistentinnen_ausgabe_zusaetzlich.png" width="65%" style="display: block; margin: auto;" />
 
@@ -342,7 +384,6 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 
 | Zusätzliche Ausgabe | Anzahl | Prozent |
 |:-------------------:|:------:|:-------:|
-|     Anzahl (N)      |   69   |  100.0  |
 |       \> 750€       |   27   |  39.1   |
 |     601 - 750€      |   5    |   7.2   |
 |     451 - 600€      |   13   |  18.8   |
@@ -350,5 +391,6 @@ haben Sie bereits zur medizinischen Fort & Weiterbildung genutzt?
 |     150 - 300€      |   9    |  13.0   |
 |       \< 150€       |   2    |   2.9   |
 |       Keines        |   6    |   8.7   |
+|     Anzahl (N)      |   69   |  100.0  |
 
 <img src="graphs/graph_7_50_alt_assistentinnen_ausgabe_zusaetzlich_klinam.png" width="65%" style="display: block; margin: auto;" />

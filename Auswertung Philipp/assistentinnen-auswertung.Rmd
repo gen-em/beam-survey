@@ -1,10 +1,10 @@
 ---
 title: "BEAM-Auswertung: MedizinerInnen in Weiterbildung"
 output:
-  github_document: default
+  pdf_document: default
   word_document: default
   html_document: default
-  pdf_document: default
+  github_document: default
 encoding: UTF-8
 ---
 
@@ -484,6 +484,75 @@ kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)
 ```{r, echo=FALSE, message=FALSE, fig.asp=0.25, fig.width=8, out.width="80%", fig.align="center"}
 # Save the plot dynamically
 ggsave(here(file_name), plot_object)
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 5.25 - Welche Arten der Inhaltsvermittlung würden Sie in E-Learning Formaten gerne sehen?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "5_25"
+LABEL_FRAGE <- "wuensche_inhaltsvermittlung"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c", row.names = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.9, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object, bg = "transparent")
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 5.26 - Welche Kriterien wären/sind Ihnen wichtig für die Auswahl von Kursen & Inhalten?
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "5_26"
+LABEL_FRAGE <- "kriterien_kursauswahl"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c", row.names = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.9, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object, bg = "transparent")
+
+# Include the saved plot
+knitr::include_graphics(here(file_name))
+
+```
+
+## Frage 5.31 - Auf welchen Wegen haben Sie bisher ihre Veranstaltungen zu Fort- & Weiterbildung hauptsächlich gefunden? 
+```{r, echo = FALSE, message=FALSE}
+FRAGE_NUMMER <- "5_31"
+LABEL_FRAGE <- "veranstaltungen_bisher_gefunden"
+
+# Define dynamic plot and filename
+plot_object <- get(paste0("plot_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE))
+file_name <- paste0("graphs/", "graph_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE, ".png")
+```
+
+```{r, echo = FALSE, message=FALSE}
+kable(get(paste0("table_", FRAGE_NUMMER, "_", LABEL_KOLLEKTIV, "_", LABEL_FRAGE)), align = "c", row.names = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, fig.asp=0.9, fig.width=8, out.width="80%", fig.align="center"}
+# Save the plot dynamically
+ggsave(here(file_name), plot_object, bg = "transparent")
 
 # Include the saved plot
 knitr::include_graphics(here(file_name))
