@@ -1,10 +1,10 @@
 ---
 title: "BEAM-Auswertung: MedizinerInnen in Weiterbildung"
 output:
-  pdf_document: default
+  github_document: default
   word_document: default
   html_document: default
-  github_document: default
+  pdf_document: default
 encoding: UTF-8
 ---
 
@@ -25,10 +25,10 @@ set_output_settings <- function() {
   settings <- list()
   
   if (format %in% c("latex", "pdf")) {
-    settings$dpi <- 300
+    settings$dpi <- 600
     settings$dev <- "pdf"  # Use PDF device for LaTeX output
   } else if (format %in% c("html", "gfm", "github_document")) {
-    settings$dpi <- 150
+    settings$dpi <- 300
     settings$dev <- "png"
   } else {  # docx and others
     settings$dpi <- 300

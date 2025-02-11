@@ -125,20 +125,33 @@ create_likert_5_plot <- function(filtered_data, selected_columns, column_names, 
               size = 3.5) +
     scale_fill_manual(values = cols,
                       labels = formatted_labels,
-                      drop = TRUE) +
-    guides(fill = guide_legend(title = NULL, 
-                               nrow = 1,
-                               byrow = FALSE,
-                               reverse = FALSE,
-                               override.aes = list(fill = NA))) +
+                      drop = FALSE) +
+    guides(fill = guide_legend(
+      title = NULL,
+      nrow = 1,
+      byrow = FALSE,
+      reverse = FALSE,
+      theme = theme(
+        legend.text.position = "top",
+        legend.key.width = unit(1, "null"),
+        legend.key.height = unit(0, "null")
+      ),
+      override.aes = list(
+        size = 0
+      )
+    )) +
     scale_y_continuous(limits = c(0, 100),
                        expand = c(0, 0),
                        labels = ~paste0(.x, "%")) +
     theme_bw() +
     theme(
+      panel.background = element_blank(),   # Entfernt den Hintergrund des Panels
+      plot.background = element_blank(),    # Entfernt den gesamten Plot-Hintergrund
       panel.grid.major.y = element_blank(),
       legend.text = element_markdown(size = 10, face = "bold"),
       legend.position = "top",
+      legend.background = element_blank(),  # Removes background behind the legend
+      legend.key = element_blank(),         # Removes background behind individual legend items
       axis.title = element_blank(),
       axis.text.x = element_text(size = 10),
       axis.text.y = if(show_y_labels) element_text(size = 10) else element_blank(),

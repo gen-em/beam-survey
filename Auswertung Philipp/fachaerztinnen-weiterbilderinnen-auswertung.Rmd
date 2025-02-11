@@ -1,10 +1,10 @@
 ---
 title: "BEAM-Auswertung: FachärztInnen und WeiterbilderInnen"
 output:
-  pdf_document: default
+  github_document: default
   word_document: default
   html_document: default
-  github_document: default
+  pdf_document: default
 encoding: UTF-8
 ---
 
