@@ -443,7 +443,7 @@ column_mapping <- c(
 short_column_names <- c(
   "Suchmaschinen",
   "Datenbanken von\nÄrztekammern",
-  "Anzeigen in <br>Printmedien",
+  "Anzeigen in \nPrintmedien",
   "Email Werbung",
   "Empfehlungen von \nKollegInnen",
   "Mailings von\nFachgesellschaften"
